@@ -1,0 +1,42 @@
+{
+	"name": "TemplateStyles",
+	"version": "0.9",
+	"author": [
+		"Marc A. Pelletier"
+	],
+	"url": "https://www.mediawiki.org/wiki/Extension:TemplateStyles",
+	"namemsg": "templateStyles",
+	"descriptionmsg": "templateStyles-desc",
+	"license-name": "LGPL-2.0+",
+	"type": "other",
+	"manifest_version": 1,
+	"MessageDirs": {
+		"TemplateStyles": [
+			"i18n"
+		]
+	},
+	"AutoloadClasses": {
+		"TemplateStylesHooks": "TemplateStyles.hooks.php",
+		"CSSParser": "CSSParser.php",
+		"CSSRenderer": "CSSRenderer.php"
+	},
+	"ext.templateStyles": {
+		"scripts": [
+		],
+		"styles": [
+		],
+		"messages": [
+		],
+		"dependencies": [
+		]
+	},
+	"Hooks": {
+		"ParserFirstCallInit": [
+			"TemplateStylesHooks::onParserFirstCallInit"
+		],
+		"OutputPageParserOutput": [
+			"TemplateStylesHooks::onOutputPageParserOutput"
+		]
+	}
+}
+

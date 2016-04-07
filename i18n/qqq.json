@@ -1,0 +1,10 @@
+{
+    "@metadata": {
+        "authors": [
+            "Marc A. Pelletier"
+        ]
+    },
+    "templateStyles": "The name of the extension",
+    "templateStyles-desc": "{{desc|name=TemplateStyles|url=https://www.mediawiki.org/wiki/Extension:TemplateStyles}}",
+	"templatestyles-doc-header": "Used as caption for the display of the style sheet of the current template."
+}
