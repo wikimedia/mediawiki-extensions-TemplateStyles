@@ -5,8 +5,8 @@
 		"Marc A. Pelletier"
 	],
 	"url": "https://www.mediawiki.org/wiki/Extension:TemplateStyles",
-	"namemsg": "templateStyles",
-	"descriptionmsg": "templateStyles-desc",
+	"namemsg": "templatestyles",
+	"descriptionmsg": "templatestyles-desc",
 	"license-name": "LGPL-2.0+",
 	"type": "other",
 	"manifest_version": 1,

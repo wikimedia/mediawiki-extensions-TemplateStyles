@@ -4,7 +4,7 @@
             "Marc A. Pelletier"
         ]
     },
-    "templateStyles": "TemplateStyles",
-    "templateStyles-desc": "Implement per-template style sheets",
+    "templatestyles": "TemplateStyles",
+    "templatestyles-desc": "Implement per-template style sheets",
 	"templatestyles-doc-header": "Template-specific style sheet:"
 }
