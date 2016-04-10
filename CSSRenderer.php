@@ -32,7 +32,7 @@ class CSSRenderer {
 		}
 
 		foreach ( $rules as $at ) {
-			switch ( $at['name'] ) {
+			switch ( strtolower( $at['name'] ) ) {
 				case '@media':
 					if ( $media == '' ) {
 						$this->add( $at['rules'], "@media ".$at['text'] );
@@ -51,7 +51,7 @@ class CSSRenderer {
 	 *
 	 * @return string Rendered CSS
 	 */
-	function render() {
+	function render( $functionWhitelist = [], $propertyBlacklist = [] ) {
 
 		$css = '';
 
@@ -60,11 +60,29 @@ class CSSRenderer {
 				$css .= "$at {\n";
 			}
 			foreach ( $rules as $rule ) {
-				$css .= implode( ',', $rule['selectors'] ) . "{";
-				foreach ( $rule['decls'] as $key => $value ) {
-					$css .= "$key:" . implode( '', $value ) . ';';
+				if ( $rule
+					and array_key_exists( 'selectors', $rule )
+					and array_key_exists( 'decls', $rule ) )
+				{
+					$css .= implode( ',', $rule['selectors'] ) . "{";
+					foreach ( $rule['decls'] as $key => $value ) {
+						if ( !in_array( strtolower( $key ), $propertyBlacklist ) ) {
+							$blacklisted = false;
+							foreach ( $value as $prop ) {
+								if ( preg_match( '/^ ([^ \n\t]+) [ \n\t]* \( $/x', $prop, $match ) ) {
+									if ( !in_array( strtolower( $match[1] ), $functionWhitelist ) ) {
+										$blacklisted = true;
+										break;
+									}
+								}
+							}
+							if ( !$blacklisted ) {
+								$css .= "$key:" . implode( '', $value ) . ';';
+							}
+						}
+					}
+					$css .= "} ";
 				}
-				$css .= "} ";
 			}
 			if ( $at != '' ) {
 				$css .= "} ";

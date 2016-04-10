@@ -15,9 +15,18 @@ class TemplateStylesHooks {
 		return true;
 	}
 
-	public static function onUnitTestsList( &$paths ) {
-		$paths[] = __DIR__ . '/tests/phpunit/';
+	/**
+	 * Add phpunit tests
+	 *
+	 * @param array &$files List of phpunit test files
+	 */
+	public static function onUnitTestsList( &$files ) {
+		$files[] = __DIR__ . '/tests/phpunit/';
 		return true;
+	}
+
+	public static function makeConfig() {
+		return new GlobalVarConfig( 'TemplateStyles' );
 	}
 
 	private static function decodeFromBlob( $blob ) {
@@ -33,17 +42,12 @@ class TemplateStylesHooks {
 	}
 
 	public static function onOutputPageParserOutput( &$out, $parseroutput ) {
-		global $wgTemplateStylesNamespaces;
-		if ( $wgTemplateStylesNamespaces ) {
-			$namespaces = $wgTemplateStylesNamespaces;
-		} else {
-			$namespaces = [ NS_TEMPLATE ];
-		}
 
+		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'TemplateStyles' );
 		$renderer = new CSSRenderer();
 		$pages = [];
 
-		foreach ( $namespaces as $ns ) {
+		foreach ( self::getConfigArray( $config, 'Namespaces' ) as $ns ) {
 			if ( array_key_exists( $ns, $parseroutput->getTemplates() ) ) {
 				foreach ( $parseroutput->getTemplates()[$ns] as $title => $pageid ) {
 					$pages[$pageid] = $title;
@@ -69,18 +73,39 @@ class TemplateStylesHooks {
 
 		}
 
-		$selfcss = $out->getProperty( 'templatestyles' );
+		$selfcss = $parseroutput->getProperty( 'templatestyles' );
 		if ( $selfcss ) {
-			$selfcss = self::decodeFromBlob( unserialize( gzdecode( $selfcss ) ) );
+			$selfcss = self::decodeFromBlob( $selfcss );
 			if ( $selfcss ) {
 				$renderer->add( $selfcss );
 			}
 		}
 
-		$css = $renderer->render();
+		$css = $renderer->render(
+			self::getConfigArray( $config, 'FunctionWhitelist' ),
+			self::getConfigArray( $config, 'PropertyBlacklist' )
+		);
 		if ( $css ) {
 			$out->addInlineStyle( $css );
 		}
+	}
+
+	/**
+	 * Convert a object-style configuration value to a plain array by
+	 * returning the array keys from the found configuration where the
+	 * associated value is truthy.
+	 *
+	 * @param Config $config Configuration instance
+	 * @param string $name Name of configuration option
+	 * @return array Configuration data
+	 */
+	private static function getConfigArray( Config $config, $name ) {
+		return array_keys( array_filter(
+			$config->get( "TemplateStyles{$name}" ),
+			function ( $val ) {
+				return (bool)$val;
+			}
+		) );
 	}
 
 	/**
@@ -101,7 +126,10 @@ class TemplateStylesHooks {
 		$css = new CSSParser( $input );
 
 		if ( $css ) {
-			$parser->getOutput()->setProperty( 'templatestyles', self::encodeToBlob( $css->rules() ) );
+			$parser->getOutput()->setProperty(
+				'templatestyles',
+				self::encodeToBlob( $css->rules( '#mw-content-text ' ) )
+			);
 		}
 
 		// TODO: The UX would benefit from the CSS being run through the
@@ -112,7 +140,7 @@ class TemplateStylesHooks {
 			. Html::rawElement(
 				'p',
 				[ 'class' => 'mw-templatestyles-caption' ],
-				wfMessage( 'templatedata-doc-title' ) )
+				wfMessage( 'templatestyles-doc-title' ) )
 			. Html::element(
 				'pre',
 				[ 'class' => 'mw-templatestyles-stylesheet' ],

@@ -37,9 +37,26 @@
 		"OutputPageParserOutput": [
 			"TemplateStylesHooks::onOutputPageParserOutput"
 		],
-		"UnitTestList": [
-			"TemplateStyleHooks::onUnitTestList"
+		"UnitTestsList": [
+			"TemplateStylesHooks::onUnitTestsList"
 		]
+	},
+	"config": {
+		"TemplateStylesNamespaces": {
+			"10": true
+		},
+		"TemplateStylesFunctionWhitelist": {
+			"rgb": true
+		},
+		"TemplateStylesPropertyBlacklist": {
+			"url": true,
+			"behavior": true,
+			"-moz-binding": true,
+			"-o-link": true
+		}
+	},
+	"ConfigRegistry": {
+			"TemplateStyles": "TemplateStylesHooks::makeConfig"
 	}
 }
 

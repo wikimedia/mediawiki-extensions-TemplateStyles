@@ -30,24 +30,24 @@ class CSSParser {
 				(?# Sequences of whitespace )
 			| \/\* (?: [^*]+ | \*[^\/] )* \*\/ [ \n\t]*
 				(?# Comments and any trailing whitespace )
-			| " (?: [^"\\\\\n]+ | \\\\\. )* ["\n]
+			| " (?: [^"\\\\\n]+ | \\\\. )* ["\n]
 				(?# Double-quoted string literals (to newline when unclosed )
-			| \' (?: [^\'\\\\\n]+ | \\\\\. )* [\'\n]
-				(#? Single-quoted string literals (to newline when unclosed )
+			| \' (?: [^\'\\\\\n]+ | \\\\. )* [\'\n]
+				(?# Single-quoted string literals (to newline when unclosed )
 			| [+-]? (?: [0-9]* \. )? [0-9]+ (?: [_a-z][_a-z0-9-]* | % )?
-				(#? Numerical literals - including optional trailing units or percent sign )
+				(?# Numerical literals - including optional trailing units or percent sign )
 			| @? -? (?: [_a-z] | \\\\[0-9a-f]{1,6} [ \n\t]? )
 			        (?: [_a-z0-9-]+ | \\\\[0-9a-f]{1,6} [ \n\t]? | [^\0-\177] )* (?: [ \n\t]* \( )?
-				(#? Identifiers - including leading `@` for at-rule blocks )
-				(#? Trailing open captures are captured to match functional values )
+				(?# Identifiers - including leading `@` for at-rule blocks )
+				(?# Trailing open captures are captured to match functional values )
 			| \# (?: [_a-z0-9-]+ | \\\\[0-9a-f]{1,6} [ \n\t]? | [^\0-\177] )*
-				(#? So-called hatch literals )
+				(?# So-called hatch literals )
 			| u\+ [0-9a-f]{1,6} (?: - [0-9a-f]{1,6} )?
-				(#? Unicode range literals )
+				(?# Unicode range literals )
 			| u\+ [0-9a-f?]{1,6}
-				(#? Unicode mask literals )
+				(?# Unicode mask literals )
 			| .)
-				(#? Any unmatched token is reduced to single characters )
+				(?# Any unmatched token is reduced to single characters )
 			/xis', $css, $match );
 
 		$space = false;
@@ -69,8 +69,13 @@ class CSSParser {
 				// prevents trying to obfuscate ASCII in identifiers to prevent matches.
 
 				$t = preg_replace_callback( '/\\\\([0-9a-f]{1,6})[ \n\t]?/', function( $match ) {
-						return html_entity_decode( '&#'.$match[1].';', ENT_NOQUOTES, 'UTF-8' );
+						return html_entity_decode( '&#x'.$match[1].';', ENT_NOQUOTES, 'UTF-8' );
 				}, $t );
+
+				// close unclosed string literals
+				if ( preg_match( '/^([\'"])(.*)\n$/', $t, $match ) ) {
+					$t = $match[1] . $match[2] . $match[1];
+				}
 				$space = false;
 				$this->tokens[] = $t;
 
@@ -95,7 +100,7 @@ class CSSParser {
 			$this->index += $num;
 			return $text;
 		}
-		return '';
+		return [];
 	}
 
 	private function consumeTo( $delim ) {
@@ -129,7 +134,7 @@ class CSSParser {
 		$this->consumeWS();
 		if ( $this->peek( 0 )!=':' ) {
 			$this->consumeTo( [';', '}', null] );
-			if ( $this->peek( 0 ) == ';' ) {
+			if ( $this->peek( 0 ) ) {
 				$this->consume();
 				$this->consumeWS();
 			}
@@ -164,9 +169,6 @@ class CSSParser {
 				}
 			}
 		}
-		if ( $this->peek( 0 ) == '}' ) {
-			$this->consume();
-		}
 		return $decls;
 	}
 
@@ -182,13 +184,15 @@ class CSSParser {
 	 * Returns:
 	 *			[ selectors => [ selector* ], decls => [ decl* ] ]
 	 */
-	public function parseRule() {
+	public function parseRule( $baseSelectors ) {
 		$selectors = [];
 		$text = '';
 		$this->consumeWS();
 		while ( !in_array( $this->peek( 0 ), ['{', ';', null] ) ) {
 			if ( $this->peek( 0 ) == ',' ) {
-				$selectors[] = $text;
+				if ( $text != '' ) {
+					$selectors[] = $baseSelectors . $text;
+				}
 				$this->consume();
 				$this->consumeWS();
 				$text = '';
@@ -196,10 +200,15 @@ class CSSParser {
 				$text .= $this->consume()[0];
 			}
 		}
-		$selectors[] = $text;
+		if ( $text != '' ) {
+			$selectors[] = $baseSelectors . $text;
+		}
 		if ( $this->peek( 0 ) == '{' ) {
 			$this->consume();
 			return [ "selectors"=>$selectors, "decls"=>$this->parseDecls() ];
+		}
+		if ( $this->peek( 0 ) ) {
+			$this->consume();
 		}
 		return null;
 	}
@@ -225,13 +234,13 @@ class CSSParser {
 	 * Returns:
 	 *			[ [ name=>ATIDENT? , text=>body? , rules=>rules? ]* ]
 	 */
-	public function rules( $end = [ null ] ) {
+	public function rules( $baseSelectors = '', $end = [ null ] ) {
 		$atrules = [];
 		$rules = [];
 		$this->consumeWS();
 		while ( !in_array( $this->peek( 0 ), $end ) ) {
-			if ( in_array( $this->peek( 0 ), [ '@media' ] ) ) {
-				$at = $this->consume();
+			if ( in_array( strtolower( $this->peek( 0 ) ), [ '@media' ] ) ) {
+				$at = $this->consume()[0];
 				$this->consumeWS();
 				$text = '';
 				while ( !in_array( $this->peek( 0 ), ['{', ';', null] ) ) {
@@ -239,7 +248,7 @@ class CSSParser {
 				}
 				if ( $this->peek( 0 ) == '{' ) {
 					$this->consume();
-					$r = $this->rules( [ '}', null ] );
+					$r = $this->rules( $baseSelectors, [ '}', null ] );
 					if ( $r ) {
 						$atrules[] = [ "name"=>$at, "text"=>$text, "rules"=>$r ];
 					}
@@ -247,7 +256,7 @@ class CSSParser {
 					$atrules[] = [ "name"=>$at, "text"=>$text ];
 				}
 			} elseif ( $this->peek( 0 )[0] == '@' ) {
-				$at = $this->consume();
+				$at = $this->consume()[0];
 				$text = '';
 				while ( !in_array( $this->peek( 0 ), ['{', ';', null] ) ) {
 					$text .= $this->consume()[0];
@@ -261,14 +270,19 @@ class CSSParser {
 				} else {
 					$atrules[] = [ "name"=>$at, "text"=>$text ];
 				}
+			} elseif ( $this->peek( 0 ) == '}' ) {
+
+				$this->consume();
+
 			} else {
-				$rules[] = $this->parseRule();
+				$rules[] = $this->parseRule( $baseSelectors );
 			}
 			$this->consumeWS();
 		}
 		if ( $rules ) {
 			$atrules[] = [ "name"=>'', "rules"=>$rules ];
 		}
+		$this->consumeWS();
 		if ( $this->peek( 0 ) !== null ) {
 			$this->consume();
 		}
