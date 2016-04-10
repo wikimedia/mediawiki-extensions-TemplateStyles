@@ -27,14 +27,16 @@ class CSSRenderer {
 	 *  and defaults to the empty string.
 	 */
 	function add( $rules, $media = '' ) {
-		if ( !array_key_exists( $media, $this->bymedia ) )
+		if ( !array_key_exists( $media, $this->bymedia ) ) {
 			$this->bymedia[$media] = [];
+		}
 
 		foreach ( $rules as $at ) {
 			switch ( $at['name'] ) {
 				case '@media':
-					if ( $media == '' )
+					if ( $media == '' ) {
 						$this->add( $at['rules'], "@media ".$at['text'] );
+					}
 					break;
 				case '':
 					$this->bymedia[$media] = array_merge( $this->bymedia[$media], $at['rules'] );
@@ -54,17 +56,19 @@ class CSSRenderer {
 		$css = '';
 
 		foreach ( $this->bymedia as $at => $rules ) {
-			if ( $at != '' )
+			if ( $at != '' ) {
 				$css .= "$at {\n";
+			}
 			foreach ( $rules as $rule ) {
 				$css .= implode( ',', $rule['selectors'] ) . "{";
 				foreach ( $rule['decls'] as $key => $value ) {
-					$css .= "$key:$value";
+					$css .= "$key:" . implode( '', $value ) . ';';
 				}
 				$css .= "} ";
 			}
-			if ( $at != '' )
+			if ( $at != '' ) {
 				$css .= "} ";
+			}
 		}
 
 		return $css;

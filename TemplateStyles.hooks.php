@@ -11,27 +11,40 @@ class TemplateStylesHooks {
 	 * Register parser hooks
 	 */
 	public static function onParserFirstCallInit( &$parser ) {
-		$parser->setHook( 'templatestyles', array( 'TemplateStylesHooks', 'render' ) );
+		$parser->setHook( 'templatestyles', 'TemplateStylesHooks::render' );
 		return true;
+	}
+
+	private static function decodeFromBlob( $blob ) {
+		$tree = gzdecode( $blob );
+		if ( $tree ) {
+			$tree = unserialize( $tree );
+		}
+		return $tree;
+	}
+
+	private static function encodeToBlob( $tree ) {
+		return gzencode( serialize( $tree ) );
 	}
 
 	public static function onOutputPageParserOutput( &$out, $parseroutput ) {
 		global $wgTemplateStylesNamespaces;
-		if ( $wgTemplateStylesNamespaces )
+		if ( $wgTemplateStylesNamespaces ) {
 			$namespaces = $wgTemplateStylesNamespaces;
-		else
+		} else {
 			$namespaces = [ NS_TEMPLATE ];
+		}
 
 		$renderer = new CSSRenderer();
 		$pages = [];
 
-		if ( $out->canUseWikiPage() )
-			$pages[$out->getWikiPage()->getID()] = 'self';
-
-		foreach ( $namespaces as $ns )
-			if ( array_key_exists( $ns, $parseroutput->getTemplates() ) )
-				foreach ( $parseroutput->getTemplates()[$ns] as $title => $pageid )
+		foreach ( $namespaces as $ns ) {
+			if ( array_key_exists( $ns, $parseroutput->getTemplates() ) ) {
+				foreach ( $parseroutput->getTemplates()[$ns] as $title => $pageid ) {
 					$pages[$pageid] = $title;
+				}
+			}
+		}
 
 		if ( count( $pages ) ) {
 			$db = wfGetDB( DB_SLAVE );
@@ -43,21 +56,26 @@ class TemplateStylesHooks {
 				[ 'ORDER BY', 'pp_page' ]
 			);
 			foreach ( $res as $row ) {
-				$css = unserialize( gzdecode( $row->pp_value ) );
-				$renderer->add( $css );
+				$css = self::decodeFromBlob( $row->pp_value );
+				if ( $css ) {
+					$renderer->add( $css );
+				}
 			}
 
 		}
 
 		$selfcss = $out->getProperty( 'templatestyles' );
 		if ( $selfcss ) {
-			$selfcss = unserialize( gzdecode( $selfcss ) );
-			$renderer->add( $selfcss );
+			$selfcss = self::decodeFromBlob( unserialize( gzdecode( $selfcss ) ) );
+			if ( $selfcss ) {
+				$renderer->add( $selfcss );
+			}
 		}
 
 		$css = $renderer->render();
-		if ( $css )
+		if ( $css ) {
 			$out->addInlineStyle( $css );
+		}
 	}
 
 	/**
@@ -77,9 +95,13 @@ class TemplateStylesHooks {
 	public static function render( $input, $args, $parser, $frame ) {
 		$css = new CSSParser( $input );
 
-		if ( $css )
-			$parser->getOutput()->setProperty( 'templatestyles', gzencode( serialize( $css->rules() ) ) );
+		if ( $css ) {
+			$parser->getOutput()->setProperty( 'templatestyles', self::encodeToBlob( $css->rules() ) );
+		}
 
+		// TODO: The UX would benefit from the CSS being run through the
+		// hook for syntax highlighting rather that simply being presented
+		// as a preformatted block.
 		$html =
 			Html::openElement( 'div', [ 'class' => 'mw-templatestyles-doc' ] )
 			. Html::rawElement(
