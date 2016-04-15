@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Metalhead64"
+		]
+	},
+	"templatestyles": "TemplateStyles",
+	"templatestyles-desc": "Implementiert Stylesheets pro Vorlage",
+	"templatestyles-doc-header": "Vorlagenspezifisches Stylesheet:"
+}
