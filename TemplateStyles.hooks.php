@@ -15,6 +15,11 @@ class TemplateStylesHooks {
 		return true;
 	}
 
+	public static function onUnitTestsList( &$paths ) {
+		$paths[] = __DIR__ . '/tests/phpunit/';
+		return true;
+	}
+
 	private static function decodeFromBlob( $blob ) {
 		$tree = gzdecode( $blob );
 		if ( $tree ) {
