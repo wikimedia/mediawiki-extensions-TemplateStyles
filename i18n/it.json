@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Beta16"
+		]
+	},
+	"templatestyles": "StiliTemplate",
+	"templatestyles-desc": "Implementa fogli di stile per template",
+	"templatestyles-doc-header": "Foglio di stile specifico del template:"
+}
