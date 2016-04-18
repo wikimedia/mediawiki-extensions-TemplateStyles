@@ -1,8 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Wladek92"
+			"Wladek92",
+			"Gomoko"
 		]
 	},
-	"templatestyles": "Styles de modèles"
+	"templatestyles": "Styles de modèles",
+	"templatestyles-desc": "Implémenter les feuilles de style par modèle",
+	"templatestyles-doc-header": "Feuille de style spécifique par modèle :"
 }
