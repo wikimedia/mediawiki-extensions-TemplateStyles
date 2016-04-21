@@ -1,6 +1,4 @@
 <?php
-
-
 /**
  * @file
  * @ingroup Extensions
@@ -13,85 +11,131 @@
  */
 class CSSRenderer {
 
-	private	$bymedia;
+	/** @var array $byMedia */
+	private $byMedia;
 
 	function __construct() {
-		$this->bymedia = [];
+		$this->byMedia = [];
 	}
 
 	/**
 	 * Adds (and merge) a parsed CSS tree to the render list.
 	 *
 	 * @param array $rules The parsed tree as created by CSSParser::rules()
-	 * @param string $media Forcibly specified @media block selector.  Normally unspecified
-	 *  and defaults to the empty string.
+	 * @param string $media Forcibly specified @media block selector.
 	 */
 	function add( $rules, $media = '' ) {
-		if ( !array_key_exists( $media, $this->bymedia ) ) {
-			$this->bymedia[$media] = [];
+		if ( !array_key_exists( $media, $this->byMedia ) ) {
+			$this->byMedia[$media] = [];
 		}
 
-		foreach ( $rules as $at ) {
-			switch ( strtolower( $at['name'] ) ) {
+		foreach ( $rules as $rule ) {
+			switch ( strtolower( $rule['name'] ) ) {
 				case '@media':
 					if ( $media == '' ) {
-						$this->add( $at['rules'], "@media ".$at['text'] );
+						$this->add(
+							$rule['rules'], "@media {$rule['text']}"
+						);
 					}
 					break;
 				case '':
-					$this->bymedia[$media] = array_merge( $this->bymedia[$media], $at['rules'] );
+					$this->byMedia[$media] = array_merge(
+						$this->byMedia[$media], $rule['rules']
+					);
 					break;
 			}
 		}
 	}
 
 	/**
-	 * Renders the collected CSS trees into a string suitable for inclusion
+	 * Render the collected CSS trees into a string suitable for inclusion
 	 * in a <style> tag.
 	 *
+	 * @param array $functionWhitelist List of functions that are allowed
+	 * @param array $propertyBlacklist List of properties that not allowed
 	 * @return string Rendered CSS
 	 */
-	function render( $functionWhitelist = [], $propertyBlacklist = [] ) {
+	function render(
+		array $functionWhitelist = [],
+		array $propertyBlacklist = []
+	) {
+		// Normalize whitelist and blacklist values to lowercase
+		$functionWhitelist = array_map( 'strtolower', $functionWhitelist );
+		$propertyBlacklist = array_map( 'strtolower', $propertyBlacklist );
 
 		$css = '';
-
-		foreach ( $this->bymedia as $at => $rules ) {
-			if ( $at != '' ) {
-				$css .= "$at {\n";
+		foreach ( $this->byMedia as $media => $rules ) {
+			if ( $media !== '' ) {
+				$css .= "{$media} {\n";
 			}
 			foreach ( $rules as $rule ) {
-				if ( $rule
-					and array_key_exists( 'selectors', $rule )
-					and array_key_exists( 'decls', $rule ) )
-				{
-					$css .= implode( ',', $rule['selectors'] ) . "{";
-					foreach ( $rule['decls'] as $key => $value ) {
-						if ( !in_array( strtolower( $key ), $propertyBlacklist ) ) {
-							$blacklisted = false;
-							foreach ( $value as $prop ) {
-								if ( preg_match( '/^ ([^ \n\t]+) [ \n\t]* \( $/x', $prop, $match ) ) {
-									if ( !in_array( strtolower( $match[1] ), $functionWhitelist ) ) {
-										$blacklisted = true;
-										break;
-									}
-								}
-							}
-							if ( !$blacklisted ) {
-								$css .= "$key:" . implode( '', $value ) . ';';
-							}
-						}
-					}
-					$css .= "} ";
+				if ( $rule !== null ) {
+					$css .= $this->renderRule(
+						$rule, $functionWhitelist, $propertyBlacklist );
 				}
 			}
-			if ( $at != '' ) {
-				$css .= "} ";
+			if ( $media !== '' ) {
+				$css .= '} ';
 			}
 		}
-
 		return $css;
 	}
 
+	/**
+	 * Render a single rule.
+	 *
+	 * @param array $rule Parsed rule
+	 * @param array $functionWhitelist List of functions that are allowed
+	 * @param array $propertyBlacklist List of properties that not allowed
+	 * @return string Rendered CSS
+	 */
+	private function renderRule(
+		array $rule,
+		array $functionWhitelist,
+		array $propertyBlacklist
+	) {
+		$css = '';
+		if ( $rule &&
+			array_key_exists( 'selectors', $rule ) &&
+			array_key_exists( 'decls', $rule )
+		) {
+			$css .= implode( ',', $rule['selectors'] ) . '{';
+			foreach ( $rule['decls'] as $prop => $values ) {
+				$css .= $this->renderDecl(
+					$prop, $values, $functionWhitelist, $propertyBlacklist );
+			}
+			$css .= '} ';
+		}
+		return $css;
+	}
+
+	/**
+	 * Render a property declaration.
+	 *
+	 * @param string $prop Property name
+	 * @param array $values Parsed property values
+	 * @param array $functionWhitelist List of functions that are allowed
+	 * @param array $propertyBlacklist List of properties that not allowed
+	 * @return string Rendered CSS
+	 */
+	private function renderDecl(
+		$prop,
+		array $values,
+		array $functionWhitelist,
+		array $propertyBlacklist
+	) {
+		if ( in_array( strtolower( $prop ), $propertyBlacklist ) ) {
+			// Property is blacklisted
+			return '';
+		}
+		foreach ( $values as $value ) {
+			if ( preg_match( '/^ (\S+) \s* \( $/x', $value, $match ) ) {
+				if ( !in_array( strtolower( $match[1] ), $functionWhitelist ) ) {
+					// Function is blacklisted
+					return '';
+				}
+			}
+		}
+		return $prop . ':' . implode( '', $values ) . ';';
+	}
 }
-
-

@@ -19,8 +19,8 @@ class CSSParseRenderTest extends MediaWikiTestCase {
 		$expect,
 		$source,
 		$baseSelector = '.X ',
-		$functionWhitelist = [ 'whitelisted' ],
-		$propertyBlacklist = [ '-evil' ]
+		array $functionWhitelist = [ 'whitelisted' ],
+		array $propertyBlacklist = [ '-evil' ]
 	) {
 		$tree = new CSSParser( $source );
 		$rules = $tree->rules( $baseSelector );
@@ -238,6 +238,19 @@ prop2/*
 	comment */: whitelisted ( val2 )
 	;prop3		:not/**/whitelisted( val3 );}
 CSS
+			],
+			'Whitelist normalized' => [
+				'expect' => '.foo {bar:whitelisted(1);} ',
+				'css' => '.foo { bar: whitelisted(1); baz: url(1); }',
+				'prefix' => '',
+				'whitelist' => [ 'WHITELISTED' ],
+			],
+			'Blacklist normalized' => [
+				'expect' => '.foo {baz:1;} ',
+				'css' => '.foo { blacklisted: 1; baz: 1; }',
+				'prefix' => '',
+				'whitelist' => [],
+				'blacklist' => [ 'BLACKLISTED' ],
 			],
 		];
 	}
