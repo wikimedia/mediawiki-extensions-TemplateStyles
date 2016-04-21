@@ -56,7 +56,7 @@
 		}
 	},
 	"ConfigRegistry": {
-			"TemplateStyles": "TemplateStylesHooks::makeConfig"
+		"templatestyles": "GlobalVarConfig::newInstance"
 	}
 }
 

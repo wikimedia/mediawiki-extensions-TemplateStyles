@@ -25,10 +25,6 @@ class TemplateStylesHooks {
 		return true;
 	}
 
-	public static function makeConfig() {
-		return new GlobalVarConfig( 'TemplateStyles' );
-	}
-
 	private static function decodeFromBlob( $blob ) {
 		$tree = gzdecode( $blob );
 		if ( $tree ) {
@@ -43,7 +39,7 @@ class TemplateStylesHooks {
 
 	public static function onOutputPageParserOutput( &$out, $parseroutput ) {
 
-		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'TemplateStyles' );
+		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'templatestyles' );
 		$renderer = new CSSRenderer();
 		$pages = [];
 
