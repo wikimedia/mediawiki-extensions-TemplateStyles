@@ -136,7 +136,7 @@ class TemplateStylesHooks {
 			. Html::rawElement(
 				'p',
 				[ 'class' => 'mw-templatestyles-caption' ],
-				wfMessage( 'templatestyles-doc-title' ) )
+				wfMessage( 'templatestyles-doc-header' ) )
 			. Html::element(
 				'pre',
 				[ 'class' => 'mw-templatestyles-stylesheet' ],
