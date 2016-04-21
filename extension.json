@@ -10,7 +10,7 @@
 	"license-name": "LGPL-2.0+",
 	"type": "other",
 	"manifest_version": 1,
-	"MessageDirs": {
+	"MessagesDirs": {
 		"TemplateStyles": [
 			"i18n"
 		]
