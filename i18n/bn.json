@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Aftabuzzaman"
+		]
+	},
+	"templatestyles": "টেমপ্লেটশৈলী",
+	"templatestyles-desc": "টেমপ্লেটের জন্য শৈলীপত্রক বাস্তবায়ন করে",
+	"templatestyles-doc-header": "টেমপ্লেটের নির্দিষ্ট শৈলীপত্রক:"
+}
