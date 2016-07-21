@@ -1,8 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Piramidion"
+			"Piramidion",
+			"Base"
 		]
 	},
-	"templatestyles": "TemplateStyles"
+	"templatestyles": "TemplateStyles",
+	"templatestyles-desc": "Впровадити пошаблонові таблиці стилів",
+	"templatestyles-doc-header": "Специфічна до шаблону таблиця стилів:"
 }
