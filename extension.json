@@ -36,9 +36,6 @@
 		],
 		"OutputPageParserOutput": [
 			"TemplateStylesHooks::onOutputPageParserOutput"
-		],
-		"UnitTestsList": [
-			"TemplateStylesHooks::onUnitTestsList"
 		]
 	},
 	"config": {

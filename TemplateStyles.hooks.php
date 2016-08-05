@@ -15,16 +15,6 @@ class TemplateStylesHooks {
 		return true;
 	}
 
-	/**
-	 * Add phpunit tests
-	 *
-	 * @param array &$files List of phpunit test files
-	 */
-	public static function onUnitTestsList( &$files ) {
-		$files[] = __DIR__ . '/tests/phpunit/';
-		return true;
-	}
-
 	private static function decodeFromBlob( $blob ) {
 		$tree = gzdecode( $blob );
 		if ( $tree ) {
