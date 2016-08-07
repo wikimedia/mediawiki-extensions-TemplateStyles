@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Revi"
+		]
+	},
+	"templatestyles": "틀스타일",
+	"templatestyles-desc": "각각의 틀을 위한 스타일시트 구현",
+	"templatestyles-doc-header": "틀 전용 스타일시트:"
+}
