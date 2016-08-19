@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Xuacu"
+		]
+	},
+	"templatestyles": "TemplateStyles",
+	"templatestyles-desc": "Proporcionar fueyes d'estilu por plantía",
+	"templatestyles-doc-header": "Fueya d'estilu específica de la plantía:"
+}
