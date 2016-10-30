@@ -1,4 +1,5 @@
 <?php
+
 /**
  * TemplateStyles extension hooks
  *
@@ -9,12 +10,18 @@
 class TemplateStylesHooks {
 	/**
 	 * Register parser hooks
+	 * @param Parser $parser
+	 * @return bool
 	 */
 	public static function onParserFirstCallInit( &$parser ) {
 		$parser->setHook( 'templatestyles', 'TemplateStylesHooks::render' );
 		return true;
 	}
 
+	/**
+	 * @param string $blob
+	 * @return string
+	 */
 	private static function decodeFromBlob( $blob ) {
 		$tree = gzdecode( $blob );
 		if ( $tree ) {
@@ -23,19 +30,28 @@ class TemplateStylesHooks {
 		return $tree;
 	}
 
+	/**
+	 * @param string $tree
+	 * @return string
+	 */
 	private static function encodeToBlob( $tree ) {
 		return gzencode( serialize( $tree ) );
 	}
 
-	public static function onOutputPageParserOutput( &$out, $parseroutput ) {
-
-		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'templatestyles' );
+	/**
+	 * @param OutputPage $out
+	 * @param ParserOutput $parserOutput
+	 */
+	public static function onOutputPageParserOutput( &$out, $parserOutput ) {
+		$config = \MediaWiki\MediaWikiServices::getInstance()
+			->getConfigFactory()
+			->makeConfig( 'templatestyles' );
 		$renderer = new CSSRenderer();
 		$pages = [];
 
 		foreach ( self::getConfigArray( $config, 'Namespaces' ) as $ns ) {
-			if ( array_key_exists( $ns, $parseroutput->getTemplates() ) ) {
-				foreach ( $parseroutput->getTemplates()[$ns] as $title => $pageid ) {
+			if ( array_key_exists( $ns, $parserOutput->getTemplates() ) ) {
+				foreach ( $parserOutput->getTemplates()[$ns] as $title => $pageid ) {
 					$pages[$pageid] = $title;
 				}
 			}
@@ -43,7 +59,10 @@ class TemplateStylesHooks {
 
 		if ( count( $pages ) ) {
 			$db = wfGetDB( DB_SLAVE );
-			$res = $db->select( 'page_props', [ 'pp_page', 'pp_value' ], [
+			$res = $db->select(
+				'page_props',
+				[ 'pp_page', 'pp_value' ],
+				[
 					'pp_page' => array_keys( $pages ),
 					'pp_propname' => 'templatestyles'
 				],
@@ -59,7 +78,7 @@ class TemplateStylesHooks {
 
 		}
 
-		$selfcss = $parseroutput->getProperty( 'templatestyles' );
+		$selfcss = $parserOutput->getProperty( 'templatestyles' );
 		if ( $selfcss ) {
 			$selfcss = self::decodeFromBlob( $selfcss );
 			if ( $selfcss ) {

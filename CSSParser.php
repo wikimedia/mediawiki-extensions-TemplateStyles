@@ -51,7 +51,10 @@ class CSSParser {
 				(?# Unicode mask literals )
 			| .
 				(?# Any unmatched token is reduced to single characters )
-			)/xis', $css, $match );
+			)/xis',
+			$css,
+			$match
+		);
 
 		$inWhitespaceRun = false;
 		foreach ( $match[0] as $token ) {

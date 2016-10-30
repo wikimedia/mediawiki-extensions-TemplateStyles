@@ -34,13 +34,15 @@ class CSSRenderer {
 				case '@media':
 					if ( $media == '' ) {
 						$this->add(
-							$rule['rules'], "@media {$rule['text']}"
+							$rule['rules'],
+							"@media {$rule['text']}"
 						);
 					}
 					break;
 				case '':
 					$this->byMedia[$media] = array_merge(
-						$this->byMedia[$media], $rule['rules']
+						$this->byMedia[$media],
+						$rule['rules']
 					);
 					break;
 			}

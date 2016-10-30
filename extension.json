@@ -20,16 +20,6 @@
 		"CSSParser": "CSSParser.php",
 		"CSSRenderer": "CSSRenderer.php"
 	},
-	"ext.templateStyles": {
-		"scripts": [
-		],
-		"styles": [
-		],
-		"messages": [
-		],
-		"dependencies": [
-		]
-	},
 	"Hooks": {
 		"ParserFirstCallInit": [
 			"TemplateStylesHooks::onParserFirstCallInit"
