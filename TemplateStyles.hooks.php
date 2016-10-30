@@ -130,29 +130,25 @@ class TemplateStylesHooks {
 	public static function render( $input, $args, $parser, $frame ) {
 		$css = new CSSParser( $input );
 
-		if ( $css ) {
-			$parser->getOutput()->setProperty(
-				'templatestyles',
-				self::encodeToBlob( $css->rules( '#mw-content-text ' ) )
-			);
-		}
+		$parser->getOutput()->setProperty(
+			'templatestyles',
+			self::encodeToBlob( $css->rules( '#mw-content-text ' ) )
+		);
 
 		// TODO: The UX would benefit from the CSS being run through the
 		// hook for syntax highlighting rather that simply being presented
 		// as a preformatted block.
-		$html =
+		return
 			Html::openElement( 'div', [ 'class' => 'mw-templatestyles-doc' ] )
 			. Html::rawElement(
 				'p',
 				[ 'class' => 'mw-templatestyles-caption' ],
-				wfMessage( 'templatestyles-doc-header' ) )
-			. Html::element(
+				wfMessage( 'templatestyles-doc-header' )
+			) . Html::element(
 				'pre',
 				[ 'class' => 'mw-templatestyles-stylesheet' ],
-				$input )
-			. Html::closeElement( 'div' );
-
-		return $html;
+				$input
+			) . Html::closeElement( 'div' );
 	}
 
 }
