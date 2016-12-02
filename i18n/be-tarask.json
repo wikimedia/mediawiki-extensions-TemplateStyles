@@ -4,5 +4,7 @@
 			"Red Winged Duck"
 		]
 	},
-	"templatestyles": "Стылі шаблёнаў"
+	"templatestyles": "Стылі шаблёнаў",
+	"templatestyles-desc": "Рэалізуе старонкі стыляў для кожнага шаблёну",
+	"templatestyles-doc-header": "Спэцыфічная для шаблёну табліца стыляў:"
 }
