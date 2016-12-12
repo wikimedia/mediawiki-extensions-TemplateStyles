@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"!Silent"
+		]
+	},
+	"templatestyles": "TemplateStyles",
+	"templatestyles-desc": "Implementar folhas de estilo por predefinição",
+	"templatestyles-doc-header": "Folha de estilo específica para a predefinição:"
+}
