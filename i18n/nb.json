@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jon Harald Søby"
+		]
+	},
+	"templatestyles": "Malstiler",
+	"templatestyles-desc": "Implomenterer stilark per mal",
+	"templatestyles-doc-header": "Malspesifikt stilark:"
+}
