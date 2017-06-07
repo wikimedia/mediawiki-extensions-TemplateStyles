@@ -14,7 +14,6 @@
 	"templatestyles-errorcomment": "Formatting for the comment used to display TemplateStyles errors encountered during the parse. Parameters:\n* $1 - Source stylesheet.\n* $2 - Revision of the stylesheet.* $3 - Errors.",
 	"templatestyles-size-exceeded": "Error returned when the stylesheet is more than $wgTemplateStylesMaxStylesheetSize bytes. Parameters:\n* $1 - Maximum size in bytes\n* $2 - Maximum size in \"human units\" (i.e. KB, MB, GB, etc).",
 	"content-model-sanitized-css": "Name for TemplateStyles sanitized-css content model.",
-
 	"templatestyles-error-at-rule-block-not-allowed": "Error in CSS validation. Note \"block\" in this message refers to the part of CSS syntax inside the <code>{ ... }</code>. Parameters:\n* $1 - Line number of the error.\n* $2 - Location of the error within the line.\n* $3 - Name of the at-rule in question.",
 	"templatestyles-error-at-rule-block-required": "Error in CSS validation. Note \"block\" in this message refers to the part of CSS syntax inside the <code>{ ... }</code>. Parameters:\n* $1 - Line number of the error.\n* $2 - Location of the error within the line.\n* $3 - Name of the at-rule in question.",
 	"templatestyles-error-bad-character-in-url": "Error in CSS parsing. Parameters:\n* $1 - Line number of the error.\n* $2 - Location of the error within the line.",

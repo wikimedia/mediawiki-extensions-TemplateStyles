@@ -6,5 +6,14 @@
 	},
 	"templatestyles": "TemplateStyles",
 	"templatestyles-desc": "Implementiert Stylesheets pro Vorlage",
-	"templatestyles-doc-header": "Vorlagenspezifisches Stylesheet:"
+	"templatestyles-bad-src-missing": "Die Seite [[:$1|$2]] hat keinen Inhalt.",
+	"templatestyles-errorcomment": "Fehler bei der Verarbeitung des Stylesheets [[:$1]] (Version $2):\n$3",
+	"content-model-sanitized-css": "Bereinigtes CSS",
+	"templatestyles-error-expected-colon": "Es wird ein Doppelpunkt in Zeile $1 Zeichen $2 erwartet.",
+	"templatestyles-error-expected-ident": "Es wird ein Identifikator in Zeile $1 Zeichen $2 erwartet.",
+	"templatestyles-error-expected-qualified-rule": "Es wird eine Styleregel in Zeile $1 Zeichen $2 erwartet.",
+	"templatestyles-error-expected-stylesheet": "Es wird ein Stylesheet in Zeile $1 Zeichen $2 erwartet.",
+	"templatestyles-error-invalid-selector-list": "Ungültige Selektorenliste in Zeile $1 Zeichen $2.",
+	"templatestyles-error-misordered-rule": "Ungeordnete Regel in Zeile $1 Zeichen $2.",
+	"templatestyles-error-missing-selector-list": "Fehlende Selektorenliste in Zeile $1 Zeichen $2."
 }
