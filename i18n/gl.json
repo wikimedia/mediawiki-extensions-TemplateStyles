@@ -6,5 +6,5 @@
 	},
 	"templatestyles": "Estilos de modelos",
 	"templatestyles-desc": "Proporcionar as follas de estilo por modelo",
-	"templatestyles-doc-header": "Folla de estilo especificada por modelo:"
+	"templatestyles-bad-src-missing": "A páxina [[:$1|$2]] non ten contido."
 }
