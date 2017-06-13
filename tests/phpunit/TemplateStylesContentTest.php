@@ -77,33 +77,15 @@ class TemplateStylesContentTest extends TextContentTest {
 				[ 'severity' => 'fatal', 'novalue' => true ],
 				Status::newFatal( 'templatestyles-error-bad-value-for-property', 1, 27, 'font-family' ),
 			],
-		];
-	}
-
-	/**
-	 * @dataProvider provideHtmlInjection
-	 * @param string $text Input text
-	 * @param string $output Valid escaped output text
-	 */
-	public function testHtmlInjection( $text, $output ) {
-		$status = $this->newContent( $text )->sanitize();
-
-		if ( $status->isOk() ) { // css-sanitizer 1.0.2+
-			$this->assertEquals( Status::newGood( $output ), $status );
-		} else { // css-sanitizer 1.0.1
-			$this->assertTrue( $status->hasMessage( 'templatestyles-end-tag-injection' ) );
-		}
-	}
-
-	public static function provideHtmlInjection() {
-		return [
 			'</style> in string' => [
 				'.foo { content: "</style>"; }',
-				'.mw-parser-output .foo{content:"\3c /style\3e "}',
+				[],
+				Status::newGood( '.mw-parser-output .foo{content:"\3c /style\3e "}' )
 			],
 			'</style> via identifiers' => [
 				'.foo { grid-area: \< / style 0 / \>; }',
-				'.mw-parser-output .foo{grid-area:\3c /style 0/\3e }',
+				[],
+				Status::newGood( '.mw-parser-output .foo{grid-area:\3c /style 0/\3e }' ),
 			],
 		];
 	}
