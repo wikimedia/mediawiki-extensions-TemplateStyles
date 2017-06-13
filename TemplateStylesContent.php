@@ -83,8 +83,16 @@ class TemplateStylesContent extends TextContent {
 		$sanitizer->clearSanitizationErrors();
 
 		// Stringify it while minifying
+		$value = CSSUtil::stringify( $stylesheet, [ 'minify' => $options['minify'] ] );
+
+		// Sanity check, don't allow "</style" if one somehow sneaks through the sanitizer
+		if ( preg_match( '!</style!i', $value ) ) {
+			$value = '';
+			$status->fatal( 'templatestyles-end-tag-injection' );
+		}
+
 		if ( !$options['novalue'] ) {
-			$status->value = CSSUtil::stringify( $stylesheet, [ 'minify' => $options['minify'] ] );
+			$status->value = $value;
 
 			// Sanity check, don't allow raw U+007F if one somehow sneaks through the sanitizer
 			$status->value = strtr( $status->value, [ "\x7f" => '�' ] );
