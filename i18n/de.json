@@ -12,6 +12,7 @@
 	"templatestyles-bad-src": "Die Seite [[:$1|$2]] muss das Inhaltsmodell „{{int:content-model-sanitized-css}}“ für TemplateStyles haben. Das aktuelle Modell ist „$3“.",
 	"templatestyles-errorcomment": "Fehler bei der Verarbeitung des Stylesheets [[:$1]] (Version $2):\n$3",
 	"templatestyles-size-exceeded": "Das Stylesheet ist größer als die maximal erlaubte Größe $2.",
+	"templatestyles-end-tag-injection": "Das angegebene Stylesheet enthält <code>&lt;/style</code>, was nicht erlaubt ist.",
 	"content-model-sanitized-css": "Bereinigtes CSS",
 	"templatestyles-error-at-rule-block-not-allowed": "Der Block ist nicht erlaubt für <code>@$3</code> in Zeile $1 Zeichen $2.",
 	"templatestyles-error-at-rule-block-required": "Der Block für <code>@$3</code> ist erforderlich in Zeile $1 Zeichen $2.",

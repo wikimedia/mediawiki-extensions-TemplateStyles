@@ -6,6 +6,7 @@
 	},
 	"templatestyles": "Estilos de modelos",
 	"templatestyles-desc": "Proporcionar as follas de estilo por modelo",
+	"templatestyles-invalid-src": "Título non válido para o atributo <code>src</code> de TemplateStyles.",
 	"templatestyles-bad-src-missing": "A páxina [[:$1|$2]] non ten contido.",
 	"templatestyles-error-unclosed-url": "URL non rematado na liña $1 carácter $2."
 }
