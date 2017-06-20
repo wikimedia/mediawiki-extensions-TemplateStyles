@@ -21,7 +21,7 @@ class TemplateSantitizerFontFaceAtRuleSanitizerTest extends PHPUnit_Framework_Te
 	public function testRules( $input, $handled, $output, $minified, $errors = [], $options = [] ) {
 		$san = new TemplateStylesFontFaceAtRuleSanitizer( new MatcherFactory() );
 		$rule = Parser::newFromString( $input )->parseRule();
-		$oldRule = clone( $rule );
+		$oldRule = clone $rule;
 
 		$this->assertSame( $handled, $san->handlesRule( $rule ) );
 		$ret = $san->sanitize( $rule );
