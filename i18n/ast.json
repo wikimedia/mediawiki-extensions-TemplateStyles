@@ -6,5 +6,21 @@
 	},
 	"templatestyles": "TemplateStyles",
 	"templatestyles-desc": "Proporcionar fueyes d'estilu por plantía",
-	"templatestyles-doc-header": "Fueya d'estilu específica de la plantía:"
+	"templatestyles-missing-src": "L'atributu <code>src</code> de TemplateStyles nun tien de tar vacíu.",
+	"templatestyles-invalid-src": "Títulu inválidu pal atributu <code>src</code> de TemplateStyles.",
+	"templatestyles-bad-src-missing": "La páxina [[:$1|$2]] nun tien conteníu.",
+	"templatestyles-bad-src": "La páxina [[:$1|$2]] tien de tener el modelu de conteníu «{{int:content-model-sanitized-css}}» pa TemplateStyles (el modelu actual ye «$3»).",
+	"templatestyles-errorcomment": "Errores al procesar la fueya d'estilu [[:$1]] (rev $2):\n$3",
+	"templatestyles-size-exceeded": "La fueya d'estilu pasa del tamañu máximu de $2.",
+	"templatestyles-end-tag-injection": "La fueya d'estilu proporcionada contien <code>&lt;/style</code>, que nun ta permitíu.",
+	"content-model-sanitized-css": "Sanitized CSS",
+	"templatestyles-error-at-rule-block-not-allowed": "Bloque nun permitíu pa <code>@$3</code> na llinia $1 caráuter $2.",
+	"templatestyles-error-at-rule-block-required": "Bloque riquíu pa <code>@$3</code> na llinia $1 caráuter $2.",
+	"templatestyles-error-bad-character-in-url": "Caráuter inválidu na URL na llinia $1 caráuter $2.",
+	"templatestyles-error-bad-escape": "Caráuter inválidu nel escape na llinia $1 caráuter $2.",
+	"templatestyles-error-bad-value-for-property": "Valor inválidu o sin encontu de la propiedá <code>@$3</code> na llinia $1 caráuter $2.",
+	"templatestyles-error-expected-at-rule": "Esperábase <code>@$3</code> na llinia $1 caráuter $2.",
+	"templatestyles-error-expected-colon": "Esperábase «:» na llinia $1 caráuter $2.",
+	"templatestyles-error-expected-declaration": "Esperábase una declaración na llinia $1 caráuter $2.",
+	"templatestyles-error-expected-declaration-list": "Esperábase una llista de declaraciones na llinia $1 caráuter $2."
 }
