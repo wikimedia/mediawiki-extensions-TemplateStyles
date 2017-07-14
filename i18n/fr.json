@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Wladek92",
-			"Gomoko"
+			"Gomoko",
+			"Urhixidur"
 		]
 	},
 	"templatestyles": "Styles de modèles",
@@ -60,6 +61,6 @@
 	"templatestyles-error-unexpected-eof-in-function": "Fin de la feuille de style non attendue dans la fonction à la ligne $1, caractère $2.",
 	"templatestyles-error-unexpected-eof-in-rule": "Fin de la feuille de style non attendue dans la règle à la ligne $1, caractère $2.",
 	"templatestyles-error-unexpected-token-in-declaration-list": "Jeton non attendu dans la liste de déclaration à la ligne $1, caractère $2.",
-	"templatestyles-error-unrecognized-property": "Propriété non reconnue ou non supportée à la ligne $1, caractère $2.",
-	"templatestyles-error-unrecognized-rule": "Règle non reconnue ou non supportée à la ligne $1, caractère $2."
+	"templatestyles-error-unrecognized-property": "Propriété non reconnue ou non prise en charge à la ligne $1, caractère $2.",
+	"templatestyles-error-unrecognized-rule": "Règle non reconnue ou non prise en charge à la ligne $1, caractère $2."
 }
