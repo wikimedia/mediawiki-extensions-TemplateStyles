@@ -48,7 +48,7 @@ class TemplateStylesHooks {
 	 */
 	public static function getSanitizer( $class ) {
 		if ( !isset( self::$sanitizers[$class] ) ) {
-			$config = TemplateStylesHooks::getConfig();
+			$config = self::getConfig();
 			$matcherFactory = new TemplateStylesMatcherFactory(
 				$config->get( 'TemplateStylesAllowedUrls' )
 			);
