@@ -22,5 +22,13 @@
 	"templatestyles-error-expected-at-rule": "Esperábase <code>@$3</code> na llinia $1 caráuter $2.",
 	"templatestyles-error-expected-colon": "Esperábase «:» na llinia $1 caráuter $2.",
 	"templatestyles-error-expected-declaration": "Esperábase una declaración na llinia $1 caráuter $2.",
-	"templatestyles-error-expected-declaration-list": "Esperábase una llista de declaraciones na llinia $1 caráuter $2."
+	"templatestyles-error-expected-declaration-list": "Esperábase una llista de declaraciones na llinia $1 caráuter $2.",
+	"templatestyles-error-expected-eof": "Esperábase'l final de la fueya d'estilu na llinia $1 caráuter $2.",
+	"templatestyles-error-expected-ident": "Esperábase un identificador na llinia $1 caráuter $2.",
+	"templatestyles-error-expected-page-margin-at-rule": "Esperábase un marxe <code>@page</code> na regla de la llinia $1 caráuter $2.",
+	"templatestyles-error-expected-qualified-rule": "Esperábase una regla d'estilu na llinia $1 caráuter $2.",
+	"templatestyles-error-expected-stylesheet": "Esperábase una fueya d'estilu na llinia $1 caráuter $2.",
+	"templatestyles-error-invalid-font-face-at-rule": "<code>@font-face</code> nun permite nada antes del bloque de la llinia $1 caráuter $2.",
+	"templatestyles-error-invalid-font-feature-value": "<code>@$3</code> nun permite nada antes del bloque de la llinia $1 caráuter $2.",
+	"templatestyles-error-invalid-font-feature-value-declaration": "Valor inválidu pa la propiedá valor de la carauterística fonte na llinia $1 caráuter $2."
 }
