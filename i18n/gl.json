@@ -8,5 +8,9 @@
 	"templatestyles-desc": "Proporcionar as follas de estilo por modelo",
 	"templatestyles-invalid-src": "Título non válido para o atributo <code>src</code> de TemplateStyles.",
 	"templatestyles-bad-src-missing": "A páxina [[:$1|$2]] non ten contido.",
+	"templatestyles-errorcomment": "Erros ao procesar a folla de estilo [[:$1]] (rev $2): $3",
+	"templatestyles-size-exceeded": "A folla de estilo excede o tamaño máximo de $2.",
+	"templatestyles-end-tag-injection": "A folla de estilo indicada contén <code>&lt;/style</code>, que non está permitido.",
+	"content-model-sanitized-css": "CSS hixienizado",
 	"templatestyles-error-unclosed-url": "URL non rematado na liña $1 carácter $2."
 }
