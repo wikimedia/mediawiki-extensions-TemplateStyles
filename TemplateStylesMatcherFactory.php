@@ -4,7 +4,6 @@
  * @license https://opensource.org/licenses/GPL-2.0 GPL-2.0+
  */
 
-use Wikimedia\CSS\Objects\ComponentValue;
 use Wikimedia\CSS\Objects\Token;
 use Wikimedia\CSS\Grammar\TokenMatcher;
 use Wikimedia\CSS\Grammar\UrlMatcher;
