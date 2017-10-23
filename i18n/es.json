@@ -1,9 +1,23 @@
 {
 	"@metadata": {
 		"authors": [
-			"Lemondoge"
+			"Lemondoge",
+			"Ciencia Al Poder"
 		]
 	},
 	"templatestyles": "TemplateStyles",
-	"templatestyles-doc-header": "Específica de la plantilla de la hoja de estilo:"
+	"templatestyles-desc": "Implementa hojas de estilo por plantilla",
+	"templatestyles-missing-src": "El atributo <code>src</code> de TemplateStyles no debe estar vacío.",
+	"templatestyles-invalid-src": "Se especificó un título no válido en el atributo <code>src</code> de TemplateStyles.",
+	"templatestyles-bad-src-missing": "La página [[:$1|$2]] no tiene ningún contenido.",
+	"templatestyles-bad-src": "La página [[:$1|$2]] debe tener el modelo de contenido \"{{int:content-model-sanitized-css}}\" para TemplateStyles (el modelo de contenido que tiene actualmente es \"$3\").",
+	"templatestyles-errorcomment": "Se encontraron los siguientes errores al procesar la hoja de estilos [[:$1]] (rev $2):\n$3",
+	"templatestyles-size-exceeded": "La hoja de estilos es más grande que el máximo permitido de $2.",
+	"templatestyles-end-tag-injection": "La hoja de estilos proporcionada contiene el código no permitido <code>&lt;/style</code>.",
+	"templatestyles-error-at-rule-block-not-allowed": "Bloque no permitido para <code>@$3</code> en línea $1 carácter $2.",
+	"templatestyles-error-at-rule-block-required": "Bloque requerido para <code>@$3</code> en línea $1 carácter $2.",
+	"templatestyles-error-bad-value-for-property": "Valor no válido o no soportado para la propiedad <code>@$3</code> en línea $1 carácter $2.",
+	"templatestyles-error-expected-at-rule": "Se esperaba <code>@$3</code> en línea $1 carácter $2.",
+	"templatestyles-error-expected-colon": "Se esperaba un carácter dos puntos en línea $1 carácter $2.",
+	"templatestyles-error-expected-page-margin-at-rule": "Se esperaba una regla margin de <code>@page</code> en línea $1 carácter $2."
 }
