@@ -3,10 +3,11 @@
 		"authors": [
 			"Brad Jorsch",
 			"Marc A. Pelletier",
-			"Amire80"
+			"Amire80",
+			"Umherirrender"
 		]
 	},
-	"templatestyles": "The name of the extension",
+	"templatestyles": "{{name}}",
 	"templatestyles-desc": "{{desc|name=TemplateStyles|url=https://www.mediawiki.org/wiki/Extension:TemplateStyles}}",
 	"templatestyles-missing-src": "Error message displayed when the <code>src</code> attribute is not present on <code><nowiki><templatestyles></nowiki></code>.",
 	"templatestyles-invalid-src": "Error message displayed when the <code>src</code> attribute is not a valid title.",
