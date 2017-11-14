@@ -134,7 +134,7 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 	 * tag's output depends on the revision IDs of the input pages.
 	 * @dataProvider provideTag
 	 */
-	public function testTag( $popt, $wikitext, $expect ) {
+	public function testTag( ParserOptions $popt, $wikitext, $expect ) {
 		global $wgParserConf;
 
 		$this->setMwGlobals( [
@@ -144,14 +144,14 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 		] );
 
 		$oldCurrentRevisionCallback = $popt->setCurrentRevisionCallback(
-			function ( $title, $parser = false ) use ( &$oldCurrentRevisionCallback ) {
+			function ( Title $title, $parser = false ) use ( &$oldCurrentRevisionCallback ) {
 				if ( $title->getPrefixedText() === 'Template:Test replacement' ) {
 					$user = RequestContext::getMain()->getUser();
 					return new Revision( [
 						'page' => $title->getArticleID(),
 						'user_text' => $user->getName(),
 						'user' => $user->getId(),
-						'parent_id' => $title->getLatestRevId(),
+						'parent_id' => $title->getLatestRevID(),
 						'title' => $title,
 						'content' => new TemplateStylesContent( '.baz { color:orange; bogus:bogus; }' )
 					] );
@@ -162,6 +162,7 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 
 		$class = $wgParserConf['class'];
 		$parser = new $class( $wgParserConf );
+		/** @var Parser $parser */
 		$parser->firstCallInit();
 		if ( !isset( $parser->mTagHooks['templatestyles'] ) ) {
 			$this->markTestSkipped( 'templatestyles tag hook is not in the parser' );
