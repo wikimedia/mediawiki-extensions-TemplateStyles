@@ -165,7 +165,7 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 		/** @var Parser $parser */
 		$parser->firstCallInit();
 		if ( !isset( $parser->mTagHooks['templatestyles'] ) ) {
-			$this->markTestSkipped( 'templatestyles tag hook is not in the parser' );
+			throw new Exception( 'templatestyles tag hook is not in the parser' );
 		}
 		$out = $parser->parse( $wikitext, Title::newFromText( 'Test' ), $popt );
 		$parser->mPreprocessor = null; # Break the Parser <-> Preprocessor cycle
