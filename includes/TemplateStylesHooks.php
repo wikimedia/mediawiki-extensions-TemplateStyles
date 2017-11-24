@@ -303,7 +303,9 @@ class TemplateStylesHooks {
 
 		// Return the inline <style>, which the Parser will wrap in a 'general'
 		// strip marker.
-		$ret = Html::inlineStyle( $marker );
+		$ret = Html::inlineStyle( $marker, 'all', [
+			'data-mw-deduplicate' => "TemplateStyles:$cacheKey",
+		] );
 		$parser->extTemplateStylesCache->set( $cacheKey, $ret );
 		return $ret;
 	}
