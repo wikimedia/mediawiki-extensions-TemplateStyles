@@ -35,6 +35,9 @@
 		"ParserFirstCallInit": [
 			"TemplateStylesHooks::onParserFirstCallInit"
 		],
+		"ParserClearState": [
+			"TemplateStylesHooks::onParserClearState"
+		],
 		"ParserAfterTidy": [
 			"TemplateStylesHooks::onParserAfterTidy"
 		],

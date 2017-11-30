@@ -126,6 +126,7 @@ class TemplateStylesHooks {
 	 */
 	public static function onParserFirstCallInit( &$parser ) {
 		$parser->setHook( 'templatestyles', 'TemplateStylesHooks::handleTag' );
+		$parser->extTemplateStylesCache = new MapCacheLRU( 100 ); // 100 is arbitrary
 		return true;
 	}
 
@@ -176,6 +177,14 @@ class TemplateStylesHooks {
 			return false;
 		}
 		return true;
+	}
+
+	/**
+	 * Clear our cache when the parser is reset
+	 * @param Parser $parser
+	 */
+	public static function onParserClearState( Parser $parser ) {
+		$parser->extTemplateStylesCache->clear();
 	}
 
 	/**
@@ -235,13 +244,32 @@ class TemplateStylesHooks {
 				'</strong>';
 		}
 
-		// For the moment just output the styles inline.
-		// @todo: If T160563 happens, it would be good to convert this to use that.
+		// If the revision actually has an ID, cache based on that.
+		// Otherwise, cache by hash.
+		if ( $rev->getId() ) {
+			$cacheKey = 'r' . $rev->getId();
+		} else {
+			$cacheKey = sha1( $content->getNativeData() );
+		}
+
+		// Include any non-default wrapper class in the cache key too
+		$wrapClass = $parser->getOptions()->getWrapOutputClass();
+		if ( $wrapClass === false ) {
+			$wrapClass = 'mw-parser-output';
+		}
+		if ( $wrapClass !== 'mw-parser-output' ) {
+			$cacheKey .= '/' . $wrapClass;
+		}
+
+		// Already cached?
+		if ( $parser->extTemplateStylesCache->has( $cacheKey ) ) {
+			return $parser->extTemplateStylesCache->get( $cacheKey );
+		}
 
 		$status = $content->sanitize( [
 			'flip' => $parser->getTargetLanguage()->getDir() !== $wgContLang->getDir(),
 			'minify' => !ResourceLoader::inDebugMode(),
-			'class' => $parser->getOptions()->getWrapOutputClass(),
+			'class' => $wrapClass,
 		] );
 		$style = $status->isOk() ? $status->getValue() : '/* Fatal error, no CSS will be output */';
 
@@ -270,7 +298,9 @@ class TemplateStylesHooks {
 
 		// Return the inline <style>, which the Parser will wrap in a 'general'
 		// strip marker.
-		return Html::inlineStyle( $marker );
+		$ret = Html::inlineStyle( $marker );
+		$parser->extTemplateStylesCache->set( $cacheKey, $ret );
+		return $ret;
 	}
 
 }
