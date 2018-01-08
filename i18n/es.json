@@ -15,6 +15,7 @@
 	"templatestyles-errorcomment": "Se encontraron los siguientes errores al procesar la hoja de estilos [[:$1]] (rev. $2):\n$3",
 	"templatestyles-size-exceeded": "La hoja de estilos es más grande que el máximo permitido de $2.",
 	"templatestyles-end-tag-injection": "La hoja de estilos proporcionada contiene el código no permitido <code>&lt;/style</code>.",
+	"content-model-sanitized-css": "CSS expurgado",
 	"templatestyles-error-at-rule-block-not-allowed": "Bloque no permitido para <code>@$3</code> en línea $1 carácter $2.",
 	"templatestyles-error-at-rule-block-required": "Bloque requerido para <code>@$3</code> en línea $1 carácter $2.",
 	"templatestyles-error-bad-character-in-url": "Carácter no válido en URL en línea $1 carácter $2.",
