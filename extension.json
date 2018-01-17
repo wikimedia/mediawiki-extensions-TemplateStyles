@@ -46,6 +46,8 @@
 		]
 	},
 	"config": {
+		"@TemplateStylesDisable": "When set to true, no styles are output. This flag is for development and will be removed.",
+		"TemplateStylesDisable": false,
 		"@TemplateStylesAllowedUrls": "PCRE regexes to match allowed URLs for various types of external references. Known types are:\n; audio: Sound files\n; image: Images\n; svg: SVGs for the Filter and Masking modules\n; font: External fonts\n; namespace: @namespace declarations\n; css: @import declarations\nIf you want to allow an entire domain, be sure to include a trailing '/', e.g. \"<^https://allowed\\.example\\.org/>\" rather than \"<^https://allowed\\.example\\.org>\", so people can't bypass your filter by creating a subdomain like \"https://allowed.example.org.evil.com\".",
 		"TemplateStylesAllowedUrls": {
 			"audio": [
