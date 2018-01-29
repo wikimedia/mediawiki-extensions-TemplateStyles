@@ -189,6 +189,10 @@ class TemplateStylesHooks {
 	public static function handleTag( $text, $params, $parser, $frame ) {
 		global $wgContLang;
 
+		if ( self::getConfig()->get( 'TemplateStylesDisable' ) ) {
+			return '';
+		}
+
 		if ( !isset( $params['src'] ) || trim( $params['src'] ) === '' ) {
 			return '<strong class="error">' .
 				wfMessage( 'templatestyles-missing-src' )->inContentLanguage()->parse() .
