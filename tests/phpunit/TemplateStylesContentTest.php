@@ -2,6 +2,7 @@
 
 /**
  * @group TemplateStyles
+ * @covers TemplateStylesContent
  */
 class TemplateStylesContentTest extends TextContentTest {
 

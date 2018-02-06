@@ -6,6 +6,7 @@ use Wikimedia\CSS\Util;
 
 /**
  * @group TemplateStyles
+ * @covers TemplateStylesFontFaceAtRuleSanitizer
  */
 class TemplateSantitizerFontFaceAtRuleSanitizerTest extends PHPUnit_Framework_TestCase {
 

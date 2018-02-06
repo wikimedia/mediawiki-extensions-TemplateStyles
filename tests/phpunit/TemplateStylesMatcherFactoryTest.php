@@ -5,6 +5,7 @@ use Wikimedia\CSS\Objects\Token;
 
 /**
  * @group TemplateStyles
+ * @covers TemplateStylesMatcherFactory
  */
 class TemplateStylesMatcherFactoryTest extends PHPUnit_Framework_TestCase {
 

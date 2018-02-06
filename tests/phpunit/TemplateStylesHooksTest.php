@@ -3,6 +3,7 @@
 /**
  * @group TemplateStyles
  * @group Database
+ * @covers TemplateStylesHooks
  */
 class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 

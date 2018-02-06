@@ -2,6 +2,7 @@
 
 /**
  * @group TemplateStyles
+ * @covers TemplateStylesContentHandler
  */
 class TemplateStylesContentHandlerTest extends MediaWikiLangTestCase {
 
