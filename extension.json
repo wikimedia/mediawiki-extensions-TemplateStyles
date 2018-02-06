@@ -18,11 +18,11 @@
 		]
 	},
 	"AutoloadClasses": {
-		"TemplateStylesContentHandler": "TemplateStylesContentHandler.php",
-		"TemplateStylesContent": "TemplateStylesContent.php",
-		"TemplateStylesFontFaceAtRuleSanitizer": "TemplateStylesFontFaceAtRuleSanitizer.php",
-		"TemplateStylesHooks": "TemplateStylesHooks.php",
-		"TemplateStylesMatcherFactory": "TemplateStylesMatcherFactory.php"
+		"TemplateStylesContentHandler": "includes/TemplateStylesContentHandler.php",
+		"TemplateStylesContent": "includes/TemplateStylesContent.php",
+		"TemplateStylesFontFaceAtRuleSanitizer": "includes/TemplateStylesFontFaceAtRuleSanitizer.php",
+		"TemplateStylesHooks": "includes/TemplateStylesHooks.php",
+		"TemplateStylesMatcherFactory": "includes/TemplateStylesMatcherFactory.php"
 	},
 	"ContentHandlers": {
 		"sanitized-css": "TemplateStylesContentHandler"
