@@ -31,6 +31,7 @@ class TemplateStylesHooks {
 	/**
 	 * Get our Config
 	 * @return Config
+	 * @codeCoverageIgnore
 	 */
 	public static function getConfig() {
 		if ( !self::$config ) {
@@ -258,7 +259,7 @@ class TemplateStylesHooks {
 
 		// Include any non-default wrapper class in the cache key too
 		$wrapClass = $parser->getOptions()->getWrapOutputClass();
-		if ( $wrapClass === false ) {
+		if ( $wrapClass === false ) { // deprecated
 			$wrapClass = 'mw-parser-output';
 		}
 		if ( $wrapClass !== 'mw-parser-output' ) {

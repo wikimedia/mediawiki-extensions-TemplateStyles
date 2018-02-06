@@ -25,7 +25,9 @@ class TemplateStylesContent extends TextContent {
 	 */
 	protected static function processErrors( StatusValue $status, array $errors, $severity ) {
 		if ( $severity !== 'warning' && $severity !== 'fatal' ) {
+			// @codeCoverageIgnoreStart
 			throw new \InvalidArgumentException( 'Invalid $severity' );
+			// @codeCoverageIgnoreEnd
 		}
 		foreach ( $errors as $error ) {
 			$error[0] = 'templatestyles-error-' . $error[0];

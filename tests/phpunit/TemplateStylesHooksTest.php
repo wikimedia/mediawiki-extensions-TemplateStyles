@@ -131,14 +131,42 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * @dataProvider provideOnCodeEditorGetPageLanguage
+	 */
+	public function testOnCodeEditorGetPageLanguage( $useCodeEditor, $model, $expect ) {
+		$this->setMwGlobals( [
+			'wgTemplateStylesUseCodeEditor' => $useCodeEditor,
+		] );
+
+		$title = Title::makeTitle( NS_TEMPLATE, 'Test.css' );
+		$lang = 'unchanged';
+		$ret = TemplateStylesHooks::onCodeEditorGetPageLanguage(
+			$title, $lang, $model, 'text/x-whatever'
+		);
+		$this->assertSame( !$expect, $ret );
+		$this->assertSame( $expect ? 'css' : 'unchanged', $lang );
+	}
+
+	public static function provideOnCodeEditorGetPageLanguage() {
+		return [
+			[ true, 'wikitext', false ],
+			[ true, 'css', false ],
+			[ true, 'sanitized-css', true ],
+			[ false, 'sanitized-css', false ],
+		];
+	}
+
+	/**
 	 * Unfortunately we can't just use a parserTests.txt file because our
 	 * tag's output depends on the revision IDs of the input pages.
 	 * @dataProvider provideTag
 	 */
-	public function testTag( ParserOptions $popt, $getTextOptions, $wikitext, $expect ) {
+	public function testTag(
+		ParserOptions $popt, $getTextOptions, $wikitext, $expect, $globals = []
+	) {
 		global $wgParserConf;
 
-		$this->setMwGlobals( [
+		$this->setMwGlobals( $globals + [
 			'wgScriptPath' => '',
 			'wgScript' => '/index.php',
 			'wgArticlePath' => '/wiki/$1',
@@ -179,6 +207,9 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 		$popt->setWrapOutputClass( 'templatestyles-test' );
 
 		$popt2 = ParserOptions::newFromContext( RequestContext::getMain() );
+
+		$popt3 = ParserOptions::newFromContext( RequestContext::getMain() );
+		MediaWiki\quietCall( [ $popt3, 'setWrapOutputClass' ], false );
 
 		return [
 			'Tag without src' => [
@@ -230,6 +261,12 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 				"<div class=\"templatestyles-test\"><p><style>.templatestyles-test .foo{color:blue}</style>\n</p></div>",
 				// @codingStandardsIgnoreEnd
 			],
+			'Disabled' => [
+				$popt, [],
+				'<templatestyles src="TemplateStyles test/styles1.css" />',
+				"<div class=\"templatestyles-test\"></div>",
+				[ 'wgTemplateStylesDisable' => true ],
+			],
 			'Replaced content (which includes sanitization errors)' => [
 				$popt, [],
 				'<templatestyles src="Test replacement" />',
@@ -239,6 +276,11 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 			],
 			'Still prefixed despite no wrapper' => [
 				$popt2, [ 'unwrap' => true ],
+				'<templatestyles src="TemplateStyles test/styles1.css" />',
+				"<p><style>.mw-parser-output .foo{color:blue}</style>\n</p>",
+			],
+			'Still prefixed despite deprecated no wrapper' => [
+				$popt3, [],
 				'<templatestyles src="TemplateStyles test/styles1.css" />',
 				"<p><style>.mw-parser-output .foo{color:blue}</style>\n</p>",
 			],
