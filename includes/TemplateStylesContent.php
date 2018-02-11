@@ -113,7 +113,7 @@ class TemplateStylesContent extends TextContent {
 	protected function getHtml() {
 		$html = "";
 		$html .= "<pre class=\"mw-code mw-css\" dir=\"ltr\">\n";
-		$html .= htmlspecialchars( $this->getNativeData() );
+		$html .= htmlspecialchars( $this->getNativeData(), ENT_NOQUOTES );
 		$html .= "\n</pre>\n";
 
 		return $html;
