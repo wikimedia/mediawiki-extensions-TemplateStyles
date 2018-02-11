@@ -209,7 +209,7 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 		$popt2 = ParserOptions::newFromContext( RequestContext::getMain() );
 
 		$popt3 = ParserOptions::newFromContext( RequestContext::getMain() );
-		MediaWiki\quietCall( [ $popt3, 'setWrapOutputClass' ], false );
+		Wikimedia\quietCall( [ $popt3, 'setWrapOutputClass' ], false );
 
 		return [
 			'Tag without src' => [
