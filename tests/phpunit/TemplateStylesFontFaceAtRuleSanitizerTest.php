@@ -8,7 +8,7 @@ use Wikimedia\CSS\Util;
  * @group TemplateStyles
  * @covers TemplateStylesFontFaceAtRuleSanitizer
  */
-class TemplateStylesFontFaceAtRuleSanitizerTest extends PHPUnit_Framework_TestCase {
+class TemplateStylesFontFaceAtRuleSanitizerTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideRules
