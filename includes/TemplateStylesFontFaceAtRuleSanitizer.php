@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * @license https://opensource.org/licenses/GPL-2.0 GPL-2.0+
+ * @license GPL-2.0-or-later
  */
 
 use Wikimedia\CSS\Grammar\Alternative;
