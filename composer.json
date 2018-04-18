@@ -2,7 +2,7 @@
 	"license": "GPL-2.0-or-later",
 	"require": {
 		"cssjanus/cssjanus": "1.2.0",
-		"wikimedia/css-sanitizer": "~1.0.3"
+		"wikimedia/css-sanitizer": "~1.0.6"
 	},
 	"require-dev": {
 		"jakub-onderka/php-parallel-lint": "1.0.0",
