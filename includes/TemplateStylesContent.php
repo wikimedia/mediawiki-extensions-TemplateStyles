@@ -129,10 +129,13 @@ class TemplateStylesContent extends TextContent {
 		// Inject our warnings into the resulting ParserOutput
 		$po = parent::getParserOutput( $title, $revId, $options, $generateHtml );
 		$status = $this->sanitize( [ 'novalue' => true, 'class' => $options->getWrapOutputClass() ] );
-		foreach ( $status->getErrors() as $error ) {
-			$po->addWarning(
-				Message::newFromSpecifier( array_merge( [ $error['message'] ], $error['params'] ) )->parse()
-			);
+		if ( $status->getErrors() ) {
+			foreach ( $status->getErrors() as $error ) {
+				$po->addWarning(
+					Message::newFromSpecifier( array_merge( [ $error['message'] ], $error['params'] ) )->parse()
+				);
+			}
+			$po->addTrackingCategory( 'templatestyles-stylesheet-error-category', $title );
 		}
 		return $po;
 	}

@@ -30,6 +30,10 @@
 	"ContentHandlers": {
 		"sanitized-css": "TemplateStylesContentHandler"
 	},
+	"TrackingCategories": [
+		"templatestyles-stylesheet-error-category",
+		"templatestyles-page-error-category"
+	],
 	"SyntaxHighlightModels": {
 		"sanitized-css": "css"
 	},

@@ -204,9 +204,7 @@ class TemplateStylesHooks {
 		}
 
 		if ( !isset( $params['src'] ) || trim( $params['src'] ) === '' ) {
-			return '<strong class="error">' .
-				wfMessage( 'templatestyles-missing-src' )->inContentLanguage()->parse() .
-				'</strong>';
+			return self::formatTagError( $parser, [ 'templatestyles-missing-src' ] );
 		}
 
 		// Default to the Template namespace because that's the most likely
@@ -215,9 +213,7 @@ class TemplateStylesHooks {
 		// wind up wanting to make that relative to the wrong page.
 		$title = Title::newFromText( $params['src'], NS_TEMPLATE );
 		if ( !$title ) {
-			return '<strong class="error">' .
-				wfMessage( 'templatestyles-invalid-src' )->inContentLanguage()->parse() .
-				'</strong>';
+			return self::formatTagError( $parser, [ 'templatestyles-invalid-src' ] );
 		}
 
 		$rev = $parser->fetchCurrentRevisionOfTitle( $title );
@@ -229,24 +225,20 @@ class TemplateStylesHooks {
 		$content = $rev ? $rev->getContent() : null;
 		if ( !$content ) {
 			$title = $title->getPrefixedText();
-			return '<strong class="error">' .
-				wfMessage(
-					'templatestyles-bad-src-missing',
-					$title,
-					wfEscapeWikiText( $title )
-				)->inContentLanguage()->parse() .
-				'</strong>';
+			return self::formatTagError( $parser, [
+				'templatestyles-bad-src-missing',
+				$title,
+				wfEscapeWikiText( $title )
+			] );
 		}
 		if ( !$content instanceof TemplateStylesContent ) {
 			$title = $title->getPrefixedText();
-			return '<strong class="error">' .
-				wfMessage(
-					'templatestyles-bad-src',
-					$title,
-					wfEscapeWikiText( $title ),
-					ContentHandler::getLocalizedName( $content->getModel() )
-				)->inContentLanguage()->parse() .
-				'</strong>';
+			return self::formatTagError( $parser, [
+				'templatestyles-bad-src',
+				$title,
+				wfEscapeWikiText( $title ),
+				ContentHandler::getLocalizedName( $content->getModel() )
+			] );
 		}
 
 		// If the revision actually has an ID, cache based on that.
@@ -308,6 +300,19 @@ class TemplateStylesHooks {
 		] );
 		$parser->extTemplateStylesCache->set( $cacheKey, $ret );
 		return $ret;
+	}
+
+	/**
+	 * Format an error in the `<templatestyles>` tag
+	 * @param Parser $parser
+	 * @param array $msg Arguments to wfMessage()
+	 * @return string HTML
+	 */
+	private static function formatTagError( Parser $parser, array $msg ) {
+		$parser->addTrackingCategory( 'templatestyles-page-error-category' );
+		return '<strong class="error">' .
+			call_user_func_array( 'wfMessage', $msg )->inContentLanguage()->parse() .
+			'</strong>';
 	}
 
 }
