@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"!Silent",
-			"Felipe L. Ewald"
+			"Felipe L. Ewald",
+			"Eduardo Addad de Oliveira"
 		]
 	},
 	"templatestyles": "TemplateStyles",
@@ -15,6 +16,10 @@
 	"templatestyles-size-exceeded": "A folha de estilos é maior do que o tamanho máximo de $2.",
 	"templatestyles-end-tag-injection": "A folha de estilo fornecida contém<code>&lt;/style</code>, o que não é permitido.",
 	"content-model-sanitized-css": "CSS limpo",
+	"templatestyles-stylesheet-error-category": "Estilos de TemplateStyles com erros",
+	"templatestyles-stylesheet-error-category-desc": "A folha de estilos TemplateStyles tem um erro.",
+	"templatestyles-page-error-category": "Páginas com erros de TemplateStyles",
+	"templatestyles-page-error-category-desc": "Ocorreu um erro ao processar um <code><nowiki><templatestyles/></nowiki></code> etiqueta na página.",
 	"templatestyles-error-at-rule-block-not-allowed": "Bloqueio não permitido para <code>@$3</code> na linha $1 caractere $2.",
 	"templatestyles-error-at-rule-block-required": "Bloqueio requerido para <code>@$3</code> na linha $1 caractere $2.",
 	"templatestyles-error-bad-character-in-url": "Caractere inválido no URL na linha $1 caractere $2.",
