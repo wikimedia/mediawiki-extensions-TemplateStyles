@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80"
+			"Amire80",
+			"Guycn2"
 		]
 	},
 	"templatestyles": "סגנונות תבנית",
@@ -14,6 +15,10 @@
 	"templatestyles-size-exceeded": "גיליון הסגנון גדול מ־$2, שהוא הגודל המרבי.",
 	"templatestyles-end-tag-injection": "גיליון הסגנון שסופק מכיל <code dir=\"ltr\">&lt;/style</code> וזה אסור.",
 	"content-model-sanitized-css": "CSS מחוטא",
+	"templatestyles-stylesheet-error-category": "גיליונות סגנון של תבניות המכילים שגיאות",
+	"templatestyles-stylesheet-error-category-desc": "יש שגיאה בגיליון הסגנונות של התבנית.",
+	"templatestyles-page-error-category": "דפים עם שגיאות בתג סגנונות התבנית",
+	"templatestyles-page-error-category-desc": "אירעה שגיאה בעיבוד התג <code dir=\"ltr\"><nowiki><templatestyles/></nowiki></code> בדף.",
 	"templatestyles-error-at-rule-block-not-allowed": "גוש אסור עבור <code dir=\"ltr\">@$3</code> בשורה $1 בתו $2.",
 	"templatestyles-error-at-rule-block-required": "גוש נדרש עבור <code dir=\"ltr\">@$3</code> בשורה $1 בתו $2.",
 	"templatestyles-error-bad-character-in-url": "תו בלתי־תקין ב־URL בשורה $1 בתו $2.",
