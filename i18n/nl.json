@@ -15,6 +15,9 @@
 	"templatestyles-size-exceeded": "Het stijlblad is groter dan de maximum grootte $2",
 	"templatestyles-end-tag-injection": "Het meegeleverde stijlblad bevat <code>&lt;/style</code>, wat niet is toegestaan.",
 	"content-model-sanitized-css": "Opgeschoonde CSS",
+	"templatestyles-stylesheet-error-category": "SjabloonStijlen stijlbladen met fouten",
+	"templatestyles-stylesheet-error-category-desc": "Het SjabloonStijlen stijlblad bevat een fout.",
+	"templatestyles-page-error-category": "Pagina's met SjabloonStijlen fouten",
 	"templatestyles-error-bad-character-in-url": "Ongeldig teken in de URL op regel $1, positie $2.",
 	"templatestyles-error-bad-value-for-property": "Ongeldig of niet ondersteunde waarde voor eigenschap <code>$3</code> op regel $1, positie $2.",
 	"templatestyles-error-expected-at-rule": "<code>@$3</code> ontbreekt op regel $1, positie $2.",
@@ -24,5 +27,6 @@
 	"templatestyles-error-expected-qualified-rule": "Stijlregel ontbreekt op regel $1, positie $2.",
 	"templatestyles-error-expected-stylesheet": "Stijlblad ontbreekt op regel $1, positie $2.",
 	"templatestyles-error-invalid-namespace-value": "Ongeldige waarde ingesteld bij <code>@namespace</code> op regel $1, positie $2",
-	"templatestyles-error-invalid-page-rule-content": "Ongeldige inhoud voor <code>@page</code> op regel $1, positie $2."
+	"templatestyles-error-invalid-page-rule-content": "Ongeldige inhoud voor <code>@page</code> op regel $1, positie $2.",
+	"templatestyles-error-newline-in-string": "Ongeldige nieuwe regel op regel $1, teken $2."
 }
