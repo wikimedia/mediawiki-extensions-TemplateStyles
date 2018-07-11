@@ -123,7 +123,7 @@ class TemplateStylesContent extends TextContent {
 		ParserOptions $options = null, $generateHtml = true
 	) {
 		if ( $options === null ) {
-			$options = $this->getContentHandler()->makeParserOptions( 'canonical' );
+			$options = ParserOptions::newCanonical( 'canonical' );
 		}
 
 		// Inject our warnings into the resulting ParserOutput
