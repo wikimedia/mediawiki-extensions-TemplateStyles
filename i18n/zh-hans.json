@@ -15,7 +15,7 @@
 	"templatestyles-errorcomment": "解析样式表[[:$1]]（修订版本$2）时出错：$3",
 	"templatestyles-size-exceeded": "样式表超过最高大小$2。",
 	"templatestyles-end-tag-injection": "提供的样式表包含<code>&lt;/style</code>，这是不允许的。",
-	"content-model-sanitized-css": "Sanitized CSS",
+	"content-model-sanitized-css": "已过滤的CSS",
 	"templatestyles-stylesheet-error-category": "有错误的模板样式表",
 	"templatestyles-stylesheet-error-category-desc": "模板样式表存在错误。",
 	"templatestyles-page-error-category": "有模板样式错误的页面",
