@@ -195,6 +195,7 @@ class TemplateStylesHooks {
 	 * @param Parser $parser
 	 * @param PPFrame $frame
 	 * @return string HTML
+	 * @suppress SecurityCheck-XSS
 	 */
 	public static function handleTag( $text, $params, $parser, $frame ) {
 		global $wgContLang;
