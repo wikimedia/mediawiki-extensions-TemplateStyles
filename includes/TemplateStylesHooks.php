@@ -224,19 +224,19 @@ class TemplateStylesHooks {
 
 		$content = $rev ? $rev->getContent() : null;
 		if ( !$content ) {
-			$title = $title->getPrefixedText();
+			$titleText = $title->getPrefixedText();
 			return self::formatTagError( $parser, [
 				'templatestyles-bad-src-missing',
-				$title,
-				wfEscapeWikiText( $title )
+				$titleText,
+				wfEscapeWikiText( $titleText )
 			] );
 		}
 		if ( !$content instanceof TemplateStylesContent ) {
-			$title = $title->getPrefixedText();
+			$titleText = $title->getPrefixedText();
 			return self::formatTagError( $parser, [
 				'templatestyles-bad-src',
-				$title,
-				wfEscapeWikiText( $title ),
+				$titleText,
+				wfEscapeWikiText( $titleText ),
 				ContentHandler::getLocalizedName( $content->getModel() )
 			] );
 		}
