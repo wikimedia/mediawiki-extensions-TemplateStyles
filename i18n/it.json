@@ -15,7 +15,7 @@
 	"content-model-sanitized-css": "CSS sanificato",
 	"templatestyles-stylesheet-error-category": "Fogli di stile TemplateStyles con errori",
 	"templatestyles-stylesheet-error-category-desc": "Il foglio di stile TemplateStyles ha un errore.",
-	"templatestyles-page-error-category": "Pagine con errori TemplateStyles",
+	"templatestyles-page-error-category": "Pagine con errori di TemplateStyles",
 	"templatestyles-error-at-rule-block-not-allowed": "Blocco non permesso per <code>@$3</code> alla linea $1, carattere $2.",
 	"templatestyles-error-bad-escape": "Carattere invalido nell'escape alla linea $1, carattere $2.",
 	"templatestyles-error-bad-value-for-property": "Valore non valido o non supportato per la proprietà <code>$3</code> alla linea $1, carattere $2.",
