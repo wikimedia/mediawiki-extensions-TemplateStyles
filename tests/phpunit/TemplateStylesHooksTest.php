@@ -24,6 +24,9 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 		$this->addPage( 'nonsanitized.css', '.foo { color: red; }', CONTENT_MODEL_CSS );
 		$this->addPage( 'styles1.css', '.foo { color: blue; }', 'sanitized-css' );
 		$this->addPage( 'styles2.css', '.bar { color: green; }', 'sanitized-css' );
+		$this->addPage(
+			'styles3.css', 'html.no-js body.skin-minerva .bar { color: yellow; }', 'sanitized-css'
+		);
 	}
 
 	/**
@@ -275,6 +278,13 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 				'<templatestyles src="Test replacement" />',
 				// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
 				"<div class=\"templatestyles-test\"><style data-mw-deduplicate=\"TemplateStyles:8fd14043c1cce91e8b9d1487a9d17d8d9ae43890/templatestyles-test\">/*\nErrors processing stylesheet [[:Template:Test replacement]] (rev ):\n• Unrecognized or unsupported property at line 1 character 22.\n*/\n.templatestyles-test .baz{color:orange}</style>\n</div>",
+				// @codingStandardsIgnoreEnd
+			],
+			'Hoistable selectors are hoisted' => [
+				$popt, [],
+				'<templatestyles src="TemplateStyles test/styles3.css" />',
+				// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
+				"<div class=\"templatestyles-test\"><style data-mw-deduplicate=\"TemplateStyles:r{{REV:styles3.css}}/templatestyles-test\">html.no-js body.skin-minerva .templatestyles-test .bar{color:yellow}</style>\n</div>",
 				// @codingStandardsIgnoreEnd
 			],
 			'Still prefixed despite no wrapper' => [

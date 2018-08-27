@@ -5,6 +5,9 @@
  * @license GPL-2.0-or-later
  */
 
+use Wikimedia\CSS\Grammar\CheckedMatcher;
+use Wikimedia\CSS\Grammar\Match;
+use Wikimedia\CSS\Objects\ComponentValueList;
 use Wikimedia\CSS\Objects\Token;
 use Wikimedia\CSS\Sanitizer\FontFeatureValuesAtRuleSanitizer;
 use Wikimedia\CSS\Sanitizer\KeyframesAtRuleSanitizer;
@@ -61,6 +64,20 @@ class TemplateStylesHooks {
 			) );
 			Hooks::run( 'TemplateStylesPropertySanitizer', [ &$propertySanitizer, $matcherFactory ] );
 
+			$htmlOrBodySimpleSelectorSeqMatcher = new CheckedMatcher(
+				$matcherFactory->cssSimpleSelectorSeq(),
+				function ( ComponentValueList $values, Match $match, array $options ) {
+					foreach ( $match->getCapturedMatches() as $m ) {
+						if ( $m->getName() !== 'element' ) {
+							continue;
+						}
+						$str = (string)$m;
+						return $str === 'html' || $str === 'body';
+					}
+					return false;
+				}
+			);
+
 			$atRuleBlacklist = array_flip( $config->get( 'TemplateStylesAtRuleBlacklist' ) );
 			$ruleSanitizers = [
 				'styles' => new StyleRuleSanitizer(
@@ -70,8 +87,8 @@ class TemplateStylesHooks {
 						'prependSelectors' => [
 							new Token( Token::T_DELIM, '.' ),
 							new Token( Token::T_IDENT, $class ),
-							new Token( Token::T_WHITESPACE ),
 						],
+						'hoistableComponentMatcher' => $htmlOrBodySimpleSelectorSeqMatcher,
 					]
 				),
 				'@font-face' => new TemplateStylesFontFaceAtRuleSanitizer( $matcherFactory ),
