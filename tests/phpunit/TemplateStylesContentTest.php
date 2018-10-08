@@ -92,27 +92,26 @@ class TemplateStylesContentTest extends TextContentTest {
 	}
 
 	public function testCrazyBrokenSanitizer() {
-		global $wgHooks;
-
-		$this->stashMwGlobals( 'wgHooks' );
-
 		// Big hack: Make a Token that returns a bad string, and a Sanitizer
 		// that returns that bad Token, just so we can test a code path that
 		// handles such bad output.
-		$wgHooks['TemplateStylesStylesheetSanitizer'][] = function ( &$sanitizer ) {
-			$badToken = $this->getMockBuilder( Wikimedia\CSS\Objects\Token::class )
-				->disableOriginalConstructor()
-				->setMethods( [ '__toString' ] )
-				->getMock();
-			$badToken->method( '__toString' )->willReturn( '"</style>"' );
+		$this->setTemporaryHook(
+			'TemplateStylesStylesheetSanitizer',
+			function ( &$sanitizer ) {
+				$badToken = $this->getMockBuilder( Wikimedia\CSS\Objects\Token::class )
+					->disableOriginalConstructor()
+					->setMethods( [ '__toString' ] )
+					->getMock();
+				$badToken->method( '__toString' )->willReturn( '"</style>"' );
 
-			$sanitizer = $this->getMockBuilder( Wikimedia\CSS\Sanitizer\StylesheetSanitizer::class )
-				->disableOriginalConstructor()
-				->setMethods( [ 'sanitize' ] )
-				->getMock();
-			$sanitizer->method( 'sanitize' )->willReturn( $badToken );
-			return false;
-		};
+				$sanitizer = $this->getMockBuilder( Wikimedia\CSS\Sanitizer\StylesheetSanitizer::class )
+					->disableOriginalConstructor()
+					->setMethods( [ 'sanitize' ] )
+					->getMock();
+				$sanitizer->method( 'sanitize' )->willReturn( $badToken );
+				return false;
+			}
+		);
 
 		$this->assertEquals(
 			Status::newFatal( 'templatestyles-end-tag-injection' ),
