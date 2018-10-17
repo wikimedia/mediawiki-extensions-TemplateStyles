@@ -39,6 +39,7 @@ class TemplateStylesContent extends TextContent {
 	 * Sanitize the content
 	 * @param array $options Options are:
 	 *  - class: (string) Class to prefix selectors with
+	 *  - extraWrapper: (string) Extra simple selector to prefix selectors with
 	 *  - flip: (bool) Have CSSJanus flip the stylesheet.
 	 *  - minify: (bool) Whether to minify. Default true.
 	 *  - novalue: (bool) Don't bother returning the actual stylesheet, just
@@ -49,6 +50,7 @@ class TemplateStylesContent extends TextContent {
 	public function sanitize( array $options = [] ) {
 		$options += [
 			'class' => false,
+			'extraWrapper' => null,
 			'flip' => false,
 			'minify' => true,
 			'novalue' => false,
@@ -78,7 +80,9 @@ class TemplateStylesContent extends TextContent {
 		self::processErrors( $status, $cssParser->getParseErrors(), $options['severity'] );
 
 		// Sanitize it, and collect any errors
-		$sanitizer = TemplateStylesHooks::getSanitizer( $options['class'] ?: 'mw-parser-output' );
+		$sanitizer = TemplateStylesHooks::getSanitizer(
+			$options['class'] ?: 'mw-parser-output', $options['extraWrapper']
+		);
 		$sanitizer->clearSanitizationErrors(); // Just in case
 		$stylesheet = $sanitizer->sanitize( $stylesheet );
 		self::processErrors( $status, $sanitizer->getSanitizationErrors(), $options['severity'] );
