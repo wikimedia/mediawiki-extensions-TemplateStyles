@@ -39,6 +39,9 @@
 			"Models": {
 				"sanitized-css": "css"
 			}
+		},
+		"TemplateStyles": {
+			"Namespaces": []
 		}
 	},
 	"callback": "TemplateStylesHooks::onRegistration",
