@@ -7,8 +7,10 @@
 
 use Wikimedia\CSS\Grammar\CheckedMatcher;
 use Wikimedia\CSS\Grammar\Match;
+use Wikimedia\CSS\Grammar\MatcherFactory;
 use Wikimedia\CSS\Objects\ComponentValueList;
 use Wikimedia\CSS\Objects\Token;
+use Wikimedia\CSS\Parser\Parser as CSSParser;
 use Wikimedia\CSS\Sanitizer\FontFeatureValuesAtRuleSanitizer;
 use Wikimedia\CSS\Sanitizer\KeyframesAtRuleSanitizer;
 use Wikimedia\CSS\Sanitizer\MediaAtRuleSanitizer;
@@ -28,8 +30,14 @@ class TemplateStylesHooks {
 	/** @var Config|null */
 	private static $config = null;
 
+	/** @var MatcherFactory|null */
+	private static $matcherFactory = null;
+
 	/** @var Sanitizer[] */
 	private static $sanitizers = [];
+
+	/** @var Token[] */
+	private static $wrappers = [];
 
 	/**
 	 * Get our Config
@@ -46,16 +54,51 @@ class TemplateStylesHooks {
 	}
 
 	/**
-	 * Get our Sanitizer
-	 * @param string $class Class to limit selectors to
-	 * @return Sanitizer
+	 * Get our MatcherFactory
+	 * @return MatcherFactory
+	 * @codeCoverageIgnore
 	 */
-	public static function getSanitizer( $class ) {
-		if ( !isset( self::$sanitizers[$class] ) ) {
+	private static function getMatcherFactory() {
+		if ( !self::$matcherFactory ) {
 			$config = self::getConfig();
-			$matcherFactory = new TemplateStylesMatcherFactory(
+			self::$matcherFactory = new TemplateStylesMatcherFactory(
 				$config->get( 'TemplateStylesAllowedUrls' )
 			);
+		}
+		return self::$matcherFactory;
+	}
+
+	/**
+	 * Validate an extra wrapper-selector
+	 * @param string $wrapper
+	 * @return Token[]|false Token representation of the selector, or null on failure
+	 */
+	private static function validateExtraWrapper( $wrapper ) {
+		if ( !isset( self::$wrappers[$wrapper] ) ) {
+			$cssParser = CSSParser::newFromString( $wrapper );
+			$components = $cssParser->parseComponentValueList();
+			if ( $cssParser->getParseErrors() ) {
+				$match = false;
+			} else {
+				$match = self::getMatcherFactory()->cssSimpleSelectorSeq()
+					->match( $components, [ 'mark-significance' => true ] );
+			}
+			self::$wrappers[$wrapper] = $match ? $components->toTokenArray() : false;
+		}
+		return self::$wrappers[$wrapper];
+	}
+
+	/**
+	 * Get our Sanitizer
+	 * @param string $class Class to limit selectors to
+	 * @param string|null $extraWrapper Extra selector to limit selectors to
+	 * @return Sanitizer
+	 */
+	public static function getSanitizer( $class, $extraWrapper = null ) {
+		$key = $extraWrapper !== null ? "$class $extraWrapper" : $class;
+		if ( !isset( self::$sanitizers[$key] ) ) {
+			$config = self::getConfig();
+			$matcherFactory = self::getMatcherFactory();
 
 			$propertySanitizer = new StylePropertySanitizer( $matcherFactory );
 			$propertySanitizer->setKnownProperties( array_diff_key(
@@ -78,16 +121,29 @@ class TemplateStylesHooks {
 				}
 			);
 
+			$prependSelectors = [
+				new Token( Token::T_DELIM, '.' ),
+				new Token( Token::T_IDENT, $class ),
+			];
+			if ( $extraWrapper !== null ) {
+				$extraTokens = self::validateExtraWrapper( $extraWrapper );
+				if ( !$extraTokens ) {
+					throw new InvalidArgumentException( "Invalid value for \$extraWrapper: $extraWrapper" );
+				}
+				$prependSelectors = array_merge(
+					$prependSelectors,
+					[ new Token( Token::T_WHITESPACE, [ 'significant' => true ] ) ],
+					$extraTokens
+				);
+			}
+
 			$atRuleBlacklist = array_flip( $config->get( 'TemplateStylesAtRuleBlacklist' ) );
 			$ruleSanitizers = [
 				'styles' => new StyleRuleSanitizer(
 					$matcherFactory->cssSelectorList(),
 					$propertySanitizer,
 					[
-						'prependSelectors' => [
-							new Token( Token::T_DELIM, '.' ),
-							new Token( Token::T_IDENT, $class ),
-						],
+						'prependSelectors' => $prependSelectors,
 						'hoistableComponentMatcher' => $htmlOrBodySimpleSelectorSeqMatcher,
 					]
 				),
@@ -117,9 +173,9 @@ class TemplateStylesHooks {
 			Hooks::run( 'TemplateStylesStylesheetSanitizer',
 				[ &$sanitizer, $propertySanitizer, $matcherFactory ]
 			);
-			self::$sanitizers[$class] = $sanitizer;
+			self::$sanitizers[$key] = $sanitizer;
 		}
-		return self::$sanitizers[$class];
+		return self::$sanitizers[$key];
 	}
 
 	/**
@@ -225,6 +281,14 @@ class TemplateStylesHooks {
 			return self::formatTagError( $parser, [ 'templatestyles-missing-src' ] );
 		}
 
+		$extraWrapper = null;
+		if ( isset( $params['wrapper'] ) && trim( $params['wrapper'] ) !== '' ) {
+			$extraWrapper = trim( $params['wrapper'] );
+			if ( !self::validateExtraWrapper( $extraWrapper ) ) {
+				return self::formatTagError( $parser, [ 'templatestyles-invalid-wrapper' ] );
+			}
+		}
+
 		// Default to the Template namespace because that's the most likely
 		// situation. We can't allow for subpage syntax like src="/styles.css"
 		// or the like, though, because stuff like substing and Parsoid would
@@ -272,8 +336,11 @@ class TemplateStylesHooks {
 		if ( $wrapClass === false ) { // deprecated
 			$wrapClass = 'mw-parser-output';
 		}
-		if ( $wrapClass !== 'mw-parser-output' ) {
+		if ( $wrapClass !== 'mw-parser-output' || $extraWrapper !== null ) {
 			$cacheKey .= '/' . $wrapClass;
+			if ( $extraWrapper !== null ) {
+				$cacheKey .= '/' . $extraWrapper;
+			}
 		}
 
 		// Already cached?
@@ -285,6 +352,7 @@ class TemplateStylesHooks {
 			'flip' => $parser->getTargetLanguage()->getDir() !== $wgContLang->getDir(),
 			'minify' => !ResourceLoader::inDebugMode(),
 			'class' => $wrapClass,
+			'extraWrapper' => $extraWrapper,
 		] );
 		$style = $status->isOk() ? $status->getValue() : '/* Fatal error, no CSS will be output */';
 

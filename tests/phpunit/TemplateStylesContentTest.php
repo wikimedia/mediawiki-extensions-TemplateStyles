@@ -66,6 +66,11 @@ class TemplateStylesContentTest extends TextContentTest {
 				[ 'class' => false, 'minify' => false ],
 				Status::newGood( '.mw-parser-output .foo { margin-left: 10px ; }' )
 			],
+			'With an extra wrapper' => [
+				'.foo { margin-left: 10px }',
+				[ 'extraWrapper' => 'div.class' ],
+				Status::newGood( '.mw-parser-output div.class .foo{margin-left:10px}' )
+			],
 			'Escaping U+007F' => [
 				".foo\\\x7f { content: '\x7f'; }",
 				[],
@@ -89,6 +94,16 @@ class TemplateStylesContentTest extends TextContentTest {
 				Status::newGood( '.mw-parser-output .foo{grid-area:\3c /style 0/\3e }' ),
 			],
 		];
+	}
+
+	/**
+	 * @expectedException InvalidArgumentException
+	 * @expectedExceptionMessage Invalid value for $extraWrapper: .foo>.bar
+	 */
+	public function testInvalidWrapper() {
+		$this->newContent( '.foo { margin-left: 10px }' )->sanitize( [
+			'extraWrapper' => '.foo>.bar',
+		] );
 	}
 
 	public function testCrazyBrokenSanitizer() {

@@ -9,6 +9,7 @@
 	"templatestyles-desc": "Implement per-template style sheets",
 	"templatestyles-missing-src": "TemplateStyles' <code>src</code> attribute must not be empty.",
 	"templatestyles-invalid-src": "Invalid title for TemplateStyles' <code>src</code> attribute.",
+	"templatestyles-invalid-wrapper": "Invalid value for TemplateStyles' <code>wrapper</code> attribute.",
 	"templatestyles-bad-src-missing": "Page [[:$1|$2]] has no content.",
 	"templatestyles-bad-src": "Page [[:$1|$2]] must have content model \"{{int:content-model-sanitized-css}}\" for TemplateStyles (current model is \"$3\").",
 	"templatestyles-errorcomment": "Errors processing stylesheet [[:$1]] (rev $2):\n$3",
