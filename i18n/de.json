@@ -8,6 +8,7 @@
 	"templatestyles-desc": "Implementiert Stylesheets pro Vorlage",
 	"templatestyles-missing-src": "Das TemplateStyles-Attribut <code>src</code> darf nicht leer sein.",
 	"templatestyles-invalid-src": "Ungültiger Titel für das TemplateStyles-Attribut <code>src</code>.",
+	"templatestyles-invalid-wrapper": "Ungültiger Wert für das TemplateStyles-Attribut <code>wrapper</code>.",
 	"templatestyles-bad-src-missing": "Die Seite [[:$1|$2]] hat keinen Inhalt.",
 	"templatestyles-bad-src": "Die Seite [[:$1|$2]] muss das Inhaltsmodell „{{int:content-model-sanitized-css}}“ für TemplateStyles haben. Das aktuelle Modell ist „$3“.",
 	"templatestyles-errorcomment": "Fehler bei der Verarbeitung des Stylesheets [[:$1]] (Version $2):\n$3",

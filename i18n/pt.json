@@ -8,6 +8,7 @@
 	"templatestyles-desc": "Implementar folhas de estilo por predefinição",
 	"templatestyles-missing-src": "O atributo <code>src</code> de TemplateStyles não pode estar vazio.",
 	"templatestyles-invalid-src": "O título do atributo <code>src</code> de TemplateStyles é inválido.",
+	"templatestyles-invalid-wrapper": "Valor inválido para o atributo <code>wrapper</code> de TemplateStyles",
 	"templatestyles-bad-src-missing": "A página [[:$1|$2]] não tem conteúdo.",
 	"templatestyles-bad-src": "A página [[:$1|$2]] tem de ter o modelo de conteúdo \"{{int:content-model-sanitized-css}}\" para TemplateStyles (o modelo atual é \"$3\").",
 	"templatestyles-errorcomment": "Erros ao processar a folha de estilo [[:$1]] (rev $2): $3",

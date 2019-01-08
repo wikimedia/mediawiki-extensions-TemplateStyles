@@ -9,6 +9,7 @@
 	"templatestyles-desc": "각각의 틀을 위한 스타일시트 구현",
 	"templatestyles-missing-src": "틀스타일의 <code>src</code> 속성은 비어있으면 안 됩니다.",
 	"templatestyles-invalid-src": "틀스타일의 <code>src</code> 속성에 유효하지 않은 제목이 있습니다.",
+	"templatestyles-invalid-wrapper": "틀스타일의 <code>wrapper</code> 속성에 유효하지 않은 값이 있습니다.",
 	"templatestyles-bad-src-missing": "[[:$1|$2]] 문서에 내용이 없습니다.",
 	"templatestyles-bad-src": "[[:$1|$2]] 문서는 틀스타일에 대해 \"{{int:content-model-sanitized-css}}\" 콘텐츠 모델이 있어야 합니다. (현재 모델은 \"$3\"입니다)",
 	"templatestyles-errorcomment": "스타일시트 [[:$1]] ($2 판) 처리 오류:\n$3",

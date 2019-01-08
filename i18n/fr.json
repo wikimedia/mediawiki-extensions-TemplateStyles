@@ -10,6 +10,7 @@
 	"templatestyles-desc": "Implémenter les feuilles de style par modèle",
 	"templatestyles-missing-src": "L’attribut <code>src</code> de TemplateStyles ne doit pas être vide.",
 	"templatestyles-invalid-src": "Titre non valide pour l’attribut <code>src</code> de TemplateStyles.",
+	"templatestyles-invalid-wrapper": "Valeur non valide pour l'attribut <code>wrapper</code> de TemplateStyles.",
 	"templatestyles-bad-src-missing": "La page [[:$1|$2]] n’a pas de contenu.",
 	"templatestyles-bad-src": "La page [[:$1|$2]] doit avoir un modèle de contenu « {{int:content-model-sanitized-css}} » pour TemplateStyles (le modèle actuel est « $3 »).",
 	"templatestyles-errorcomment": "Erreurs en appliquant la feuille de style [[:$1]] (rév. $2) :\n$3",

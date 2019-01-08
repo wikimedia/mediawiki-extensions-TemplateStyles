@@ -9,6 +9,7 @@
 	"templatestyles-desc": "מימוש גיליונות סגנון עבור כל תבנית ותבנית",
 	"templatestyles-missing-src": "המאפיין <code dir=\"ltr\">src</code> של סגנונות תבנית אינו יכול להיות ריק.",
 	"templatestyles-invalid-src": "כותרת בלתי־תקינה במאפיין <code dir=\"ltr\">src</code> של סגנונות תבנית.",
+	"templatestyles-invalid-wrapper": "ערך בלתי־תקין עבור מאפיין <code>wrapper</code> של סגנונות תבנית.",
 	"templatestyles-bad-src-missing": "בדף [[:$1|$2]] אין תוכן.",
 	"templatestyles-bad-src": "הדף [[:$1|$2]] צריך להיות במודל התוכן \"{{int:content-model-sanitized-css}}\" בשביל סגנונות תבנית (המודל הנוכחי הוא \"$3\").",
 	"templatestyles-errorcomment": "שגיאות בעיבוד גיליון הסגנון  [[:$1]] (גרסה $2):\n$3",

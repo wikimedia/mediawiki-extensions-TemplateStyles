@@ -9,6 +9,7 @@
 	"templatestyles-desc": "實現基於模板的樣式表",
 	"templatestyles-missing-src": "模板樣式的<code>src</code>屬性不可為空。",
 	"templatestyles-invalid-src": "模板樣式的<code>src</code>屬性的標題是無效的。",
+	"templatestyles-invalid-wrapper": "模板樣式 <code>wrapper</code> 屬性的值無效。",
 	"templatestyles-bad-src-missing": "頁面[[:$1|$2]]沒有內容。",
 	"templatestyles-bad-src": "頁面[[:$1|$2]]必須要包含用於 TemplateStyles 的模組「{{int:content-model-sanitized-css}}」（目前的模組是「$3」）。",
 	"templatestyles-errorcomment": "處理樣式表 [[:$1]]（修訂版號 $2）錯誤：\n$3",
