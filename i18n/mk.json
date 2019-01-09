@@ -8,6 +8,7 @@
 	"templatestyles-desc": "Примена на стилски страници по шаблон",
 	"templatestyles-missing-src": "Атрибутот <code>src</code> во Шаблонски стилови не може да биде празен.",
 	"templatestyles-invalid-src": "Неважечки наслов за <code>src</code> во Шаблонски стилови не може да биде празен.",
+	"templatestyles-invalid-wrapper": "Неважечка вредност за атрибутот <code>wrapper</code> во Шаблонски стилови.",
 	"templatestyles-bad-src-missing": "Страницата [[:$1|$2]] нема содржина.",
 	"templatestyles-bad-src": "Страницата [[:$1|$2]] мора да го има содржинскиот модел „{{int:content-model-sanitized-css}}“ за Шаблонски стилови (тековниот модел е „$3“).",
 	"templatestyles-errorcomment": "Грешки при обработката на стилската страница [[:$1]] (прер. $2):\n$3",

@@ -4,13 +4,15 @@
 			"Sunpriat",
 			"Movses",
 			"Ole Yves",
-			"Stjn"
+			"Stjn",
+			"Vlad5250"
 		]
 	},
 	"templatestyles": "TemplateStyles",
 	"templatestyles-desc": "Реализует таблицы стилей для каждого шаблона",
 	"templatestyles-missing-src": "В теге TemplateStyles атрибут <code>src</code> не должен быть пустым.",
 	"templatestyles-invalid-src": "Неверно задано название страницы в атрибуте <code>src</code> тега TemplateStyles.",
+	"templatestyles-invalid-wrapper": "Неверное значение атрибута <code>src</code> в TemplateStyles.",
 	"templatestyles-bad-src-missing": "Страница [[:$1|$2]] не имеет содержания.",
 	"templatestyles-bad-src": "Для использования в TemplateStyles у страницы [[:$1|$2]] должна быть модель содержания \"{{int:content-model-sanitized-css}}\"  (текущая модель: \"$3\").",
 	"templatestyles-errorcomment": "Ошибки обработки таблицы стилей [[:$1]] (версия $2):\n$3",
