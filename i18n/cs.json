@@ -1,12 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"Mormegil"
+			"Mormegil",
+			"Matěj Suchánek"
 		]
 	},
 	"templatestyles-desc": "Umožňuje stylopisy pro jednotlivé šablony",
 	"templatestyles-missing-src": "Atribut <code>src</code> pro TemplateStyles nesmí být prázdný.",
 	"templatestyles-invalid-src": "Neplatný název v atributu <code>src</code> TemplateStyles.",
+	"templatestyles-invalid-wrapper": "Neplatná hodnota atributu TemplateStyles <code>wrapper</code>.",
 	"templatestyles-bad-src-missing": "Stránka [[:$1|$2]] nemá žádný obsah.",
 	"templatestyles-bad-src": "Stránka [[:$1|$2]] musí mít pro TemplateStyles model obsahu „{{int:content-model-sanitized-css}}“ (současný model je „$3“).",
 	"templatestyles-errorcomment": "Chyby při zpracování stylopisu [[:$1]] (verze $2):\n$3",
