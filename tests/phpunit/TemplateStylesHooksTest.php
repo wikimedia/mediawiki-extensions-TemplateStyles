@@ -117,9 +117,26 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 	 */
 	public function testOnContentHandlerDefaultModelFor( $ns, $title, $expect ) {
 		$this->setMwGlobals( [
-			'wgTemplateStylesNamespaces' => [ 10 => true, 2 => false, 3000 => true, 3002 => true ],
-			'wgNamespacesWithSubpages' => [ 10 => true, 2 => true, 3000 => true, 3002 => false ],
+			'wgTemplateStylesNamespaces' => [
+				10 => true,
+				2 => false,
+				3000 => true,
+				3002 => true,
+				3006 => false,
+			],
+			'wgNamespacesWithSubpages' => [
+				10 => true,
+				2 => true,
+				3000 => true,
+				3002 => false,
+				3004 => true,
+				3006 => true
+			],
 		] );
+
+		$reset = ExtensionRegistry::getInstance()->setAttributeForTest(
+			'TemplateStylesNamespaces', [ 3004, 3006 ]
+		);
 
 		$model = 'unchanged';
 		$ret = TemplateStylesHooks::onContentHandlerDefaultModelFor(
@@ -138,6 +155,8 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 			[ 3000, 'Test/test.css', true ],
 			[ 3002, 'Test/test.css', false ],
 			[ 2, 'Test/test.css', false ],
+			[ 3004, 'Test/test.css', true ],
+			[ 3006, 'Test/test.css', false ],
 		];
 	}
 

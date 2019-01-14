@@ -227,7 +227,15 @@ class TemplateStylesHooks {
 	 * @return bool
 	 */
 	public static function onContentHandlerDefaultModelFor( $title, &$model ) {
-		$enabledNamespaces = self::getConfig()->get( 'TemplateStylesNamespaces' );
+		// Allow overwriting attributes with config settings.
+		// Attributes can not use namespaces as keys, as processing them does not preserve
+		// integer keys.
+		$enabledNamespaces = self::getConfig()->get( 'TemplateStylesNamespaces' ) +
+			array_fill_keys(
+				ExtensionRegistry::getInstance()->getAttribute( 'TemplateStylesNamespaces' ),
+				true
+			);
+
 		if ( !empty( $enabledNamespaces[$title->getNamespace()] ) &&
 			$title->isSubpage() && substr( $title->getText(), -4 ) === '.css'
 		) {
