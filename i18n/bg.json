@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Vlad5250"
+			"Vlad5250",
+			"Spiritia"
 		]
 	},
-	"templatestyles-invalid-wrapper": "Невалидна стойност за атрибута <code>wrapper</code> в Шаблонни стилове."
+	"templatestyles-invalid-wrapper": "Невалидна стойност за атрибута <code>wrapper</code> в Шаблонни стилове.",
+	"templatestyles-error-unclosed-comment": "Незатворен коментар, започващ на ред $1 при знак $2."
 }
