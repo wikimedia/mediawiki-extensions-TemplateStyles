@@ -6,5 +6,5 @@
 		]
 	},
 	"templatestyles-invalid-wrapper": "Невалидна стойност за атрибута <code>wrapper</code> в Шаблонни стилове.",
-	"templatestyles-error-unclosed-comment": "Незатворен коментар, започващ на ред $1 при знак $2."
+	"templatestyles-error-unclosed-comment": "Има незатворен коментар, започващ на ред $1 при знак $2."
 }
