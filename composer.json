@@ -1,7 +1,6 @@
 {
 	"license": "GPL-2.0-or-later",
 	"require": {
-		"cssjanus/cssjanus": "1.2.0",
 		"wikimedia/css-sanitizer": "~2.0.0"
 	},
 	"require-dev": {
