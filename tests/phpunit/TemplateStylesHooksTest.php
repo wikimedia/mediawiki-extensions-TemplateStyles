@@ -291,7 +291,7 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 				$popt, [],
 				'<templatestyles src="TemplateStyles test/styles1.css" />',
 				// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
-				"<div class=\"templatestyles-test\"><style data-mw-deduplicate=\"TemplateStyles:r{{REV:styles1.css}}/templatestyles-test\">.templatestyles-test .foo{color:blue}</style>\n</div>",
+				"<div class=\"templatestyles-test\"><style data-mw-deduplicate=\"TemplateStyles:r{{REV:styles1.css}}/templatestyles-test\">.templatestyles-test .foo{color:blue}</style></div>",
 				// @codingStandardsIgnoreEnd
 			],
 			'Disabled' => [
@@ -304,28 +304,28 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 				$popt, [],
 				'<templatestyles src="Test replacement" />',
 				// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
-				"<div class=\"templatestyles-test\"><style data-mw-deduplicate=\"TemplateStyles:8fd14043c1cce91e8b9d1487a9d17d8d9ae43890/templatestyles-test\">/*\nErrors processing stylesheet [[:Template:Test replacement]] (rev ):\n• Unrecognized or unsupported property at line 1 character 22.\n*/\n.templatestyles-test .baz{color:orange}</style>\n</div>",
+				"<div class=\"templatestyles-test\"><style data-mw-deduplicate=\"TemplateStyles:8fd14043c1cce91e8b9d1487a9d17d8d9ae43890/templatestyles-test\">/*\nErrors processing stylesheet [[:Template:Test replacement]] (rev ):\n• Unrecognized or unsupported property at line 1 character 22.\n*/\n.templatestyles-test .baz{color:orange}</style></div>",
 				// @codingStandardsIgnoreEnd
 			],
 			'Hoistable selectors are hoisted' => [
 				$popt, [],
 				'<templatestyles src="TemplateStyles test/styles3.css" />',
 				// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
-				"<div class=\"templatestyles-test\"><style data-mw-deduplicate=\"TemplateStyles:r{{REV:styles3.css}}/templatestyles-test\">html.no-js body.skin-minerva .templatestyles-test .bar{color:yellow}</style>\n</div>",
+				"<div class=\"templatestyles-test\"><style data-mw-deduplicate=\"TemplateStyles:r{{REV:styles3.css}}/templatestyles-test\">html.no-js body.skin-minerva .templatestyles-test .bar{color:yellow}</style></div>",
 				// @codingStandardsIgnoreEnd
 			],
 			'Still prefixed despite no wrapping class' => [
 				$popt2, [ 'unwrap' => true ],
 				'<templatestyles src="TemplateStyles test/styles1.css" />',
 				// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
-				"<style data-mw-deduplicate=\"TemplateStyles:r{{REV:styles1.css}}\">.mw-parser-output .foo{color:blue}</style>\n",
+				"<style data-mw-deduplicate=\"TemplateStyles:r{{REV:styles1.css}}\">.mw-parser-output .foo{color:blue}</style>",
 				// @codingStandardsIgnoreEnd
 			],
 			'Still prefixed despite deprecated no wrapping class' => [
 				$popt3, [],
 				'<templatestyles src="TemplateStyles test/styles1.css" />',
 				// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
-				"<style data-mw-deduplicate=\"TemplateStyles:r{{REV:styles1.css}}\">.mw-parser-output .foo{color:blue}</style>\n",
+				"<style data-mw-deduplicate=\"TemplateStyles:r{{REV:styles1.css}}\">.mw-parser-output .foo{color:blue}</style>",
 				// @codingStandardsIgnoreEnd
 			],
 			'Deduplicated tags' => [
@@ -343,8 +343,7 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 <link rel="mw-deduplicated-inline-style" href="mw-data:TemplateStyles:r{{REV:styles1.css}}/templatestyles-test"/>
 <style data-mw-deduplicate="TemplateStyles:r{{REV:styles2.css}}/templatestyles-test">.templatestyles-test .bar{color:green}</style>
 <link rel="mw-deduplicated-inline-style" href="mw-data:TemplateStyles:r{{REV:styles1.css}}/templatestyles-test"/>
-<link rel="mw-deduplicated-inline-style" href="mw-data:TemplateStyles:r{{REV:styles2.css}}/templatestyles-test"/>
-</div>
+<link rel="mw-deduplicated-inline-style" href="mw-data:TemplateStyles:r{{REV:styles2.css}}/templatestyles-test"/></div>
 				' ),
 				// @codingStandardsIgnoreEnd
 			],
@@ -352,7 +351,7 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 				$popt2, [],
 				'<templatestyles src="TemplateStyles test/styles1.css" wrapper=".foobar" />',
 				// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
-				"<div class=\"mw-parser-output\"><style data-mw-deduplicate=\"TemplateStyles:r{{REV:styles1.css}}/mw-parser-output/.foobar\">.mw-parser-output .foobar .foo{color:blue}</style>\n</div>",
+				"<div class=\"mw-parser-output\"><style data-mw-deduplicate=\"TemplateStyles:r{{REV:styles1.css}}/mw-parser-output/.foobar\">.mw-parser-output .foobar .foo{color:blue}</style></div>",
 				// @codingStandardsIgnoreEnd
 			],
 			'Invalid wrapper parameter' => [
@@ -384,8 +383,7 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 <link rel="mw-deduplicated-inline-style" href="mw-data:TemplateStyles:r{{REV:styles1.css}}"/>
 <style data-mw-deduplicate="TemplateStyles:r{{REV:styles1.css}}/mw-parser-output/.foobar">.mw-parser-output .foobar .foo{color:blue}</style>
 <style data-mw-deduplicate="TemplateStyles:r{{REV:styles1.css}}/mw-parser-output/.foobaz">.mw-parser-output .foobaz .foo{color:blue}</style>
-<link rel="mw-deduplicated-inline-style" href="mw-data:TemplateStyles:r{{REV:styles1.css}}/mw-parser-output/.foobar"/>
-</div>
+<link rel="mw-deduplicated-inline-style" href="mw-data:TemplateStyles:r{{REV:styles1.css}}/mw-parser-output/.foobar"/></div>
 				' ),
 				// @codingStandardsIgnoreEnd
 			],
