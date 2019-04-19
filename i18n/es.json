@@ -24,7 +24,7 @@
 	"templatestyles-error-at-rule-block-required": "Bloque requerido para <code>@$3</code> en línea $1 carácter $2.",
 	"templatestyles-error-bad-character-in-url": "Carácter no válido en URL en línea $1 carácter $2.",
 	"templatestyles-error-bad-escape": "Carácter no válido en escape en línea $1 carácter $2.",
-	"templatestyles-error-bad-value-for-property": "Valor no válido o no soportado para la propiedad <code>@$3</code> en línea $1 carácter $2.",
+	"templatestyles-error-bad-value-for-property": "Valor no válido o no admitido para la propiedad <code>$3</code> en el renglón $1, carácter $2.",
 	"templatestyles-error-expected-at-rule": "Se esperaba <code>@$3</code> en línea $1 carácter $2.",
 	"templatestyles-error-expected-colon": "Se esperaba un carácter dos puntos en línea $1 carácter $2.",
 	"templatestyles-error-expected-declaration": "Se esperaba una declaración en línea $1 carácter $2.",
