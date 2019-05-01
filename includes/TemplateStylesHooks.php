@@ -200,6 +200,7 @@ class TemplateStylesHooks {
 	 */
 	public static function onParserFirstCallInit( &$parser ) {
 		$parser->setHook( 'templatestyles', 'TemplateStylesHooks::handleTag' );
+		/** @phan-suppress-next-line PhanUndeclaredProperty */
 		$parser->extTemplateStylesCache = new MapCacheLRU( 100 ); // 100 is arbitrary
 		return true;
 	}
@@ -266,6 +267,7 @@ class TemplateStylesHooks {
 	 * @param Parser $parser
 	 */
 	public static function onParserClearState( Parser $parser ) {
+		/** @phan-suppress-next-line PhanUndeclaredProperty */
 		$parser->extTemplateStylesCache->clear();
 	}
 
@@ -352,7 +354,9 @@ class TemplateStylesHooks {
 		}
 
 		// Already cached?
+		/** @phan-suppress-next-line PhanUndeclaredProperty */
 		if ( $parser->extTemplateStylesCache->has( $cacheKey ) ) {
+			/** @phan-suppress-next-line PhanUndeclaredProperty */
 			return $parser->extTemplateStylesCache->get( $cacheKey );
 		}
 
@@ -392,6 +396,7 @@ class TemplateStylesHooks {
 		$ret = Html::inlineStyle( $marker, 'all', [
 			'data-mw-deduplicate' => "TemplateStyles:$cacheKey",
 		] );
+		/** @phan-suppress-next-line PhanUndeclaredProperty */
 		$parser->extTemplateStylesCache->set( $cacheKey, $ret );
 		return $ret;
 	}

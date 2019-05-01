@@ -33,6 +33,7 @@ class TemplateStylesMatcherFactory extends \Wikimedia\CSS\Grammar\MatcherFactory
 		// Undo unnecessary percent encoding
 		$url = preg_replace_callback( '/%[2-7][0-9A-Fa-f]/', function ( $m ) {
 			$char = urldecode( $m[0] );
+			/** @phan-suppress-next-line PhanParamSuspiciousOrder */
 			if ( strpos( '"#%<>[\]^`{|}/?&=+;', $char ) === false ) {
 				# Unescape it
 				return $char;
