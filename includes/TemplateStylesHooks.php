@@ -281,8 +281,6 @@ class TemplateStylesHooks {
 	 * @suppress SecurityCheck-XSS
 	 */
 	public static function handleTag( $text, $params, $parser, $frame ) {
-		global $wgContLang;
-
 		if ( self::getConfig()->get( 'TemplateStylesDisable' ) ) {
 			return '';
 		}
@@ -360,8 +358,10 @@ class TemplateStylesHooks {
 			return $parser->extTemplateStylesCache->get( $cacheKey );
 		}
 
+		$targetDir = $parser->getTargetLanguage()->getDir();
+		$contentDir = $parser->getContentLanguage()->getDir();
 		$status = $content->sanitize( [
-			'flip' => $parser->getTargetLanguage()->getDir() !== $wgContLang->getDir(),
+			'flip' => $targetDir !== $contentDir,
 			'minify' => !ResourceLoader::inDebugMode(),
 			'class' => $wrapClass,
 			'extraWrapper' => $extraWrapper,
