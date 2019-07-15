@@ -6,7 +6,7 @@
 			"Afaz"
 		]
 	},
-	"templatestyles-desc": "テンプレートごとにスタイルシートを適用する",
+	"templatestyles-desc": "テンプレートごとにスタイルシートを適用します",
 	"templatestyles-missing-src": "TemplateStylesの<code>src</code>属性は空にできません。",
 	"templatestyles-invalid-src": "TemplateStylesの<code>src</code>属性に対するtitleが無効です。",
 	"templatestyles-invalid-wrapper": "TemplateStylesの<code>wrapper</code>属性に対する値が無効です。",
