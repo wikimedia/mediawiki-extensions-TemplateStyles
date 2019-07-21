@@ -7,7 +7,7 @@ use Wikimedia\CSS\Objects\Token;
  * @group TemplateStyles
  * @covers TemplateStylesMatcherFactory
  */
-class TemplateStylesMatcherFactoryTest extends PHPUnit\Framework\TestCase {
+class TemplateStylesMatcherFactoryTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideUrls
