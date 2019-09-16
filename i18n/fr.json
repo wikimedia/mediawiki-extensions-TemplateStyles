@@ -3,7 +3,8 @@
 		"authors": [
 			"Wladek92",
 			"Gomoko",
-			"Urhixidur"
+			"Urhixidur",
+			"Thibaut120094"
 		]
 	},
 	"templatestyles": "Styles de modèles",
@@ -12,7 +13,7 @@
 	"templatestyles-invalid-src": "Titre non valide pour l’attribut <code>src</code> de TemplateStyles.",
 	"templatestyles-invalid-wrapper": "Valeur non valide pour l'attribut <code>wrapper</code> de TemplateStyles.",
 	"templatestyles-bad-src-missing": "La page [[:$1|$2]] n’a pas de contenu.",
-	"templatestyles-bad-src": "La page [[:$1|$2]] doit avoir un modèle de contenu « {{int:content-model-sanitized-css}} » pour TemplateStyles (le modèle actuel est « $3 »).",
+	"templatestyles-bad-src": "La page [[:$1|$2]] doit avoir un modèle de contenu « {{int:content-model-sanitized-css}} » pour TemplateStyles (le modèle actuel est « $3 »).",
 	"templatestyles-errorcomment": "Erreurs en appliquant la feuille de style [[:$1]] (rév. $2) :\n$3",
 	"templatestyles-size-exceeded": "La feuille de style est plus large que la taille maximale de $2.",
 	"templatestyles-end-tag-injection": "La page de style fournie contient <code>&lt;/style</code>, qui n’est pas autorisé.",
