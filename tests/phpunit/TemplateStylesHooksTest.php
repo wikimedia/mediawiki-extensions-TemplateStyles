@@ -29,11 +29,9 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	/**
-	 * @expectedException InvalidArgumentException
-	 * @expectedExceptionMessage Invalid value for $extraWrapper: .foo>.bar
-	 */
 	public function testGetSanitizerInvalidWrapper() {
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( 'Invalid value for $extraWrapper: .foo>.bar' );
 		TemplateStylesHooks::getSanitizer( 'foo', '.foo>.bar' );
 	}
 
