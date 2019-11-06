@@ -20,7 +20,7 @@ class TemplateStylesContent extends TextContent {
 	/**
 	 * Handle errors from the CSS parser and/or sanitizer
 	 * @param StatusValue $status Object to add errors to
-	 * @param array $errors Error array
+	 * @param array[] $errors Error array
 	 * @param string $severity Whether to consider errors as 'warning' or 'fatal'
 	 */
 	protected static function processErrors( StatusValue $status, array $errors, $severity ) {
