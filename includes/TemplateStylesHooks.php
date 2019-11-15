@@ -195,10 +195,10 @@ class TemplateStylesHooks {
 
 	/**
 	 * Add `<templatestyles>` to the parser.
-	 * @param Parser &$parser Parser object being cleared
+	 * @param Parser $parser Parser object being cleared
 	 * @return bool
 	 */
-	public static function onParserFirstCallInit( &$parser ) {
+	public static function onParserFirstCallInit( Parser $parser ) {
 		$parser->setHook( 'templatestyles', 'TemplateStylesHooks::handleTag' );
 		/** @phan-suppress-next-line PhanUndeclaredProperty */
 		$parser->extTemplateStylesCache = new MapCacheLRU( 100 ); // 100 is arbitrary
@@ -213,10 +213,10 @@ class TemplateStylesHooks {
 	 * be wrapping those additions with CSS comments.
 	 *
 	 * @todo When we kill Tidy in favor of RemexHTML or the like, kill this too.
-	 * @param Parser &$parser Parser object being used
+	 * @param Parser $parser Parser object being used
 	 * @param string &$text text that will be returned
 	 */
-	public static function onParserAfterTidy( &$parser, &$text ) {
+	public static function onParserAfterTidy( Parser $parser, &$text ) {
 		$text = preg_replace( '/(<(?i:style)[^>]*>\s*)(<!\[CDATA\[)/', '$1/*$2*/', $text );
 		$text = preg_replace( '/(\]\]>)(\s*<\/style>)/i', '/*$1*/$2', $text );
 	}
