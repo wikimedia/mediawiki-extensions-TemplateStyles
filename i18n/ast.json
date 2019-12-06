@@ -8,6 +8,7 @@
 	"templatestyles-desc": "Proporcionar fueyes d'estilu por plantía",
 	"templatestyles-missing-src": "L'atributu <code>src</code> de TemplateStyles nun tien de tar vacíu.",
 	"templatestyles-invalid-src": "Títulu inválidu pal atributu <code>src</code> de TemplateStyles.",
+	"templatestyles-invalid-wrapper": "Valor inválidu pal atributu <code>wrapper</code> de TemplateStyles.",
 	"templatestyles-bad-src-missing": "La páxina [[:$1|$2]] nun tien conteníu.",
 	"templatestyles-bad-src": "La páxina [[:$1|$2]] tien de tener el modelu de conteníu «{{int:content-model-sanitized-css}}» pa TemplateStyles (el modelu actual ye «$3»).",
 	"templatestyles-errorcomment": "Errores al procesar la fueya d'estilu [[:$1]] (rev $2):\n$3",
