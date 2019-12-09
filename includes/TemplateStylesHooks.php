@@ -36,7 +36,7 @@ class TemplateStylesHooks {
 	/** @var Sanitizer[] */
 	private static $sanitizers = [];
 
-	/** @var Token[] */
+	/** @var (false|Token[])[] */
 	private static $wrappers = [];
 
 	/**
@@ -71,7 +71,7 @@ class TemplateStylesHooks {
 	/**
 	 * Validate an extra wrapper-selector
 	 * @param string $wrapper
-	 * @return Token[]|false Token representation of the selector, or null on failure
+	 * @return Token[]|false Token representation of the selector, or false on failure
 	 */
 	private static function validateExtraWrapper( $wrapper ) {
 		if ( !isset( self::$wrappers[$wrapper] ) ) {
