@@ -376,7 +376,7 @@ class TemplateStylesHooks {
 				'templatestyles-errorcomment',
 				$title->getPrefixedText(),
 				$rev->getId(),
-				$status->getWikiText( null, 'rawmessage' )
+				$status->getWikiText( false, 'rawmessage' )
 			)->text();
 			$comment = trim( strtr( $comment, [
 				// Use some lookalike unicode characters to avoid things that might
