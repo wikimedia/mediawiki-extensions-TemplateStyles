@@ -10,6 +10,7 @@
 	"templatestyles-desc": "Implementeer sjabloon-specifieke stijlbladen",
 	"templatestyles-missing-src": "Het <code>src</code>-attribuut van TemplateStyles mag niet leeg zijn.",
 	"templatestyles-invalid-src": "Ongeldige titel in het <code>src</code>-attribuut van TemplateStyles.",
+	"templatestyles-invalid-wrapper": "Ongeldige waarde voor het <code>wrapper</code> attribuut van TemplateStyles.",
 	"templatestyles-bad-src-missing": "Pagina [[:$1|$2]] heeft geen inhoud.",
 	"templatestyles-bad-src": "Pagina [[:$1|$2]] moet het inhoudsmodel \"{{int:content-model-sanitized-css}}\" hebben voor TemplateStyles (inhoudmodel is \"$3\").",
 	"templatestyles-errorcomment": "Fouten tijdens het verwerken van stijlblad [[:$1]] (versie $2): $3",
