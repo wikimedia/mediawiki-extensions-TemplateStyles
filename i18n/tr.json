@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"BaRaN6161 TURK"
+		]
+	},
+	"templatestyles-desc": "Şablon başına stil sayfalarını uygulama",
+	"templatestyles-missing-src": "TemplateStyles <code>src</code> özelliği boş olmamalıdır.",
+	"templatestyles-invalid-src": "TemplateStyles <code>src</code> özelliği için geçersiz başlık.",
+	"templatestyles-invalid-wrapper": "TemplateStyles <code>wrapper</code> özelliği için geçersiz değer.",
+	"templatestyles-bad-src-missing": "[[:$1|$2]] sayfası içerik yok.",
+	"templatestyles-bad-src": "Sayfa [[:$1|$2]], TemplateStyles için \"{{int:content-model-sanitized-css}}\" içerik modeline sahip olmalıdır (mevcut model \"$3\").",
+	"templatestyles-errorcomment": "Stil sayfası işlenirken hatalar [[:$1]] (rev $2):\n$3"
+}
