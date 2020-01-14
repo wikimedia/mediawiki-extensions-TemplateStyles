@@ -4,9 +4,9 @@
  * @license GPL-2.0-or-later
  */
 
-use Wikimedia\CSS\Objects\Token;
 use Wikimedia\CSS\Grammar\TokenMatcher;
 use Wikimedia\CSS\Grammar\UrlMatcher;
+use Wikimedia\CSS\Objects\Token;
 
 /**
  * Extend the standard factory for TemplateStyles-specific matchers
