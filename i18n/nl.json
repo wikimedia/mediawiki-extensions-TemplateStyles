@@ -20,6 +20,7 @@
 	"templatestyles-stylesheet-error-category": "TemplateStyles-stijlbladen met fouten",
 	"templatestyles-stylesheet-error-category-desc": "Het TemplateStyles-stijlblad bevat een fout.",
 	"templatestyles-page-error-category": "Pagina's met fouten in TemplateStyles",
+	"templatestyles-page-error-category-desc": "Er trad een fout op bij het verwerken van een <code><nowiki><templatestyles/></nowiki></code> element op de pagina.",
 	"templatestyles-error-bad-character-in-url": "Ongeldig teken in de URL op regel $1, positie $2.",
 	"templatestyles-error-bad-value-for-property": "Ongeldig of niet ondersteunde waarde voor eigenschap <code>$3</code> op regel $1, positie $2.",
 	"templatestyles-error-expected-at-rule": "<code>@$3</code> ontbreekt op regel $1, positie $2.",
