@@ -206,22 +206,6 @@ class TemplateStylesHooks {
 	}
 
 	/**
-	 * Fix Tidy screw-ups
-	 *
-	 * It seems some versions of Tidy try to wrap the contents of a `<style>`
-	 * tag in bare `<![CDATA[` ... `]]>`, which makes it invalid CSS. It should
-	 * be wrapping those additions with CSS comments.
-	 *
-	 * @todo When we kill Tidy in favor of RemexHTML or the like, kill this too.
-	 * @param Parser $parser Parser object being used
-	 * @param string &$text text that will be returned
-	 */
-	public static function onParserAfterTidy( Parser $parser, &$text ) {
-		$text = preg_replace( '/(<(?i:style)[^>]*>\s*)(<!\[CDATA\[)/', '$1/*$2*/', $text );
-		$text = preg_replace( '/(\]\]>)(\s*<\/style>)/i', '/*$1*/$2', $text );
-	}
-
-	/**
 	 * Set the default content model to 'sanitized-css' when appropriate.
 	 * @param Title $title the Title in question
 	 * @param string &$model The model name

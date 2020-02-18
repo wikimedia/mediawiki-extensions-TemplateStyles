@@ -73,44 +73,6 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @dataProvider provideOnParserAfterTidy
-	 */
-	public function testOnParserAfterTidy( $text, $expect ) {
-		$p = new Parser();
-		TemplateStylesHooks::onParserAfterTidy( $p, $text );
-		$this->assertSame( $expect, $text );
-	}
-
-	public static function provideOnParserAfterTidy() {
-		return [
-			[
-				"<style>\n.foo { color: red; }\n</style>",
-				"<style>\n.foo { color: red; }\n</style>",
-			],
-			[
-				"<style>\n<![CDATA[\n.foo { color: red; }\n]]>\n</style>",
-				"<style>\n/*<![CDATA[*/\n.foo { color: red; }\n/*]]>*/\n</style>",
-			],
-			[
-				"<StYlE type='text/css'>\n<![CDATA[\n.foo { color: red; }\n]]>\n</sTyLe>",
-				"<StYlE type='text/css'>\n/*<![CDATA[*/\n.foo { color: red; }\n/*]]>*/\n</sTyLe>",
-			],
-			[
-				"<style>\n/*<![CDATA[*/\n.foo { color: red; }\n/*]]>*/\n</style>",
-				"<style>\n/*<![CDATA[*/\n.foo { color: red; }\n/*]]>*/\n</style>",
-			],
-			[
-				"<style>x\n<![CDATA[\n.foo { color: red; }\n]]>\n</style>",
-				"<style>x\n<![CDATA[\n.foo { color: red; }\n/*]]>*/\n</style>",
-			],
-			[
-				"<script>\n<![CDATA[\n.foo { color: red; }\n]]>\n</script>",
-				"<script>\n<![CDATA[\n.foo { color: red; }\n]]>\n</script>",
-			],
-		];
-	}
-
-	/**
 	 * @dataProvider provideOnContentHandlerDefaultModelFor
 	 */
 	public function testOnContentHandlerDefaultModelFor( $ns, $title, $expect ) {
