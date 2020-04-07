@@ -1,10 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Otokoume",
-			"Omotecho",
 			"Afaz",
-			"Kkairri"
+			"Kkairri",
+			"Omotecho",
+			"Otokoume"
 		]
 	},
 	"templatestyles-desc": "テンプレートごとにスタイルシートを適用します",
