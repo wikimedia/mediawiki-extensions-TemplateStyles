@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @group TemplateStyles
  * @group Database
@@ -154,8 +156,6 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 	public function testTag(
 		ParserOptions $popt, $getTextOptions, $wikitext, $expect, $globals = []
 	) {
-		global $wgParserConf;
-
 		$this->setMwGlobals( $globals + [
 			'wgScriptPath' => '',
 			'wgScript' => '/index.php',
@@ -179,9 +179,8 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 			}
 		);
 
-		$class = $wgParserConf['class'];
-		$parser = new $class( $wgParserConf );
-		/** @var Parser $parser */
+		$services = MediaWikiServices::getInstance();
+		$parser = $services->getParserFactory()->create();
 		$parser->firstCallInit();
 		if ( !isset( $parser->mTagHooks['templatestyles'] ) ) {
 			throw new Exception( 'templatestyles tag hook is not in the parser' );
