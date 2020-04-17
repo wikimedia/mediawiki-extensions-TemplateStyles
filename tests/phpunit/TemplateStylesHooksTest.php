@@ -1,6 +1,8 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\MutableRevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 
 /**
  * @group TemplateStyles
@@ -162,20 +164,20 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 			'wgArticlePath' => '/wiki/$1',
 		] );
 
-		$oldCurrentRevisionCallback = $popt->setCurrentRevisionCallback(
-			function ( Title $title, $parser = false ) use ( &$oldCurrentRevisionCallback ) {
+		$oldCurrentRevisionRecordCallback = $popt->setCurrentRevisionRecordCallback(
+			function ( Title $title, $parser = null ) use ( &$oldCurrentRevisionRecordCallback ) {
 				if ( $title->getPrefixedText() === 'Template:Test replacement' ) {
 					$user = RequestContext::getMain()->getUser();
-					return new Revision( [
-						'page' => $title->getArticleID(),
-						'user_text' => $user->getName(),
-						'user' => $user->getId(),
-						'parent_id' => $title->getLatestRevID(),
-						'title' => $title,
-						'content' => new TemplateStylesContent( '.baz { color:orange; bogus:bogus; }' )
-					] );
+					$revRecord = new MutableRevisionRecord( $title );
+					$revRecord->setUser( $user );
+					$revRecord->setContent(
+						SlotRecord::MAIN,
+						new TemplateStylesContent( '.baz { color:orange; bogus:bogus; }' )
+					);
+					$revRecord->setParentId( $title->getLatestRevID() );
+					return $revRecord;
 				}
-				return call_user_func( $oldCurrentRevisionCallback, $title, $parser );
+				return call_user_func( $oldCurrentRevisionRecordCallback, $title, $parser );
 			}
 		);
 
