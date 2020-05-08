@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Revision\SlotRecord;
 
 /**
  * @group TemplateStyles
@@ -14,19 +13,11 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 		$title = Title::newFromText( 'Template:TemplateStyles test/' . $page );
 		$content = ContentHandler::makeContent( $text, $title, $model );
 
-		$wikipage = WikiPage::factory( $title );
+		$page = WikiPage::factory( $title );
 		$user = static::getTestSysop()->getUser();
-		$summary = CommentStoreComment::newUnsavedComment( 'Test for TemplateStyles' );
-
-		$updater = $wikipage->newPageUpdater( $user );
-		$updater->setContent(
-			SlotRecord::MAIN,
-			$content
-		);
-		$updater->saveRevision( $summary );
-
-		if ( !$updater->wasSuccessful() ) {
-			$this->fail( "Failed to create $title." );
+		$status = $page->doEditContent( $content, 'Test for TemplateStyles', 0, false, $user );
+		if ( !$status->isOk() ) {
+			$this->fail( "Failed to create $title: " . $status->getWikiText( false, false, 'en' ) );
 		}
 	}
 
