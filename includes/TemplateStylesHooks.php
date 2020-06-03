@@ -5,6 +5,7 @@
  * @license GPL-2.0-or-later
  */
 
+use MediaWiki\Revision\SlotRecord;
 use Wikimedia\CSS\Grammar\CheckedMatcher;
 use Wikimedia\CSS\Grammar\Match;
 use Wikimedia\CSS\Grammar\MatcherFactory;
@@ -290,13 +291,17 @@ class TemplateStylesHooks {
 			return self::formatTagError( $parser, [ 'templatestyles-invalid-src' ] );
 		}
 
-		$rev = $parser->fetchCurrentRevisionOfTitle( $title );
+		$revRecord = $parser->fetchCurrentRevisionRecordOfTitle( $title );
 
 		// It's not really a "template", but it has the same implications
 		// for needing reparse when the stylesheet is edited.
-		$parser->getOutput()->addTemplate( $title, $title->getArticleId(), $rev ? $rev->getId() : null );
+		$parser->getOutput()->addTemplate(
+			$title,
+			$title->getArticleId(),
+			$revRecord ? $revRecord->getId() : null
+		);
 
-		$content = $rev ? $rev->getContent() : null;
+		$content = $revRecord ? $revRecord->getContent( SlotRecord::MAIN ) : null;
 		if ( !$content ) {
 			$titleText = $title->getPrefixedText();
 			return self::formatTagError( $parser, [
@@ -317,8 +322,8 @@ class TemplateStylesHooks {
 
 		// If the revision actually has an ID, cache based on that.
 		// Otherwise, cache by hash.
-		if ( $rev->getId() ) {
-			$cacheKey = 'r' . $rev->getId();
+		if ( $revRecord->getId() ) {
+			$cacheKey = 'r' . $revRecord->getId();
 		} else {
 			$cacheKey = sha1( $content->getNativeData() );
 		}
@@ -359,7 +364,7 @@ class TemplateStylesHooks {
 			$comment = wfMessage(
 				'templatestyles-errorcomment',
 				$title->getPrefixedText(),
-				$rev->getId(),
+				$revRecord->getId(),
 				$status->getWikiText( false, 'rawmessage' )
 			)->text();
 			$comment = trim( strtr( $comment, [
