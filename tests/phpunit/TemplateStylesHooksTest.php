@@ -3,6 +3,7 @@
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use Wikimedia\CSS\Parser\Parser as CSSParser;
 
 /**
  * @group TemplateStyles
@@ -37,6 +38,12 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( 'Invalid value for $extraWrapper: .foo>.bar' );
 		TemplateStylesHooks::getSanitizer( 'foo', '.foo>.bar' );
+	}
+
+	public function testGetSanitizerNonLinearWrapper() {
+		$sanitizer = TemplateStylesHooks::getSanitizer( 'foo', 'div[data]' );
+		$sanitizer->sanitize( CSSParser::newFromString( '.not-empty { }' )->parseStylesheet() );
+		$this->assertSame( [], $sanitizer->getSanitizationErrors() );
 	}
 
 	/**
