@@ -82,7 +82,7 @@ class TemplateStylesHooks {
 				$match = self::getMatcherFactory()->cssSimpleSelectorSeq()
 					->match( $components, [ 'mark-significance' => true ] );
 			}
-			self::$wrappers[$wrapper] = $match ? $components->toTokenArray() : false;
+			self::$wrappers[$wrapper] = $match ? $components->toComponentValueArray() : false;
 		}
 		return self::$wrappers[$wrapper];
 	}
