@@ -17,6 +17,9 @@ class TemplateStylesContentHandler extends CodeContentHandler {
 		parent::__construct( $modelId, [ CONTENT_FORMAT_CSS ] );
 	}
 
+	/**
+	 * @return string
+	 */
 	protected function getContentClass() {
 		return TemplateStylesContent::class;
 	}

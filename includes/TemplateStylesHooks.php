@@ -41,7 +41,6 @@ class TemplateStylesHooks {
 	private static $wrappers = [];
 
 	/**
-	 * Get our Config
 	 * @return Config
 	 * @codeCoverageIgnore
 	 */
@@ -55,7 +54,6 @@ class TemplateStylesHooks {
 	}
 
 	/**
-	 * Get our MatcherFactory
 	 * @return MatcherFactory
 	 * @codeCoverageIgnore
 	 */
@@ -90,7 +88,6 @@ class TemplateStylesHooks {
 	}
 
 	/**
-	 * Get our Sanitizer
 	 * @param string $class Class to limit selectors to
 	 * @param string|null $extraWrapper Extra selector to limit selectors to
 	 * @return Sanitizer

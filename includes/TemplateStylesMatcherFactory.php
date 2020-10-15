@@ -58,6 +58,9 @@ class TemplateStylesMatcherFactory extends \Wikimedia\CSS\Grammar\MatcherFactory
 		return false;
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function urlstring( $type ) {
 		$key = __METHOD__ . ':' . $type;
 		if ( !isset( $this->cache[$key] ) ) {
@@ -68,6 +71,9 @@ class TemplateStylesMatcherFactory extends \Wikimedia\CSS\Grammar\MatcherFactory
 		return $this->cache[$key];
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function url( $type ) {
 		$key = __METHOD__ . ':' . $type;
 		if ( !isset( $this->cache[$key] ) ) {

@@ -13,6 +13,10 @@ use Wikimedia\CSS\Util as CSSUtil;
  */
 class TemplateStylesContent extends TextContent {
 
+	/**
+	 * @param string $text
+	 * @param string $modelId
+	 */
 	public function __construct( $text, $modelId = 'sanitized-css' ) {
 		parent::__construct( $text, $modelId );
 	}
@@ -107,6 +111,9 @@ class TemplateStylesContent extends TextContent {
 		return $status;
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function prepareSave( WikiPage $page, $flags, $parentRevId, User $user ) {
 		return $this->sanitize( [ 'novalue' => true, 'severity' => 'fatal' ] );
 	}
@@ -123,6 +130,9 @@ class TemplateStylesContent extends TextContent {
 		return $html;
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function getParserOutput( Title $title, $revId = null,
 		ParserOptions $options = null, $generateHtml = true
 	) {
