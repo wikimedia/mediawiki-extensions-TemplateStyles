@@ -9,6 +9,7 @@ use MediaWiki\Revision\SlotRecord;
 use Wikimedia\CSS\Grammar\CheckedMatcher;
 use Wikimedia\CSS\Grammar\Match;
 use Wikimedia\CSS\Grammar\MatcherFactory;
+use Wikimedia\CSS\Objects\ComponentValue;
 use Wikimedia\CSS\Objects\ComponentValueList;
 use Wikimedia\CSS\Objects\Token;
 use Wikimedia\CSS\Parser\Parser as CSSParser;
@@ -70,7 +71,7 @@ class TemplateStylesHooks {
 	/**
 	 * Validate an extra wrapper-selector
 	 * @param string $wrapper
-	 * @return Token[]|false Token representation of the selector, or false on failure
+	 * @return ComponentValue[]|false Representation of the selector, or false on failure
 	 */
 	private static function validateExtraWrapper( $wrapper ) {
 		if ( !isset( self::$wrappers[$wrapper] ) ) {
@@ -124,14 +125,14 @@ class TemplateStylesHooks {
 				new Token( Token::T_IDENT, $class ),
 			];
 			if ( $extraWrapper !== null ) {
-				$extraTokens = self::validateExtraWrapper( $extraWrapper );
-				if ( !$extraTokens ) {
+				$extraComponentValues = self::validateExtraWrapper( $extraWrapper );
+				if ( !$extraComponentValues ) {
 					throw new InvalidArgumentException( "Invalid value for \$extraWrapper: $extraWrapper" );
 				}
 				$prependSelectors = array_merge(
 					$prependSelectors,
 					[ new Token( Token::T_WHITESPACE, [ 'significant' => true ] ) ],
-					$extraTokens
+					$extraComponentValues
 				);
 			}
 
