@@ -29,9 +29,6 @@ use Wikimedia\CSS\Sanitizer\SupportsAtRuleSanitizer;
  */
 class TemplateStylesHooks {
 
-	/** @var Config|null */
-	private static $config = null;
-
 	/** @var MatcherFactory|null */
 	private static $matcherFactory = null;
 
@@ -46,12 +43,8 @@ class TemplateStylesHooks {
 	 * @codeCoverageIgnore
 	 */
 	public static function getConfig() {
-		if ( !self::$config ) {
-			self::$config = \MediaWiki\MediaWikiServices::getInstance()
-				->getConfigFactory()
-				->makeConfig( 'templatestyles' );
-		}
-		return self::$config;
+		return \MediaWiki\MediaWikiServices::getInstance()->getConfigFactory()
+			->makeConfig( 'templatestyles' );
 	}
 
 	/**
@@ -60,9 +53,8 @@ class TemplateStylesHooks {
 	 */
 	private static function getMatcherFactory() {
 		if ( !self::$matcherFactory ) {
-			$config = self::getConfig();
 			self::$matcherFactory = new TemplateStylesMatcherFactory(
-				$config->get( 'TemplateStylesAllowedUrls' )
+				self::getConfig()->get( 'TemplateStylesAllowedUrls' )
 			);
 		}
 		return self::$matcherFactory;
@@ -195,13 +187,11 @@ class TemplateStylesHooks {
 	/**
 	 * Add `<templatestyles>` to the parser.
 	 * @param Parser $parser Parser object being cleared
-	 * @return bool
 	 */
 	public static function onParserFirstCallInit( Parser $parser ) {
-		$parser->setHook( 'templatestyles', 'TemplateStylesHooks::handleTag' );
+		$parser->setHook( 'templatestyles', [ __CLASS__, 'handleTag' ] );
 		/** @phan-suppress-next-line PhanUndeclaredProperty */
 		$parser->extTemplateStylesCache = new MapCacheLRU( 100 ); // 100 is arbitrary
-		return true;
 	}
 
 	/**
@@ -257,7 +247,7 @@ class TemplateStylesHooks {
 	/**
 	 * Parser hook for `<templatestyles>`
 	 * @param string $text Contents of the tag (ignored).
-	 * @param array $params Tag attributes
+	 * @param string[] $params Tag attributes
 	 * @param Parser $parser
 	 * @param PPFrame $frame
 	 * @return string HTML
