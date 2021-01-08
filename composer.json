@@ -1,7 +1,7 @@
 {
 	"license": "GPL-2.0-or-later",
 	"require": {
-		"wikimedia/css-sanitizer": "~2.0.0"
+		"wikimedia/css-sanitizer": "~3.0.0"
 	},
 	"require-dev": {
 		"mediawiki/mediawiki-codesniffer": "34.0.0",
