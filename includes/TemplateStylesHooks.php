@@ -7,7 +7,7 @@
 
 use MediaWiki\Revision\SlotRecord;
 use Wikimedia\CSS\Grammar\CheckedMatcher;
-use Wikimedia\CSS\Grammar\Match;
+use Wikimedia\CSS\Grammar\GrammarMatch;
 use Wikimedia\CSS\Grammar\MatcherFactory;
 use Wikimedia\CSS\Objects\ComponentValueList;
 use Wikimedia\CSS\Objects\Token;
@@ -82,7 +82,7 @@ class TemplateStylesHooks {
 				$match = false;
 			} else {
 				$match = self::getMatcherFactory()->cssSimpleSelectorSeq()
-					->match( $components, [ 'mark-significance' => true ] );
+					->matchAgainst( $components, [ 'mark-significance' => true ] );
 			}
 			self::$wrappers[$wrapper] = $match ? $components->toTokenArray() : false;
 		}
@@ -110,7 +110,7 @@ class TemplateStylesHooks {
 
 			$htmlOrBodySimpleSelectorSeqMatcher = new CheckedMatcher(
 				$matcherFactory->cssSimpleSelectorSeq(),
-				function ( ComponentValueList $values, Match $match, array $options ) {
+				function ( ComponentValueList $values, GrammarMatch $match, array $options ) {
 					foreach ( $match->getCapturedMatches() as $m ) {
 						if ( $m->getName() !== 'element' ) {
 							continue;

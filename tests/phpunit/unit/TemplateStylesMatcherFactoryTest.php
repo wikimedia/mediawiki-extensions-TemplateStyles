@@ -32,12 +32,12 @@ class TemplateStylesMatcherFactoryTest extends MediaWikiUnitTestCase {
 		$list = new ComponentValueList( [
 			new Token( Token::T_STRING, $url )
 		] );
-		$this->assertSame( $expect, (bool)$factory->urlstring( $type )->match( $list ) );
+		$this->assertSame( $expect, (bool)$factory->urlstring( $type )->matchAgainst( $list ) );
 
 		$list = new ComponentValueList( [
 			new Token( Token::T_URL, $url )
 		] );
-		$this->assertSame( $expect, (bool)$factory->url( $type )->match( $list ) );
+		$this->assertSame( $expect, (bool)$factory->url( $type )->matchAgainst( $list ) );
 	}
 
 	public static function provideUrls() {
