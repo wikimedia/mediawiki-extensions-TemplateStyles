@@ -1,11 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
+			"Kghbln",
 			"Metalhead64"
 		]
 	},
 	"templatestyles": "TemplateStyles",
-	"templatestyles-desc": "Implementiert Stylesheets pro Vorlage",
+	"templatestyles-desc": "Ermöglicht die vorlagenspezifische Impementierung von Stylesheets (CSS)",
 	"templatestyles-missing-src": "Das TemplateStyles-Attribut <code>src</code> darf nicht leer sein.",
 	"templatestyles-invalid-src": "Ungültiger Titel für das TemplateStyles-Attribut <code>src</code>.",
 	"templatestyles-invalid-wrapper": "Ungültiger Wert für das TemplateStyles-Attribut <code>wrapper</code>.",
