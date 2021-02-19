@@ -366,7 +366,7 @@ class TemplateStylesHooks {
 		// Hide the CSS from Parser::doBlockLevels
 		$marker = Parser::MARKER_PREFIX . '-templatestyles-' .
 			sprintf( '%08X', $parser->mMarkerIndex++ ) . Parser::MARKER_SUFFIX;
-		$parser->mStripState->addNoWiki( $marker, $style );
+		$parser->getStripState()->addNoWiki( $marker, $style );
 
 		// Return the inline <style>, which the Parser will wrap in a 'general'
 		// strip marker.
