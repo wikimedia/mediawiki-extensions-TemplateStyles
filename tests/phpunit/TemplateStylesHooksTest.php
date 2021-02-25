@@ -195,7 +195,6 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 			throw new Exception( 'templatestyles tag hook is not in the parser' );
 		}
 		$out = $parser->parse( $wikitext, Title::newFromText( 'Test' ), $popt );
-		$parser->mPreprocessor = null; # Break the Parser <-> Preprocessor cycle
 
 		$expect = preg_replace_callback( '/\{\{REV:(.*?)\}\}/', function ( $m ) {
 			return Title::newFromText( 'Template:TemplateStyles test/' . $m[1] )->getLatestRevID();
