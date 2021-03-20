@@ -47,7 +47,7 @@ class TemplateStylesMatcherFactory extends \Wikimedia\CSS\Grammar\MatcherFactory
 			return false;
 		}
 
-		// Run it through the whitelist
+		// Check if it is allowed
 		$regexes = $this->allowedDomains[$type] ?? [];
 		foreach ( $regexes as $regex ) {
 			if ( preg_match( $regex, $url ) ) {

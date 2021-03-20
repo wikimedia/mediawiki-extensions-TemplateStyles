@@ -91,10 +91,22 @@ class TemplateStylesHooks {
 			$config = self::getConfig();
 			$matcherFactory = self::getMatcherFactory();
 
+			$disallowedProperties = $config->get( 'TemplateStylesDisallowedProperties' );
+			if ( $disallowedProperties === [] ) {
+				// Fallback to deprecated $wgTemplateStylesPropertyBlacklist
+				$disallowedProperties = $config->get( 'TemplateStylesPropertyBlacklist' );
+				if ( $disallowedProperties !== [] ) {
+					wfDeprecated(
+						'$wgTemplateStylesPropertyBlacklist is deprecated and has a value set. ' .
+						'Please use $wgTemplateStylesDisallowedProperties instead.'
+					);
+				}
+			}
+
 			$propertySanitizer = new StylePropertySanitizer( $matcherFactory );
 			$propertySanitizer->setKnownProperties( array_diff_key(
 				$propertySanitizer->getKnownProperties(),
-				array_flip( $config->get( 'TemplateStylesPropertyBlacklist' ) )
+				array_flip( $disallowedProperties )
 			) );
 			Hooks::run( 'TemplateStylesPropertySanitizer', [ &$propertySanitizer, $matcherFactory ] );
 
@@ -128,7 +140,18 @@ class TemplateStylesHooks {
 				);
 			}
 
-			$atRuleBlacklist = array_flip( $config->get( 'TemplateStylesAtRuleBlacklist' ) );
+			$disallowedAtRules = $config->get( 'TemplateStylesDisallowedAtRules' );
+			if ( $disallowedAtRules === [] ) {
+				// Fallback to deprecated $wgTemplateStylesAtRuleBlacklist
+				$disallowedAtRules = $config->get( 'TemplateStylesAtRuleBlacklist' );
+				if ( $disallowedAtRules !== [] ) {
+					wfDeprecated(
+						'$wgTemplateStylesAtRuleBlacklist is deprecated and has a value set. ' .
+						'Please use $wgTemplateStylesDisallowedAtRules instead.'
+					);
+				}
+			}
+
 			$ruleSanitizers = [
 				'styles' => new StyleRuleSanitizer(
 					$matcherFactory->cssSelectorList(),
@@ -147,11 +170,13 @@ class TemplateStylesHooks {
 					'declarationSanitizer' => $propertySanitizer,
 				] ),
 			];
-			$ruleSanitizers = array_diff_key( $ruleSanitizers, $atRuleBlacklist );
-			if ( isset( $ruleSanitizers['@media'] ) ) { // In case @media was blacklisted
+			$ruleSanitizers = array_diff_key( $ruleSanitizers, array_flip( $disallowedAtRules ) );
+			if ( isset( $ruleSanitizers['@media'] ) ) {
+				// In case @media was disallowed
 				$ruleSanitizers['@media']->setRuleSanitizers( $ruleSanitizers );
 			}
-			if ( isset( $ruleSanitizers['@supports'] ) ) { // In case @supports was blacklisted
+			if ( isset( $ruleSanitizers['@supports'] ) ) {
+				// In case @supports was disallowed
 				$ruleSanitizers['@supports']->setRuleSanitizers( $ruleSanitizers );
 			}
 
@@ -159,7 +184,7 @@ class TemplateStylesHooks {
 				// Omit @import, it's not secure. Maybe someday we'll make an "@-mw-import" or something.
 				'@namespace' => new NamespaceAtRuleSanitizer( $matcherFactory ),
 			];
-			$allRuleSanitizers = array_diff_key( $allRuleSanitizers, $atRuleBlacklist );
+			$allRuleSanitizers = array_diff_key( $allRuleSanitizers, $disallowedAtRules );
 			$sanitizer = new StylesheetSanitizer( $allRuleSanitizers );
 			Hooks::run( 'TemplateStylesStylesheetSanitizer',
 				[ &$sanitizer, $propertySanitizer, $matcherFactory ]

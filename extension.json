@@ -91,11 +91,19 @@
 			"merge_strategy": "array_plus"
 		},
 		"TemplateStylesPropertyBlacklist": {
-			"description": "Blacklist style properties that would otherwise be allowed. See also the TemplateStylesPropertySanitizer hook, which allows for finer-grained control.",
+			"description": "DEPRECATED: Please use $wgTemplateStylesDisallowedProperties instead.",
 			"value": []
 		},
 		"TemplateStylesAtRuleBlacklist": {
-			"description": "Blacklist at-rules that would otherwise be allowed. Include the '@' in the name. See also the TemplateStylesStylesheetSanitizer hook, which allows for finer-grained control.",
+			"description": "DEPRECATED: Please use $wgTemplateStylesDisallowedAtRules instead.",
+			"value": []
+		},
+		"TemplateStylesDisallowedProperties": {
+			"description": "Disallowed style properties that would otherwise be allowed. See also the TemplateStylesPropertySanitizer hook, which allows for finer-grained control.",
+			"value": []
+		},
+		"TemplateStylesDisallowedAtRules": {
+			"description": "Disallowed at-rules that would otherwise be allowed. Include the '@' in the name. See also the TemplateStylesStylesheetSanitizer hook, which allows for finer-grained control.",
 			"value": []
 		},
 		"TemplateStylesUseCodeEditor": {
