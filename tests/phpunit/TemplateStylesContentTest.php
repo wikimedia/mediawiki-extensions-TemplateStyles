@@ -174,9 +174,8 @@ class TemplateStylesContentTest extends TextContentTest {
 				'Template:Test/styles.css',
 				'sanitized-css',
 				".hello { content: 'world'; color: bogus; }\n\n<ok>\n",
-				// @codingStandardsIgnoreStart Generic.Files.LineLength
+				// phpcs:ignore Generic.Files.LineLength
 				"<pre class=\"mw-code mw-css\" dir=\"ltr\">\n.hello { content: 'world'; color: bogus; }\n\n&lt;ok&gt;\n\n</pre>",
-				// @codingStandardsIgnoreEnd
 				[
 					'Warnings' => [
 						'Unexpected end of stylesheet in rule at line 4 character 1.',
@@ -244,7 +243,7 @@ class TemplateStylesContentTest extends TextContentTest {
 	 * Redirects aren't supported
 	 */
 	public static function provideUpdateRedirect() {
-		// @codingStandardsIgnoreStart Generic.Files.LineLength
+		// phpcs:disable Generic.Files.LineLength
 		return [
 			[
 				'#REDIRECT [[Someplace]]',
@@ -257,7 +256,7 @@ class TemplateStylesContentTest extends TextContentTest {
 				'/* #REDIRECT */@import url(//example.org/w/index.php?title=MediaWiki:MonoBook.css&action=raw&ctype=text/css);',
 			],
 		];
-		// @codingStandardsIgnoreEnd
+		// phpcs:enable
 	}
 
 	/**
@@ -275,7 +274,7 @@ class TemplateStylesContentTest extends TextContentTest {
 	}
 
 	public static function provideGetRedirectTarget() {
-		// @codingStandardsIgnoreStart Generic.Files.LineLength
+		// phpcs:disable Generic.Files.LineLength
 		return [
 			[ null, "/* #REDIRECT */@import url(//example.org/w/index.php?title=MediaWiki:MonoBook.css&action=raw&ctype=text/css);" ],
 			[ null, "/* #REDIRECT */@import url(//example.org/w/index.php?title=User:FooBar/common.css&action=raw&ctype=text/css);" ],
@@ -283,7 +282,7 @@ class TemplateStylesContentTest extends TextContentTest {
 			[ null, "@import url(//example.org/w/index.php?title=Gadget:FooBaz.css&action=raw&ctype=text/css);" ],
 			[ null, "/* #REDIRECT */@import url(//example.com/w/index.php?title=Gadget:FooBaz.css&action=raw&ctype=text/css);" ],
 		];
-		// @codingStandardsIgnoreEnd
+		// phpcs:enable
 	}
 
 	public static function dataEquals() {

@@ -215,51 +215,44 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 			'Tag without src' => [
 				$popt, [],
 				'<templatestyles />',
-				// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
+				// phpcs:ignore Generic.Files.LineLength
 				"<div class=\"templatestyles-test\"><p><strong class=\"error\">TemplateStyles' <code>src</code> attribute must not be empty.</strong>\n</p></div>",
-				// @codingStandardsIgnoreEnd
 			],
 			'Tag with invalid src' => [
 				$popt, [],
 				'<templatestyles src="Test&lt;&gt;" />',
-				// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
+				// phpcs:ignore Generic.Files.LineLength
 				"<div class=\"templatestyles-test\"><p><strong class=\"error\">Invalid title for TemplateStyles' <code>src</code> attribute.</strong>\n</p></div>",
-				// @codingStandardsIgnoreEnd
 			],
 			'Tag with valid but nonexistent title' => [
 				$popt, [],
 				'<templatestyles src="ThisDoes\'\'\'Not\'\'\'Exist" />',
-				// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
+				// phpcs:ignore Generic.Files.LineLength
 				"<div class=\"templatestyles-test\"><p><strong class=\"error\">Page <a href=\"/index.php?title=Template:ThisDoes%27%27%27Not%27%27%27Exist&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"Template:ThisDoes&#39;&#39;&#39;Not&#39;&#39;&#39;Exist (page does not exist)\">Template:ThisDoes&#39;&#39;&#39;Not&#39;&#39;&#39;Exist</a> has no content.</strong>\n</p></div>",
-				// @codingStandardsIgnoreEnd
 			],
 			'Tag with valid but nonexistent title, main namespace' => [
 				$popt, [],
 				'<templatestyles src=":ThisDoes\'\'\'Not\'\'\'Exist" />',
-				// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
+				// phpcs:ignore Generic.Files.LineLength
 				"<div class=\"templatestyles-test\"><p><strong class=\"error\">Page <a href=\"/index.php?title=ThisDoes%27%27%27Not%27%27%27Exist&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"ThisDoes&#39;&#39;&#39;Not&#39;&#39;&#39;Exist (page does not exist)\">ThisDoes&#39;&#39;&#39;Not&#39;&#39;&#39;Exist</a> has no content.</strong>\n</p></div>",
-				// @codingStandardsIgnoreEnd
 			],
 			'Tag with wikitext page' => [
 				$popt, [],
 				'<templatestyles src="TemplateStyles test/wikitext" />',
-				// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
+				// phpcs:ignore Generic.Files.LineLength
 				"<div class=\"templatestyles-test\"><p><strong class=\"error\">Page <a href=\"/wiki/Template:TemplateStyles_test/wikitext\" title=\"Template:TemplateStyles test/wikitext\">Template:TemplateStyles test/wikitext</a> must have content model \"Sanitized CSS\" for TemplateStyles (current model is \"wikitext\").</strong>\n</p></div>",
-				// @codingStandardsIgnoreEnd
 			],
 			'Tag with CSS (not sanitized-css) page' => [
 				$popt, [],
 				'<templatestyles src="TemplateStyles test/nonsanitized.css" />',
-				// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
+				// phpcs:ignore Generic.Files.LineLength
 				"<div class=\"templatestyles-test\"><p><strong class=\"error\">Page <a href=\"/wiki/Template:TemplateStyles_test/nonsanitized.css\" title=\"Template:TemplateStyles test/nonsanitized.css\">Template:TemplateStyles test/nonsanitized.css</a> must have content model \"Sanitized CSS\" for TemplateStyles (current model is \"CSS\").</strong>\n</p></div>",
-				// @codingStandardsIgnoreEnd
 			],
 			'Working tag' => [
 				$popt, [],
 				'<templatestyles src="TemplateStyles test/styles1.css" />',
-				// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
+				// phpcs:ignore Generic.Files.LineLength
 				"<div class=\"templatestyles-test\"><style data-mw-deduplicate=\"TemplateStyles:r{{REV:styles1.css}}/templatestyles-test\">.templatestyles-test .foo{color:blue}</style></div>",
-				// @codingStandardsIgnoreEnd
 			],
 			'Disabled' => [
 				$popt, [],
@@ -270,30 +263,26 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 			'Replaced content (which includes sanitization errors)' => [
 				$popt, [],
 				'<templatestyles src="Test replacement" />',
-				// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
+				// phpcs:ignore Generic.Files.LineLength
 				"<div class=\"templatestyles-test\"><style data-mw-deduplicate=\"TemplateStyles:8fd14043c1cce91e8b9d1487a9d17d8d9ae43890/templatestyles-test\">/*\nErrors processing stylesheet [[:Template:Test replacement]] (rev ):\n• Unrecognized or unsupported property at line 1 character 22.\n*/\n.templatestyles-test .baz{color:orange}</style></div>",
-				// @codingStandardsIgnoreEnd
 			],
 			'Hoistable selectors are hoisted' => [
 				$popt, [],
 				'<templatestyles src="TemplateStyles test/styles3.css" />',
-				// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
+				// phpcs:ignore Generic.Files.LineLength
 				"<div class=\"templatestyles-test\"><style data-mw-deduplicate=\"TemplateStyles:r{{REV:styles3.css}}/templatestyles-test\">html.no-js body.skin-minerva .templatestyles-test .bar{color:yellow}</style></div>",
-				// @codingStandardsIgnoreEnd
 			],
 			'Still prefixed despite no wrapping class' => [
 				$popt2, [ 'unwrap' => true ],
 				'<templatestyles src="TemplateStyles test/styles1.css" />',
-				// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
+				// phpcs:ignore Generic.Files.LineLength
 				"<style data-mw-deduplicate=\"TemplateStyles:r{{REV:styles1.css}}\">.mw-parser-output .foo{color:blue}</style>",
-				// @codingStandardsIgnoreEnd
 			],
 			'Still prefixed despite deprecated no wrapping class' => [
 				$popt3, [],
 				'<templatestyles src="TemplateStyles test/styles1.css" />',
-				// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
+				// phpcs:ignore Generic.Files.LineLength
 				"<style data-mw-deduplicate=\"TemplateStyles:r{{REV:styles1.css}}\">.mw-parser-output .foo{color:blue}</style>",
-				// @codingStandardsIgnoreEnd
 			],
 			'Deduplicated tags' => [
 				$popt, [],
@@ -304,7 +293,7 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 <templatestyles src="TemplateStyles test/styles1.css" />
 <templatestyles src="TemplateStyles test/styles2.css" />
 				' ),
-				// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
+				// phpcs:disable Generic.Files.LineLength
 				trim( '
 <div class="templatestyles-test"><style data-mw-deduplicate="TemplateStyles:r{{REV:styles1.css}}/templatestyles-test">.templatestyles-test .foo{color:blue}</style>
 <link rel="mw-deduplicated-inline-style" href="mw-data:TemplateStyles:r{{REV:styles1.css}}/templatestyles-test"/>
@@ -312,28 +301,25 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 <link rel="mw-deduplicated-inline-style" href="mw-data:TemplateStyles:r{{REV:styles1.css}}/templatestyles-test"/>
 <link rel="mw-deduplicated-inline-style" href="mw-data:TemplateStyles:r{{REV:styles2.css}}/templatestyles-test"/></div>
 				' ),
-				// @codingStandardsIgnoreEnd
+				// phpcs:enable
 			],
 			'Wrapper parameter' => [
 				$popt2, [],
 				'<templatestyles src="TemplateStyles test/styles1.css" wrapper=".foobar" />',
-				// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
+				// phpcs:ignore Generic.Files.LineLength
 				"<div class=\"mw-parser-output\"><style data-mw-deduplicate=\"TemplateStyles:r{{REV:styles1.css}}/mw-parser-output/.foobar\">.mw-parser-output .foobar .foo{color:blue}</style></div>",
-				// @codingStandardsIgnoreEnd
 			],
 			'Invalid wrapper parameter' => [
 				$popt, [],
 				'<templatestyles src="TemplateStyles test/styles1.css" wrapper=".foo .bar" />',
-				// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
+				// phpcs:ignore Generic.Files.LineLength
 				"<div class=\"templatestyles-test\"><p><strong class=\"error\">Invalid value for TemplateStyles' <code>wrapper</code> attribute.</strong>\n</p></div>",
-				// @codingStandardsIgnoreEnd
 			],
 			'Invalid wrapper parameter (2)' => [
 				$popt, [],
 				'<templatestyles src="TemplateStyles test/styles1.css" wrapper=".foo/*" />',
-				// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
+				// phpcs:ignore Generic.Files.LineLength
 				"<div class=\"templatestyles-test\"><p><strong class=\"error\">Invalid value for TemplateStyles' <code>wrapper</code> attribute.</strong>\n</p></div>",
-				// @codingStandardsIgnoreEnd
 			],
 			'Wrapper parameter and proper deduplication' => [
 				$popt2, [],
@@ -344,7 +330,7 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 <templatestyles src="TemplateStyles test/styles1.css" wrapper=".foobaz" />
 <templatestyles src="TemplateStyles test/styles1.css" wrapper=" .foobar " />
 				' ),
-				// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
+				// phpcs:disable Generic.Files.LineLength
 				trim( '
 <div class="mw-parser-output"><style data-mw-deduplicate="TemplateStyles:r{{REV:styles1.css}}">.mw-parser-output .foo{color:blue}</style>
 <link rel="mw-deduplicated-inline-style" href="mw-data:TemplateStyles:r{{REV:styles1.css}}"/>
@@ -352,7 +338,7 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 <style data-mw-deduplicate="TemplateStyles:r{{REV:styles1.css}}/mw-parser-output/.foobaz">.mw-parser-output .foobaz .foo{color:blue}</style>
 <link rel="mw-deduplicated-inline-style" href="mw-data:TemplateStyles:r{{REV:styles1.css}}/mw-parser-output/.foobar"/></div>
 				' ),
-				// @codingStandardsIgnoreEnd
+				// phpcs:enable
 			],
 		];
 	}
