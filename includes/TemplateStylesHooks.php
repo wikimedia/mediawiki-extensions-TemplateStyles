@@ -91,22 +91,10 @@ class TemplateStylesHooks {
 			$config = self::getConfig();
 			$matcherFactory = self::getMatcherFactory();
 
-			$disallowedProperties = $config->get( 'TemplateStylesDisallowedProperties' );
-			if ( $disallowedProperties === [] ) {
-				// Fallback to deprecated $wgTemplateStylesPropertyBlacklist
-				$disallowedProperties = $config->get( 'TemplateStylesPropertyBlacklist' );
-				if ( $disallowedProperties !== [] ) {
-					wfDeprecated(
-						'$wgTemplateStylesPropertyBlacklist is deprecated and has a value set. ' .
-						'Please use $wgTemplateStylesDisallowedProperties instead.'
-					);
-				}
-			}
-
 			$propertySanitizer = new StylePropertySanitizer( $matcherFactory );
 			$propertySanitizer->setKnownProperties( array_diff_key(
 				$propertySanitizer->getKnownProperties(),
-				array_flip( $disallowedProperties )
+				array_flip( $config->get( 'TemplateStylesDisallowedProperties' ) )
 			) );
 			Hooks::run( 'TemplateStylesPropertySanitizer', [ &$propertySanitizer, $matcherFactory ] );
 
@@ -141,16 +129,6 @@ class TemplateStylesHooks {
 			}
 
 			$disallowedAtRules = $config->get( 'TemplateStylesDisallowedAtRules' );
-			if ( $disallowedAtRules === [] ) {
-				// Fallback to deprecated $wgTemplateStylesAtRuleBlacklist
-				$disallowedAtRules = $config->get( 'TemplateStylesAtRuleBlacklist' );
-				if ( $disallowedAtRules !== [] ) {
-					wfDeprecated(
-						'$wgTemplateStylesAtRuleBlacklist is deprecated and has a value set. ' .
-						'Please use $wgTemplateStylesDisallowedAtRules instead.'
-					);
-				}
-			}
 
 			$ruleSanitizers = [
 				'styles' => new StyleRuleSanitizer(

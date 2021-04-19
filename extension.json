@@ -90,14 +90,6 @@
 			},
 			"merge_strategy": "array_plus"
 		},
-		"TemplateStylesPropertyBlacklist": {
-			"description": "DEPRECATED: Please use $wgTemplateStylesDisallowedProperties instead.",
-			"value": []
-		},
-		"TemplateStylesAtRuleBlacklist": {
-			"description": "DEPRECATED: Please use $wgTemplateStylesDisallowedAtRules instead.",
-			"value": []
-		},
 		"TemplateStylesDisallowedProperties": {
 			"description": "Disallowed style properties that would otherwise be allowed. See also the TemplateStylesPropertySanitizer hook, which allows for finer-grained control.",
 			"value": []
