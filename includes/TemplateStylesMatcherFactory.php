@@ -31,7 +31,7 @@ class TemplateStylesMatcherFactory extends \Wikimedia\CSS\Grammar\MatcherFactory
 	 */
 	protected function checkUrl( $type, $url ) {
 		// Undo unnecessary percent encoding
-		$url = preg_replace_callback( '/%[2-7][0-9A-Fa-f]/', function ( $m ) {
+		$url = preg_replace_callback( '/%[2-7][0-9A-Fa-f]/', static function ( $m ) {
 			$char = urldecode( $m[0] );
 			/** @phan-suppress-next-line PhanParamSuspiciousOrder */
 			if ( strpos( '"#%<>[\]^`{|}/?&=+;', $char ) === false ) {

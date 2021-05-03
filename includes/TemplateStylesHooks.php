@@ -100,7 +100,7 @@ class TemplateStylesHooks {
 
 			$htmlOrBodySimpleSelectorSeqMatcher = new CheckedMatcher(
 				$matcherFactory->cssSimpleSelectorSeq(),
-				function ( ComponentValueList $values, GrammarMatch $match, array $options ) {
+				static function ( ComponentValueList $values, GrammarMatch $match, array $options ) {
 					foreach ( $match->getCapturedMatches() as $m ) {
 						if ( $m->getName() !== 'element' ) {
 							continue;

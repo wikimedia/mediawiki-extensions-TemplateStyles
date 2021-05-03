@@ -113,13 +113,13 @@ class TemplateStylesContentTest extends TextContentTest {
 			function ( &$sanitizer ) {
 				$badToken = $this->getMockBuilder( Wikimedia\CSS\Objects\Token::class )
 					->disableOriginalConstructor()
-					->setMethods( [ '__toString' ] )
+					->onlyMethods( [ '__toString' ] )
 					->getMock();
 				$badToken->method( '__toString' )->willReturn( '"</style>"' );
 
 				$sanitizer = $this->getMockBuilder( Wikimedia\CSS\Sanitizer\StylesheetSanitizer::class )
 					->disableOriginalConstructor()
-					->setMethods( [ 'sanitize' ] )
+					->onlyMethods( [ 'sanitize' ] )
 					->getMock();
 				$sanitizer->method( 'sanitize' )->willReturn( $badToken );
 				return false;

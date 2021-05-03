@@ -172,7 +172,7 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 		] );
 
 		$oldCurrentRevisionRecordCallback = $popt->setCurrentRevisionRecordCallback(
-			function ( Title $title, $parser = null ) use ( &$oldCurrentRevisionRecordCallback ) {
+			static function ( Title $title, $parser = null ) use ( &$oldCurrentRevisionRecordCallback ) {
 				if ( $title->getPrefixedText() === 'Template:Test replacement' ) {
 					$user = RequestContext::getMain()->getUser();
 					$revRecord = new MutableRevisionRecord( $title );
@@ -196,7 +196,7 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 		}
 		$out = $parser->parse( $wikitext, Title::newFromText( 'Test' ), $popt );
 
-		$expect = preg_replace_callback( '/\{\{REV:(.*?)\}\}/', function ( $m ) {
+		$expect = preg_replace_callback( '/\{\{REV:(.*?)\}\}/', static function ( $m ) {
 			return Title::newFromText( 'Template:TemplateStyles test/' . $m[1] )->getLatestRevID();
 		}, $expect );
 		$this->assertEquals( $expect, $out->getText( $getTextOptions ) );
