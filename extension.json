@@ -42,6 +42,11 @@
 		},
 		"TemplateStyles": {
 			"Namespaces": []
+		},
+		"TemplateSandbox": {
+			"EditContentModels": [
+				"sanitized-css"
+			]
 		}
 	},
 	"callback": "TemplateStylesHooks::onRegistration",
