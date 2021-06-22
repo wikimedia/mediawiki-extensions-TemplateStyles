@@ -11,6 +11,7 @@
 	"templatestyles-desc": "实施基于模板的样式表",
 	"templatestyles-missing-src": "模板样式的<code>src</code>属性不得为空。",
 	"templatestyles-invalid-src": "用于模板样式<code>src</code>属性的标题无效。",
+	"templatestyles-invalid-wrapper": "模板样式的<code>wrapper</code>属性值无效。",
 	"templatestyles-bad-src-missing": "页面[[:$1|$2]]没有内容。",
 	"templatestyles-bad-src": "页面[[:$1|$2]]必须具有内容模型“{{int:content-model-sanitized-css}}”用于模板样式（目前的内容模型是“$3”）。",
 	"templatestyles-errorcomment": "解析样式表[[:$1]]（修订版本$2）时出错：$3",
