@@ -18,7 +18,7 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 
 		$page = WikiPage::factory( $title );
 		$user = static::getTestSysop()->getUser();
-		$status = $page->doEditContent( $content, 'Test for TemplateStyles', 0, false, $user );
+		$status = $page->doUserEditContent( $content, $user, 'Test for TemplateStyles' );
 		if ( !$status->isOk() ) {
 			$this->fail( "Failed to create $title: " . $status->getWikiText( false, false, 'en' ) );
 		}
