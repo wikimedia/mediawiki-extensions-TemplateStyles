@@ -6,7 +6,7 @@
  */
 class TemplateStylesContentTest extends TextContentTest {
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->setMwGlobals( [
