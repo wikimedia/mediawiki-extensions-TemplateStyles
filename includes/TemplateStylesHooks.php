@@ -193,7 +193,6 @@ class TemplateStylesHooks {
 	 */
 	public static function onParserFirstCallInit( Parser $parser ) {
 		$parser->setHook( 'templatestyles', [ __CLASS__, 'handleTag' ] );
-		/** @phan-suppress-next-line PhanUndeclaredProperty */
 		$parser->extTemplateStylesCache = new MapCacheLRU( 100 ); // 100 is arbitrary
 	}
 
@@ -243,7 +242,6 @@ class TemplateStylesHooks {
 	 * @param Parser $parser
 	 */
 	public static function onParserClearState( Parser $parser ) {
-		/** @phan-suppress-next-line PhanUndeclaredProperty */
 		$parser->extTemplateStylesCache->clear();
 	}
 
@@ -257,7 +255,8 @@ class TemplateStylesHooks {
 	 * @suppress SecurityCheck-XSS
 	 */
 	public static function handleTag( $text, $params, $parser, $frame ) {
-		if ( self::getConfig()->get( 'TemplateStylesDisable' ) ) {
+		$config = self::getConfig();
+		if ( $config->get( 'TemplateStylesDisable' ) ) {
 			return '';
 		}
 
@@ -277,7 +276,7 @@ class TemplateStylesHooks {
 		// situation. We can't allow for subpage syntax like src="/styles.css"
 		// or the like, though, because stuff like substing and Parsoid would
 		// wind up wanting to make that relative to the wrong page.
-		$title = Title::newFromText( $params['src'], NS_TEMPLATE );
+		$title = Title::newFromText( $params['src'], $config->get( 'TemplateStylesDefaultNamespace' ) );
 		if ( !$title ) {
 			return self::formatTagError( $parser, [ 'templatestyles-invalid-src' ] );
 		}
@@ -332,9 +331,7 @@ class TemplateStylesHooks {
 		}
 
 		// Already cached?
-		/** @phan-suppress-next-line PhanUndeclaredProperty */
 		if ( $parser->extTemplateStylesCache->has( $cacheKey ) ) {
-			/** @phan-suppress-next-line PhanUndeclaredProperty */
 			return $parser->extTemplateStylesCache->get( $cacheKey );
 		}
 
@@ -376,7 +373,6 @@ class TemplateStylesHooks {
 		$ret = Html::inlineStyle( $marker, 'all', [
 			'data-mw-deduplicate' => "TemplateStyles:$cacheKey",
 		] );
-		/** @phan-suppress-next-line PhanUndeclaredProperty */
 		$parser->extTemplateStylesCache->set( $cacheKey, $ret );
 		return $ret;
 	}

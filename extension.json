@@ -114,6 +114,10 @@
 		"TemplateStylesMaxStylesheetSize": {
 			"description": "The maximum size of a stylesheet, in bytes. Set null if you don't want to impose a limit.",
 			"value": 102400
+		},
+		"TemplateStylesDefaultNamespace": {
+			"description": "The default namespace for the src attribute of the <templatestyles> tag. The value 10 corresponds to NS_TEMPLATE.",
+			"value": 10
 		}
 	},
 	"ConfigRegistry": {
