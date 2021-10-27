@@ -5,6 +5,7 @@
  * @license GPL-2.0-or-later
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 use Wikimedia\CSS\Grammar\CheckedMatcher;
 use Wikimedia\CSS\Grammar\GrammarMatch;
@@ -339,12 +340,19 @@ class TemplateStylesHooks {
 
 		$targetDir = $parser->getTargetLanguage()->getDir();
 		$contentDir = $parser->getContentLanguage()->getDir();
-		$status = $content->sanitize( [
-			'flip' => $targetDir !== $contentDir,
-			'minify' => !ResourceLoader::inDebugMode(),
-			'class' => $wrapClass,
-			'extraWrapper' => $extraWrapper,
-		] );
+
+		$contentHandlerFactory = MediaWikiServices::getInstance()->getContentHandlerFactory();
+		$contentHandler = $contentHandlerFactory->getContentHandler( $content->getModel() );
+		'@phan-var TemplateStylesContentHandler $contentHandler';
+		$status = $contentHandler->sanitize(
+			$content,
+			[
+				'flip' => $targetDir !== $contentDir,
+				'minify' => !ResourceLoader::inDebugMode(),
+				'class' => $wrapClass,
+				'extraWrapper' => $extraWrapper,
+			]
+		);
 		$style = $status->isOk() ? $status->getValue() : '/* Fatal error, no CSS will be output */';
 
 		// Prepend errors. This should normally never happen, but might if an
