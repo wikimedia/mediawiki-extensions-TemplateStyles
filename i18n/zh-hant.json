@@ -3,10 +3,11 @@
 		"authors": [
 			"A2093064",
 			"Kly",
+			"Winston Sung",
 			"Xiplus"
 		]
 	},
-	"templatestyles": "模板樣式",
+	"templatestyles": "模板樣式（TemplateStyles）",
 	"templatestyles-desc": "實現基於模板的樣式表",
 	"templatestyles-missing-src": "模板樣式的<code>src</code>屬性不可為空。",
 	"templatestyles-invalid-src": "模板樣式的<code>src</code>屬性的標題是無效的。",
