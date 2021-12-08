@@ -4,10 +4,11 @@
 			"A2093064",
 			"Liuxinyu970226",
 			"Shizhao",
-			"Xiplus"
+			"Xiplus",
+			"Winston Sung"
 		]
 	},
-	"templatestyles": "模板样式",
+	"templatestyles": "模板样式（TemplateStyles）",
 	"templatestyles-desc": "实施基于模板的样式表",
 	"templatestyles-missing-src": "模板样式的<code>src</code>属性不得为空。",
 	"templatestyles-invalid-src": "用于模板样式<code>src</code>属性的标题无效。",
