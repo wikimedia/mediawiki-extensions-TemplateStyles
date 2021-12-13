@@ -3,10 +3,12 @@
 		"authors": [
 			"A2093064",
 			"Kly",
-			"Xiplus"
+			"Xiplus",
+			"Winston Sung",
+			"唐吉訶德的侍從"
 		]
 	},
-	"templatestyles": "模板樣式",
+	"templatestyles": "模板樣式（TemplateStyles）",
 	"templatestyles-desc": "實現基於模板的樣式表",
 	"templatestyles-missing-src": "模板樣式的<code>src</code>屬性不可為空。",
 	"templatestyles-invalid-src": "模板樣式的<code>src</code>屬性的標題是無效的。",
@@ -19,7 +21,7 @@
 	"content-model-sanitized-css": "已過濾的CSS",
 	"templatestyles-stylesheet-error-category": "錯誤的模板樣式表",
 	"templatestyles-stylesheet-error-category-desc": "模板樣式表含有錯誤。",
-	"templatestyles-page-error-category": "有模板樣式錯誤的頁面。",
+	"templatestyles-page-error-category": "有模板樣式錯誤的頁面",
 	"templatestyles-page-error-category-desc": "處理頁面上的 <code><nowiki><templatestyles/></nowiki></code> 標籤發生錯誤。",
 	"templatestyles-error-at-rule-block-not-allowed": "在第 $1 行裡字元 $2 的區塊不允許用於 <code>@$3</code>。",
 	"templatestyles-error-at-rule-block-required": "在第 $1 行裡字元 $2 的區塊需要 <code>@$3</code>。",

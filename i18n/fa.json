@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ladsgroup"
+			"Ladsgroup",
+			"Jeeputer"
 		]
 	},
 	"templatestyles": "ظاهر الگو",
@@ -13,5 +14,7 @@
 	"templatestyles-size-exceeded": "شیوه‌نامه از حد مجاز $2 بزرگتر است.",
 	"templatestyles-end-tag-injection": "شیوه‌نامه نوشته شده <code>&lt;/style</code> دارد که مجاز نیست.",
 	"content-model-sanitized-css": "شیوه‌نامه آبشاری تمیز",
+	"templatestyles-stylesheet-error-category": "شیوه‌نامه‌های الگوسبک دارای خطا",
+	"templatestyles-stylesheet-error-category-desc": "شیوه‌نامهٔ الگوسبک دارای خطا است.",
 	"templatestyles-page-error-category": "صفحات دارای خطای شیوه‌نامه الگو"
 }
