@@ -16,7 +16,7 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 		$title = Title::newFromText( 'Template:TemplateStyles test/' . $page );
 		$content = ContentHandler::makeContent( $text, $title, $model );
 
-		$page = WikiPage::factory( $title );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 		$user = static::getTestSysop()->getUser();
 		$status = $page->doUserEditContent( $content, $user, 'Test for TemplateStyles' );
 		if ( !$status->isOk() ) {
