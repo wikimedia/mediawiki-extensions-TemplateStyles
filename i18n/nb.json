@@ -1,11 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
+			"Abuluntu",
 			"Jeblad",
 			"Jon Harald Søby"
 		]
 	},
-	"templatestyles": "Malstiler",
+	"templatestyles": "TemplateStyles",
 	"templatestyles-desc": "Implementerer stilark per mal",
 	"templatestyles-missing-src": "TemplateStyles' <code>src</code>-attributt må ikke være tomt.",
 	"templatestyles-invalid-src": "Ugyldig tittel for TemplateStyles' <code>src</code>-attributt.",
