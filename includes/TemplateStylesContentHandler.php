@@ -1,13 +1,22 @@
 <?php
 
+namespace MediaWiki\Extension\TemplateStyles;
+
 /**
  * @file
  * @license GPL-2.0-or-later
  */
 
+use CodeContentHandler;
+use Content;
+use CSSJanus;
 use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\ValidationParams;
 use MediaWiki\MediaWikiServices;
+use Message;
+use ParserOutput;
+use Status;
+use StatusValue;
 use Wikimedia\CSS\Parser\Parser as CSSParser;
 use Wikimedia\CSS\Util as CSSUtil;
 
@@ -126,7 +135,7 @@ class TemplateStylesContentHandler extends CodeContentHandler {
 		$status = Status::newGood();
 
 		$style = $content->getText();
-		$maxSize = TemplateStylesHooks::getConfig()->get( 'TemplateStylesMaxStylesheetSize' );
+		$maxSize = Hooks::getConfig()->get( 'TemplateStylesMaxStylesheetSize' );
 		if ( $maxSize !== null && strlen( $style ) > $maxSize ) {
 			$status->fatal(
 				// Status::getWikiText() chokes on the Message::sizeParam if we
@@ -146,7 +155,7 @@ class TemplateStylesContentHandler extends CodeContentHandler {
 		self::processErrors( $status, $cssParser->getParseErrors(), $options['severity'] );
 
 		// Sanitize it, and collect any errors
-		$sanitizer = TemplateStylesHooks::getSanitizer(
+		$sanitizer = Hooks::getSanitizer(
 			$options['class'] ?: 'mw-parser-output', $options['extraWrapper']
 		);
 		$sanitizer->clearSanitizationErrors(); // Just in case

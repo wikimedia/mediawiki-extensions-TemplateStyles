@@ -1,12 +1,14 @@
 <?php
 
 use MediaWiki\Content\ValidationParams;
+use MediaWiki\Extension\TemplateStyles\TemplateStylesContent;
+use MediaWiki\Extension\TemplateStyles\TemplateStylesContentHandler;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 
 /**
  * @group TemplateStyles
- * @covers TemplateStylesContentHandler
+ * @covers \MediaWiki\Extension\TemplateStyles\TemplateStylesContentHandler
  */
 class TemplateStylesContentHandlerTest extends MediaWikiLangTestCase {
 

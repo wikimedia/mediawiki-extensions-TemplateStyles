@@ -20,15 +20,11 @@
 			"i18n"
 		]
 	},
-	"AutoloadClasses": {
-		"TemplateStylesContentHandler": "includes/TemplateStylesContentHandler.php",
-		"TemplateStylesContent": "includes/TemplateStylesContent.php",
-		"TemplateStylesFontFaceAtRuleSanitizer": "includes/TemplateStylesFontFaceAtRuleSanitizer.php",
-		"TemplateStylesHooks": "includes/TemplateStylesHooks.php",
-		"TemplateStylesMatcherFactory": "includes/TemplateStylesMatcherFactory.php"
+	"AutoloadNamespaces": {
+		"MediaWiki\\Extension\\TemplateStyles\\": "includes/"
 	},
 	"ContentHandlers": {
-		"sanitized-css": "TemplateStylesContentHandler"
+		"sanitized-css": "MediaWiki\\Extension\\TemplateStyles\\TemplateStylesContentHandler"
 	},
 	"TrackingCategories": [
 		"templatestyles-stylesheet-error-category",
@@ -49,19 +45,19 @@
 			]
 		}
 	},
-	"callback": "TemplateStylesHooks::onRegistration",
+	"callback": "MediaWiki\\Extension\\TemplateStyles\\Hooks::onRegistration",
 	"Hooks": {
 		"ParserFirstCallInit": [
-			"TemplateStylesHooks::onParserFirstCallInit"
+			"MediaWiki\\Extension\\TemplateStyles\\Hooks::onParserFirstCallInit"
 		],
 		"ParserClearState": [
-			"TemplateStylesHooks::onParserClearState"
+			"MediaWiki\\Extension\\TemplateStyles\\Hooks::onParserClearState"
 		],
 		"ContentHandlerDefaultModelFor": [
-			"TemplateStylesHooks::onContentHandlerDefaultModelFor"
+			"MediaWiki\\Extension\\TemplateStyles\\Hooks::onContentHandlerDefaultModelFor"
 		],
 		"CodeEditorGetPageLanguage": [
-			"TemplateStylesHooks::onCodeEditorGetPageLanguage"
+			"MediaWiki\\Extension\\TemplateStyles\\Hooks::onCodeEditorGetPageLanguage"
 		]
 	},
 	"config": {

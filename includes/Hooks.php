@@ -1,12 +1,25 @@
 <?php
 
+namespace MediaWiki\Extension\TemplateStyles;
+
 /**
  * @file
  * @license GPL-2.0-or-later
  */
 
+use Config;
+use ContentHandler;
+use ExtensionRegistry;
+use Hooks as MWHooks;
+use Html;
+use InvalidArgumentException;
+use MapCacheLRU;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
+use Parser;
+use PPFrame;
+use ResourceLoader;
+use Title;
 use Wikimedia\CSS\Grammar\CheckedMatcher;
 use Wikimedia\CSS\Grammar\GrammarMatch;
 use Wikimedia\CSS\Grammar\MatcherFactory;
@@ -28,7 +41,7 @@ use Wikimedia\CSS\Sanitizer\SupportsAtRuleSanitizer;
 /**
  * TemplateStyles extension hooks
  */
-class TemplateStylesHooks {
+class Hooks {
 
 	/** @var MatcherFactory|null */
 	private static $matcherFactory = null;
@@ -44,7 +57,7 @@ class TemplateStylesHooks {
 	 * @codeCoverageIgnore
 	 */
 	public static function getConfig() {
-		return \MediaWiki\MediaWikiServices::getInstance()->getConfigFactory()
+		return MediaWikiServices::getInstance()->getConfigFactory()
 			->makeConfig( 'templatestyles' );
 	}
 
@@ -97,7 +110,7 @@ class TemplateStylesHooks {
 				$propertySanitizer->getKnownProperties(),
 				array_flip( $config->get( 'TemplateStylesDisallowedProperties' ) )
 			) );
-			Hooks::run( 'TemplateStylesPropertySanitizer', [ &$propertySanitizer, $matcherFactory ] );
+			MWHooks::run( 'TemplateStylesPropertySanitizer', [ &$propertySanitizer, $matcherFactory ] );
 
 			$htmlOrBodySimpleSelectorSeqMatcher = new CheckedMatcher(
 				$matcherFactory->cssSimpleSelectorSeq(),
@@ -165,7 +178,7 @@ class TemplateStylesHooks {
 			];
 			$allRuleSanitizers = array_diff_key( $allRuleSanitizers, $disallowedAtRules );
 			$sanitizer = new StylesheetSanitizer( $allRuleSanitizers );
-			Hooks::run( 'TemplateStylesStylesheetSanitizer',
+			MWHooks::run( 'TemplateStylesStylesheetSanitizer',
 				[ &$sanitizer, $propertySanitizer, $matcherFactory ]
 			);
 			self::$sanitizers[$key] = $sanitizer;
@@ -396,7 +409,7 @@ class TemplateStylesHooks {
 	private static function formatTagError( Parser $parser, array $msg ) {
 		$parser->addTrackingCategory( 'templatestyles-page-error-category' );
 		return '<strong class="error">' .
-			call_user_func_array( 'wfMessage', $msg )->inContentLanguage()->parse() .
+			wfMessage( ...$msg )->inContentLanguage()->parse() .
 			'</strong>';
 	}
 

@@ -1,8 +1,10 @@
 <?php
 
+use MediaWiki\Extension\TemplateStyles\TemplateStylesContent;
+
 /**
  * @group TemplateStyles
- * @covers TemplateStylesContent
+ * @covers \MediaWiki\Extension\TemplateStyles\TemplateStylesContent
  */
 class TemplateStylesContentTest extends TextContentTest {
 
