@@ -3,6 +3,7 @@
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use Wikimedia\AtEase\AtEase;
 use Wikimedia\CSS\Parser\Parser as CSSParser;
 
 /**
@@ -209,7 +210,7 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 		$popt2 = ParserOptions::newFromContext( RequestContext::getMain() );
 
 		$popt3 = ParserOptions::newFromContext( RequestContext::getMain() );
-		Wikimedia\quietCall( [ $popt3, 'setWrapOutputClass' ], false );
+		AtEase::quietCall( [ $popt3, 'setWrapOutputClass' ], false );
 
 		return [
 			'Tag without src' => [
