@@ -1,12 +1,13 @@
 <?php
 
+use MediaWiki\Extension\TemplateStyles\TemplateStylesFontFaceAtRuleSanitizer;
 use Wikimedia\CSS\Grammar\MatcherFactory;
 use Wikimedia\CSS\Parser\Parser;
 use Wikimedia\CSS\Util;
 
 /**
  * @group TemplateStyles
- * @covers TemplateStylesFontFaceAtRuleSanitizer
+ * @covers \MediaWiki\Extension\TemplateStyles\TemplateStylesFontFaceAtRuleSanitizer
  */
 class TemplateStylesFontFaceAtRuleSanitizerTest extends MediaWikiUnitTestCase {
 

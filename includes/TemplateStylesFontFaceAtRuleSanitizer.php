@@ -1,4 +1,7 @@
 <?php
+
+namespace MediaWiki\Extension\TemplateStyles;
+
 /**
  * @file
  * @license GPL-2.0-or-later

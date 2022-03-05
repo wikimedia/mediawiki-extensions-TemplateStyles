@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Extension\TemplateStyles\Hooks as TemplateStylesHooks;
+use MediaWiki\Extension\TemplateStyles\TemplateStylesContent;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -9,7 +11,7 @@ use Wikimedia\CSS\Parser\Parser as CSSParser;
 /**
  * @group TemplateStyles
  * @group Database
- * @covers TemplateStylesHooks
+ * @covers \MediaWiki\Extension\TemplateStyles\Hooks
  */
 class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 
