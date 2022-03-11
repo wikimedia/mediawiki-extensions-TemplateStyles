@@ -327,7 +327,7 @@ class Hooks {
 		if ( $revRecord->getId() ) {
 			$cacheKey = 'r' . $revRecord->getId();
 		} else {
-			$cacheKey = sha1( $content->getNativeData() );
+			$cacheKey = sha1( $content->getText() );
 		}
 
 		// Include any non-default wrapper class in the cache key too
