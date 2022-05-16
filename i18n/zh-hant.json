@@ -3,6 +3,7 @@
 		"authors": [
 			"A2093064",
 			"Kly",
+			"SunAfterRain",
 			"Winston Sung",
 			"Xiplus",
 			"唐吉訶德的侍從"
@@ -63,7 +64,7 @@
 	"templatestyles-error-unclosed-comment": "有未閉合註釋起始在第 $1 行的字元 $2。",
 	"templatestyles-error-unclosed-string": "有未閉合字串起始在第 $1 行的字元 $2。",
 	"templatestyles-error-unclosed-url": "有未閉合的 URL 起始在第 $1 行的字元 $2。。",
-	"templatestyles-error-unexpected-eof": "在第 $1 行裡字元 $2 有非預期的樣式表結尾。",
+	"templatestyles-error-unexpected-eof": "樣式表在第$1行第$2列意外結束。",
 	"templatestyles-error-unexpected-eof-in-block": "在第 $1 行裡字元 $2 的區塊中有非預期樣式表結尾。",
 	"templatestyles-error-unexpected-eof-in-function": "在第 $1 行裡字元 $2 的函式有非預期樣式表結尾。",
 	"templatestyles-error-unexpected-eof-in-rule": "在第 $1 行裡字元 $2 的規則有非預期樣式表結尾。",
