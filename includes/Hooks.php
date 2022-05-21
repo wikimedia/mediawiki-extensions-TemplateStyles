@@ -204,7 +204,6 @@ class Hooks {
 	/**
 	 * Add `<templatestyles>` to the parser.
 	 * @param Parser $parser Parser object being cleared
-	 * @suppress PhanUndeclaredProperty
 	 */
 	public static function onParserFirstCallInit( Parser $parser ) {
 		$parser->setHook( 'templatestyles', [ __CLASS__, 'handleTag' ] );
@@ -255,7 +254,6 @@ class Hooks {
 	/**
 	 * Clear our cache when the parser is reset
 	 * @param Parser $parser
-	 * @suppress PhanUndeclaredProperty
 	 */
 	public static function onParserClearState( Parser $parser ) {
 		$parser->extTemplateStylesCache->clear();
@@ -268,7 +266,7 @@ class Hooks {
 	 * @param Parser $parser
 	 * @param PPFrame $frame
 	 * @return string HTML
-	 * @suppress SecurityCheck-XSS,PhanUndeclaredProperty
+	 * @suppress SecurityCheck-XSS
 	 */
 	public static function handleTag( $text, $params, $parser, $frame ) {
 		$config = self::getConfig();
