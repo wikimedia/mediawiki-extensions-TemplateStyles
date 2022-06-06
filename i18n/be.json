@@ -1,8 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Artsiom91"
+			"Artsiom91",
+			"Chadyka"
 		]
 	},
-	"templatestyles-stylesheet-error-category": "Стылі шаблонаў з памылкамі CSS"
+	"templatestyles-desc": "Рэалізуе старонкі стыляў для кожнага шаблону",
+	"templatestyles-stylesheet-error-category": "Стылі шаблонаў з памылкамі CSS",
+	"templatestyles-page-error-category": "Старонкі з памылкамі стыляў шаблонаў"
 }
