@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Artsiom91",
-			"Chadyka"
+			"Chadyka",
+			"Tomato Cream"
 		]
 	},
 	"templatestyles-desc": "Рэалізуе старонкі стыляў для кожнага шаблону",
@@ -29,5 +30,5 @@
 	"templatestyles-error-expected-declaration": "Чакаецца абвяшчэнне ў радку $1, сімвал $2.",
 	"templatestyles-error-expected-declaration-list": "Чакаецца спіс абвяшчэнняў у радку $1, сімвал $2.",
 	"templatestyles-error-expected-eof": "Чакаецца канец табліцы стыляў у радку $1, сімвал $2.",
-	"templatestyles-error-expected-ident": "Чакаецца ідэнтыфікатар ў радку $1, сімвал $2."
+	"templatestyles-error-expected-ident": "Чакаецца ідэнтыфікатар у радку $1, сімвал $2."
 }
