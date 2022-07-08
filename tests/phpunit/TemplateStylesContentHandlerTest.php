@@ -53,7 +53,7 @@ class TemplateStylesContentHandlerTest extends MediaWikiLangTestCase {
 			'no minify' => [
 				'.foo { margin-left: 10px }',
 				[ 'minify' => false ],
-				Status::newGood( '.mw-parser-output .foo { margin-left: 10px ; }' )
+				Status::newGood( '.mw-parser-output .foo { margin-left:10px; }' )
 			],
 			'With warnings' => [
 				'.foo { color: bogus; }',
@@ -68,12 +68,12 @@ class TemplateStylesContentHandlerTest extends MediaWikiLangTestCase {
 			'With overridden class prefix' => [
 				'.foo { margin-left: 10px }',
 				[ 'class' => 'foo bar', 'minify' => false ],
-				Status::newGood( '.foo\ bar .foo { margin-left: 10px ; }' )
+				Status::newGood( '.foo\ bar .foo { margin-left:10px; }' )
 			],
 			'With boolean false as a class prefix' => [
 				'.foo { margin-left: 10px }',
 				[ 'class' => false, 'minify' => false ],
-				Status::newGood( '.mw-parser-output .foo { margin-left: 10px ; }' )
+				Status::newGood( '.mw-parser-output .foo { margin-left:10px; }' )
 			],
 			'With an extra wrapper' => [
 				'.foo { margin-left: 10px }',

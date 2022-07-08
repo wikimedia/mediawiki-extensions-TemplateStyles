@@ -27,7 +27,6 @@ use Wikimedia\CSS\Objects\ComponentValue;
 use Wikimedia\CSS\Objects\ComponentValueList;
 use Wikimedia\CSS\Objects\Token;
 use Wikimedia\CSS\Parser\Parser as CSSParser;
-use Wikimedia\CSS\Sanitizer\FontFeatureValuesAtRuleSanitizer;
 use Wikimedia\CSS\Sanitizer\KeyframesAtRuleSanitizer;
 use Wikimedia\CSS\Sanitizer\MediaAtRuleSanitizer;
 use Wikimedia\CSS\Sanitizer\NamespaceAtRuleSanitizer;
@@ -154,7 +153,6 @@ class Hooks {
 					]
 				),
 				'@font-face' => new TemplateStylesFontFaceAtRuleSanitizer( $matcherFactory ),
-				'@font-feature-values' => new FontFeatureValuesAtRuleSanitizer( $matcherFactory ),
 				'@keyframes' => new KeyframesAtRuleSanitizer( $matcherFactory, $propertySanitizer ),
 				'@page' => new PageAtRuleSanitizer( $matcherFactory, $propertySanitizer ),
 				'@media' => new MediaAtRuleSanitizer( $matcherFactory->cssMediaQueryList() ),

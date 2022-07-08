@@ -68,7 +68,7 @@ class TemplateStylesFontFaceAtRuleSanitizerTest extends MediaWikiUnitTestCase {
 					font-family: "TemplateStyles foo bar";
 				}',
 				true,
-				'@font-face { font-family: "TemplateStyles foo bar"; }',
+				'@font-face { font-family:"TemplateStyles foo bar"; }',
 				'@font-face{font-family:"TemplateStyles foo bar"}',
 			],
 			'non-prefixed font family as idents (1)' => [
@@ -76,7 +76,7 @@ class TemplateStylesFontFaceAtRuleSanitizerTest extends MediaWikiUnitTestCase {
 					font-family: TemplateStyles foo bar;
 				}',
 				true,
-				'@font-face { font-family: TemplateStyles foo bar; }',
+				'@font-face { font-family:TemplateStyles foo bar; }',
 				'@font-face{font-family:TemplateStyles foo bar}',
 			],
 			'non-prefixed font family as idents (2)' => [
@@ -84,7 +84,7 @@ class TemplateStylesFontFaceAtRuleSanitizerTest extends MediaWikiUnitTestCase {
 					font-family: TemplateStylesFoo bar;
 				}',
 				true,
-				'@font-face { font-family: TemplateStylesFoo bar; }',
+				'@font-face { font-family:TemplateStylesFoo bar; }',
 				'@font-face{font-family:TemplateStylesFoo bar}',
 			],
 		];
