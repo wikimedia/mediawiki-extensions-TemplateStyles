@@ -18,7 +18,6 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 use Parser;
 use PPFrame;
-use ResourceLoader;
 use Title;
 use Wikimedia\CSS\Grammar\CheckedMatcher;
 use Wikimedia\CSS\Grammar\GrammarMatch;
@@ -357,7 +356,7 @@ class Hooks {
 			$content,
 			[
 				'flip' => $targetDir !== $contentDir,
-				'minify' => !ResourceLoader::inDebugMode(),
+				'minify' => true,
 				'class' => $wrapClass,
 				'extraWrapper' => $extraWrapper,
 			]
