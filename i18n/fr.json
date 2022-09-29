@@ -9,7 +9,7 @@
 		]
 	},
 	"templatestyles": "Styles de modèles",
-	"templatestyles-desc": "Implémenter les feuilles de style par modèle",
+	"templatestyles-desc": "Met en œuvre les feuilles de style par modèle",
 	"templatestyles-missing-src": "L’attribut <code>src</code> de TemplateStyles ne doit pas être vide.",
 	"templatestyles-invalid-src": "Titre non valide pour l’attribut <code>src</code> de TemplateStyles.",
 	"templatestyles-invalid-wrapper": "Valeur non valide pour l'attribut <code>wrapper</code> de TemplateStyles.",
