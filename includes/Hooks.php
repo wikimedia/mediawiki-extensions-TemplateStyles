@@ -399,6 +399,7 @@ class Hooks {
 	 * Format an error in the `<templatestyles>` tag
 	 * @param Parser $parser
 	 * @param array $msg Arguments to wfMessage()
+	 * @phan-param non-empty-array $msg
 	 * @return string HTML
 	 */
 	private static function formatTagError( Parser $parser, array $msg ) {
