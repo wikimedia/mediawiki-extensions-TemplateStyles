@@ -8,5 +8,6 @@
 	"content-model-sanitized-css": "Očiščeni CSS",
 	"templatestyles-stylesheet-error-category": "Slogovni listi TemplateStyles z napakami",
 	"templatestyles-stylesheet-error-category-desc": "Slogovni list TemplateStyles vsebuje napako.",
-	"templatestyles-page-error-category": "Strani z napakami TemplateStyles"
+	"templatestyles-page-error-category": "Strani z napakami TemplateStyles",
+	"templatestyles-page-error-category-desc": "Pri obdelavi oznake <code><nowiki><templatestyles/></nowiki></code> na strani je prišlo do napake."
 }
