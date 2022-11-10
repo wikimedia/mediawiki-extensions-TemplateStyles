@@ -204,7 +204,8 @@ class Hooks {
 	 */
 	public static function onParserFirstCallInit( Parser $parser ) {
 		$parser->setHook( 'templatestyles', [ __CLASS__, 'handleTag' ] );
-		$parser->extTemplateStylesCache = new MapCacheLRU( 100 ); // 100 is arbitrary
+		// 100 is arbitrary
+		$parser->extTemplateStylesCache = new MapCacheLRU( 100 );
 	}
 
 	/**
@@ -331,7 +332,8 @@ class Hooks {
 
 		// Include any non-default wrapper class in the cache key too
 		$wrapClass = $parser->getOptions()->getWrapOutputClass();
-		if ( $wrapClass === false ) { // deprecated
+		if ( $wrapClass === false ) {
+			// deprecated
 			$wrapClass = 'mw-parser-output';
 		}
 		if ( $wrapClass !== 'mw-parser-output' || $extraWrapper !== null ) {
