@@ -4,5 +4,6 @@
 			"McDutchie"
 		]
 	},
+	"templatestyles-desc": "Implementa folios de stilo per patrono",
 	"templatestyles-invalid-wrapper": "Valor non valide pro le attributo <code>wrapper</code> de TemplateStyles."
 }
