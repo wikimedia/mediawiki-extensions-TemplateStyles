@@ -42,7 +42,7 @@
 	"templatestyles-error-invalid-font-feature-value-declaration": "Valeur non valide pour la propriété de valeur de la police à la ligne $1, caractère $2.",
 	"templatestyles-error-invalid-font-feature-values-font-list": "Liste de polices non valide pour <code>@font-feature-values</code> à la ligne $1, caractère $2.",
 	"templatestyles-error-invalid-import-value": "Valeur non valide pour <code>@import</code> à la ligne $1, caractère $2.",
-	"templatestyles-error-invalid-keyframe-name": "Nom de caractère non valide à la ligne $1, caractère $2.",
+	"templatestyles-error-invalid-keyframe-name": "Nom de trame clé non valide à la ligne $1, caractère $2.",
 	"templatestyles-error-invalid-media-query": "Demande de média non valide à la ligne $1, caractère $2.",
 	"templatestyles-error-invalid-namespace-value": "Valeur non valide pour <code>@namespace</code> à la ligne $1, caractère $2.",
 	"templatestyles-error-invalid-page-margin-at-rule": "<code>@$3</code> ne permet rien avant le bloc à la ligne $1, caractère $2.",
