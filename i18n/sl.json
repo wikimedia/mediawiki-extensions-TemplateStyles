@@ -4,7 +4,8 @@
 			"Eleassar"
 		]
 	},
-	"templatestyles-desc": "Ustvarjanje slogovnih listov pri posamznih predlogah",
+	"templatestyles-desc": "Ustvarjanje slogovnih listov pri posameznih predlogah",
+	"templatestyles-errorcomment": "Napake pri obdelavi slogovnega lista [[:$1]] (red. $2):\n$3",
 	"content-model-sanitized-css": "Očiščeni CSS",
 	"templatestyles-stylesheet-error-category": "Slogovni listi TemplateStyles z napakami",
 	"templatestyles-stylesheet-error-category-desc": "Slogovni list TemplateStyles vsebuje napako.",
