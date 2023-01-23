@@ -10,5 +10,9 @@
 	"templatestyles-stylesheet-error-category": "Slogovni listi TemplateStyles z napakami",
 	"templatestyles-stylesheet-error-category-desc": "Slogovni list TemplateStyles vsebuje napako.",
 	"templatestyles-page-error-category": "Strani z napakami TemplateStyles",
-	"templatestyles-page-error-category-desc": "Pri obdelavi oznake <code><nowiki><templatestyles/></nowiki></code> na strani je prišlo do napake."
+	"templatestyles-page-error-category-desc": "Pri obdelavi oznake <code><nowiki><templatestyles/></nowiki></code> na strani je prišlo do napake.",
+	"templatestyles-error-unexpected-eof": "Nepričakovan konec slogovnega lista v vrstici $1 znaka $2.",
+	"templatestyles-error-unexpected-eof-in-block": "Nepričakovan konec slogovnega lista v bloku v vrstici $1, znak $2.",
+	"templatestyles-error-unexpected-eof-in-function": "Nepričakovan konec slogovnega lista v funkciji v vrstici $1, znak $2.",
+	"templatestyles-error-unexpected-token-in-declaration-list": "Nepričakovan žeton v seznamu najav v vrstici $1, znak $2."
 }
