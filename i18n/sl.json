@@ -9,7 +9,7 @@
 	"templatestyles-missing-src": "Atribut <code>src</code> TemplateStyles ne sme biti prazen.",
 	"templatestyles-invalid-src": "Neveljaven naslov za atribut <code>src</code> TemplateStyles.",
 	"templatestyles-invalid-wrapper": "Neveljavna vrednost za atribut <code>wrapper</code> TemplateStyles.",
-	"templatestyles-bad-src-missing": "Stran [[:$1|$2]] nima vsebina.",
+	"templatestyles-bad-src-missing": "Stran [[:$1|$2]] nima vsebine.",
 	"templatestyles-bad-src": "Stran [[:$1|$2]] mora imeti za TemplateStyles vsebinski model »{{int:content-model-sanitized-css}}« (trenutni model je »$3«).",
 	"templatestyles-errorcomment": "Napake pri obdelavi slogovnega lista [[:$1]] (red. $2):\n$3",
 	"templatestyles-size-exceeded": "Slogovni list presega največjo dovoljeno velikost $2.",
