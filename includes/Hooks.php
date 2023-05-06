@@ -10,7 +10,6 @@ namespace MediaWiki\Extension\TemplateStyles;
 use Config;
 use ContentHandler;
 use ExtensionRegistry;
-use Hooks as MWHooks;
 use Html;
 use InvalidArgumentException;
 use MapCacheLRU;
@@ -108,7 +107,8 @@ class Hooks {
 				$propertySanitizer->getKnownProperties(),
 				array_flip( $config->get( 'TemplateStylesDisallowedProperties' ) )
 			) );
-			MWHooks::run( 'TemplateStylesPropertySanitizer', [ &$propertySanitizer, $matcherFactory ] );
+			$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+			$hookContainer->run( 'TemplateStylesPropertySanitizer', [ &$propertySanitizer, $matcherFactory ] );
 
 			$htmlOrBodySimpleSelectorSeqMatcher = new CheckedMatcher(
 				$matcherFactory->cssSimpleSelectorSeq(),
@@ -175,7 +175,7 @@ class Hooks {
 			];
 			$allRuleSanitizers = array_diff_key( $allRuleSanitizers, $disallowedAtRules );
 			$sanitizer = new StylesheetSanitizer( $allRuleSanitizers );
-			MWHooks::run( 'TemplateStylesStylesheetSanitizer',
+			$hookContainer->run( 'TemplateStylesStylesheetSanitizer',
 				[ &$sanitizer, $propertySanitizer, $matcherFactory ]
 			);
 			self::$sanitizers[$key] = $sanitizer;
