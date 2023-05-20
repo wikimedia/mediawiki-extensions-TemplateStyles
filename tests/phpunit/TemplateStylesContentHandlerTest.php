@@ -158,7 +158,7 @@ class TemplateStylesContentHandlerTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	public function provideSizeLimit() {
+	public static function provideSizeLimit() {
 		$long = str_repeat( 'X', 102400 );
 
 		return [
