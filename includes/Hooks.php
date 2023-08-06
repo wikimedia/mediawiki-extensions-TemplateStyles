@@ -13,6 +13,7 @@ use ExtensionRegistry;
 use Html;
 use InvalidArgumentException;
 use MapCacheLRU;
+use MediaWiki\Extension\TemplateStyles\Hooks\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 use Parser;
@@ -107,8 +108,8 @@ class Hooks {
 				$propertySanitizer->getKnownProperties(),
 				array_flip( $config->get( 'TemplateStylesDisallowedProperties' ) )
 			) );
-			$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
-			$hookContainer->run( 'TemplateStylesPropertySanitizer', [ &$propertySanitizer, $matcherFactory ] );
+			$hookRunner = new HookRunner( MediaWikiServices::getInstance()->getHookContainer() );
+			$hookRunner->onTemplateStylesPropertySanitizer( $propertySanitizer, $matcherFactory );
 
 			$htmlOrBodySimpleSelectorSeqMatcher = new CheckedMatcher(
 				$matcherFactory->cssSimpleSelectorSeq(),
@@ -175,8 +176,8 @@ class Hooks {
 			];
 			$allRuleSanitizers = array_diff_key( $allRuleSanitizers, $disallowedAtRules );
 			$sanitizer = new StylesheetSanitizer( $allRuleSanitizers );
-			$hookContainer->run( 'TemplateStylesStylesheetSanitizer',
-				[ &$sanitizer, $propertySanitizer, $matcherFactory ]
+			$hookRunner->onTemplateStylesStylesheetSanitizer(
+				$sanitizer, $propertySanitizer, $matcherFactory
 			);
 			self::$sanitizers[$key] = $sanitizer;
 		}
