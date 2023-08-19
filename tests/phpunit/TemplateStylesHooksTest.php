@@ -5,6 +5,7 @@ use MediaWiki\Extension\TemplateStyles\TemplateStylesContent;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Title\Title;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\CSS\Parser\Parser as CSSParser;
 
