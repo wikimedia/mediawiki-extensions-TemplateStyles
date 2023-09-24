@@ -14,7 +14,10 @@ use Html;
 use InvalidArgumentException;
 use MapCacheLRU;
 use MediaWiki\Extension\TemplateStyles\Hooks\HookRunner;
+use MediaWiki\Hook\ParserClearStateHook;
+use MediaWiki\Hook\ParserFirstCallInitHook;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\Hook\ContentHandlerDefaultModelForHook;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use Parser;
@@ -39,7 +42,11 @@ use Wikimedia\CSS\Sanitizer\SupportsAtRuleSanitizer;
 /**
  * TemplateStyles extension hooks
  */
-class Hooks {
+class Hooks implements
+	ParserFirstCallInitHook,
+	ParserClearStateHook,
+	ContentHandlerDefaultModelForHook
+{
 
 	/** @var MatcherFactory|null */
 	private static $matcherFactory = null;
@@ -203,7 +210,7 @@ class Hooks {
 	 * Add `<templatestyles>` to the parser.
 	 * @param Parser $parser Parser object being cleared
 	 */
-	public static function onParserFirstCallInit( Parser $parser ) {
+	public function onParserFirstCallInit( $parser ) {
 		$parser->setHook( 'templatestyles', [ __CLASS__, 'handleTag' ] );
 		// 100 is arbitrary
 		$parser->extTemplateStylesCache = new MapCacheLRU( 100 );
@@ -215,7 +222,7 @@ class Hooks {
 	 * @param string &$model The model name
 	 * @return bool
 	 */
-	public static function onContentHandlerDefaultModelFor( $title, &$model ) {
+	public function onContentHandlerDefaultModelFor( $title, &$model ) {
 		// Allow overwriting attributes with config settings.
 		// Attributes can not use namespaces as keys, as processing them does not preserve
 		// integer keys.
@@ -254,7 +261,7 @@ class Hooks {
 	 * Clear our cache when the parser is reset
 	 * @param Parser $parser
 	 */
-	public static function onParserClearState( Parser $parser ) {
+	public function onParserClearState( $parser ) {
 		$parser->extTemplateStylesCache->clear();
 	}
 

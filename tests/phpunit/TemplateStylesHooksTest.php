@@ -114,7 +114,7 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 		);
 
 		$model = 'unchanged';
-		$ret = TemplateStylesHooks::onContentHandlerDefaultModelFor(
+		$ret = ( new TemplateStylesHooks )->onContentHandlerDefaultModelFor(
 			Title::makeTitle( $ns, $title ), $model
 		);
 		$this->assertSame( !$expect, $ret );
