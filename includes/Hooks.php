@@ -242,22 +242,6 @@ class Hooks implements
 	}
 
 	/**
-	 * Edit our CSS content model like core's CSS
-	 * @param Title $title Title being edited
-	 * @param string &$lang CodeEditor language to use
-	 * @param string $model Content model
-	 * @param string $format Content format
-	 * @return bool
-	 */
-	public static function onCodeEditorGetPageLanguage( $title, &$lang, $model, $format ) {
-		if ( $model === 'sanitized-css' && self::getConfig()->get( 'TemplateStylesUseCodeEditor' ) ) {
-			$lang = 'css';
-			return false;
-		}
-		return true;
-	}
-
-	/**
 	 * Clear our cache when the parser is reset
 	 * @param Parser $parser
 	 */

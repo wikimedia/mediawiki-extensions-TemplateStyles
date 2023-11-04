@@ -50,13 +50,14 @@
 		"ParserFirstCallInit": "main",
 		"ParserClearState": "main",
 		"ContentHandlerDefaultModelFor": "main",
-		"CodeEditorGetPageLanguage": [
-			"MediaWiki\\Extension\\TemplateStyles\\Hooks::onCodeEditorGetPageLanguage"
-		]
+		"CodeEditorGetPageLanguage": "codeeditor"
 	},
 	"HookHandlers": {
 		"main": {
 			"class": "MediaWiki\\Extension\\TemplateStyles\\Hooks"
+		},
+		"codeeditor": {
+			"class": "MediaWiki\\Extension\\TemplateStyles\\CodeEditorHooks"
 		}
 	},
 	"config": {

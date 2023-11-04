@@ -136,32 +136,6 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @dataProvider provideOnCodeEditorGetPageLanguage
-	 */
-	public function testOnCodeEditorGetPageLanguage( $useCodeEditor, $model, $expect ) {
-		$this->setMwGlobals( [
-			'wgTemplateStylesUseCodeEditor' => $useCodeEditor,
-		] );
-
-		$title = Title::makeTitle( NS_TEMPLATE, 'Test.css' );
-		$lang = 'unchanged';
-		$ret = TemplateStylesHooks::onCodeEditorGetPageLanguage(
-			$title, $lang, $model, 'text/x-whatever'
-		);
-		$this->assertSame( !$expect, $ret );
-		$this->assertSame( $expect ? 'css' : 'unchanged', $lang );
-	}
-
-	public static function provideOnCodeEditorGetPageLanguage() {
-		return [
-			[ true, 'wikitext', false ],
-			[ true, 'css', false ],
-			[ true, 'sanitized-css', true ],
-			[ false, 'sanitized-css', false ],
-		];
-	}
-
-	/**
 	 * Unfortunately we can't just use a parserTests.txt file because our
 	 * tag's output depends on the revision IDs of the input pages.
 	 * @dataProvider provideTag
