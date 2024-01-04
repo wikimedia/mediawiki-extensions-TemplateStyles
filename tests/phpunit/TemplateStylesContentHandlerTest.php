@@ -5,6 +5,7 @@ use MediaWiki\Extension\TemplateStyles\TemplateStylesContent;
 use MediaWiki\Extension\TemplateStyles\TemplateStylesContentHandler;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 
 /**

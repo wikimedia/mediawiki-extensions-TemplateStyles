@@ -7,15 +7,15 @@ namespace MediaWiki\Extension\TemplateStyles;
  * @license GPL-2.0-or-later
  */
 
-use Config;
 use ContentHandler;
 use ExtensionRegistry;
-use Html;
 use InvalidArgumentException;
 use MapCacheLRU;
+use MediaWiki\Config\Config;
 use MediaWiki\Extension\TemplateStyles\Hooks\HookRunner;
 use MediaWiki\Hook\ParserClearStateHook;
 use MediaWiki\Hook\ParserFirstCallInitHook;
+use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\Hook\ContentHandlerDefaultModelForHook;
 use MediaWiki\Revision\SlotRecord;
