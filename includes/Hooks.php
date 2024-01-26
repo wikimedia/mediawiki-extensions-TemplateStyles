@@ -281,7 +281,7 @@ class Hooks implements
 		// or the like, though, because stuff like substing and Parsoid would
 		// wind up wanting to make that relative to the wrong page.
 		$title = Title::newFromText( $params['src'], $config->get( 'TemplateStylesDefaultNamespace' ) );
-		if ( !$title ) {
+		if ( !$title || $title->isExternal() ) {
 			return self::formatTagError( $parser, [ 'templatestyles-invalid-src' ] );
 		}
 
