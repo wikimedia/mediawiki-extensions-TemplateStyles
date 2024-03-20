@@ -30,6 +30,9 @@
 		"templatestyles-stylesheet-error-category",
 		"templatestyles-page-error-category"
 	],
+	"ServiceWiringFiles": [
+		"includes/ServiceWiring.php"
+	],
 	"attributes": {
 		"SyntaxHighlight": {
 			"Models": {
@@ -48,7 +51,6 @@
 	"callback": "MediaWiki\\Extension\\TemplateStyles\\Hooks::onRegistration",
 	"Hooks": {
 		"ParserFirstCallInit": "main",
-		"ParserClearState": "main",
 		"ContentHandlerDefaultModelFor": "main",
 		"CodeEditorGetPageLanguage": "codeeditor",
 		"CodeMirrorGetMode": "codemirror"
