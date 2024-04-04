@@ -76,7 +76,7 @@ class TemplateStylesContentHandler extends CodeContentHandler {
 		}
 
 		$output->clearWrapperDivClass();
-		$output->setText( $html );
+		$output->setRawText( $html );
 
 		$status = $this->sanitize( $content, [ 'novalue' => true, 'class' => $parserOptions->getWrapOutputClass() ] );
 		if ( $status->getErrors() ) {
