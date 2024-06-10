@@ -3,6 +3,7 @@
 use MediaWiki\Content\ValidationParams;
 use MediaWiki\Extension\TemplateStyles\TemplateStylesContent;
 use MediaWiki\Extension\TemplateStyles\TemplateStylesContentHandler;
+use MediaWiki\Message\Message;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Status\Status;

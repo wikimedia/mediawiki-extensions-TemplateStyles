@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\TemplateStyles\Hooks as TemplateStylesHooks;
 use MediaWiki\Extension\TemplateStyles\TemplateStylesContent;
 use MediaWiki\MediaWikiServices;
