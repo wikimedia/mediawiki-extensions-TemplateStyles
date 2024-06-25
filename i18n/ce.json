@@ -5,6 +5,7 @@
 		]
 	},
 	"templatestyles-desc": "ХӀора кепана хатӀийн таблицаш кечйо",
+	"templatestyles-invalid-wrapper": "TemplateStyles чохь <code>src</code> атрибутан нийса доцу маьӀна.",
 	"templatestyles-bad-src-missing": "[[:$1|$2]] агӀонан чулацам бац.",
 	"templatestyles-bad-src": "TemplateStyles чохь лелайан [[:$1|$2]] агӀонан хила йеза чулацаман модель \"{{int:content-model-sanitized-css}}\"  (карара модель: \"$3\").",
 	"templatestyles-stylesheet-error-category": "ХетӀийн файлаш кепийн хетӀийн гӀалаташ долуш",
