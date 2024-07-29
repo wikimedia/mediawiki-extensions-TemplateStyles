@@ -3,7 +3,6 @@
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\TemplateStyles\Hooks as TemplateStylesHooks;
 use MediaWiki\Extension\TemplateStyles\TemplateStylesContent;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
@@ -166,7 +165,7 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 			}
 		);
 
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$parser = $services->getParserFactory()->create();
 		$parser->firstCallInit();
 		if ( !in_array( 'templatestyles', $parser->getTags(), true ) ) {
