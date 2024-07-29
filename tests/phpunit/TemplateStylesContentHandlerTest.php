@@ -190,8 +190,8 @@ class TemplateStylesContentHandlerTest extends MediaWikiLangTestCase {
 	 * @param int|null $size
 	 */
 	public function testSizeLimit( TemplateStylesContent $content, StatusValue $expectedStatus, $size = null ) {
-		$this->setMwGlobals( [
-			'wgTemplateStylesMaxStylesheetSize' => $size,
+		$this->overrideConfigValues( [
+			'TemplateStylesMaxStylesheetSize' => $size,
 		] );
 
 		$contentHandler = new TemplateStylesContentHandler( $content->getModel() );

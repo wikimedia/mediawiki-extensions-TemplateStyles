@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Extension\TemplateStyles\TemplateStylesContent;
+use MediaWiki\MainConfigNames;
 
 /**
  * @group TemplateStyles
@@ -11,11 +12,11 @@ class TemplateStylesContentTest extends TextContentTest {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->setMwGlobals( [
-			'wgTextModelsToParse' => [
+		$this->overrideConfigValues( [
+			MainConfigNames::TextModelsToParse => [
 				'sanitized-css',
 			],
-			'wgTemplateStylesMaxStylesheetSize' => 1024000,
+			'TemplateStylesMaxStylesheetSize' => 1024000,
 		] );
 	}
 
@@ -118,10 +119,10 @@ class TemplateStylesContentTest extends TextContentTest {
 	 * @dataProvider provideGetRedirectTarget
 	 */
 	public function testGetRedirectTarget( $title, $text ) {
-		$this->setMwGlobals( [
-			'wgServer' => '//example.org',
-			'wgScriptPath' => '/w',
-			'wgScript' => '/w/index.php',
+		$this->overrideConfigValues( [
+			MainConfigNames::Server => '//example.org',
+			MainConfigNames::ScriptPath => '/w',
+			MainConfigNames::Script => '/w/index.php',
 		] );
 		$content = $this->newContent( $text );
 		$target = $content->getRedirectTarget();

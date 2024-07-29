@@ -3,6 +3,7 @@
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\TemplateStyles\Hooks as TemplateStylesHooks;
 use MediaWiki\Extension\TemplateStyles\TemplateStylesContent;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
@@ -56,9 +57,9 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 	 * @param array $expect
 	 */
 	public function testOnRegistration( $textModelsToParse, $autoParseContent, $expect ) {
-		$this->setMwGlobals( [
-			'wgTextModelsToParse' => $textModelsToParse,
-			'wgTemplateStylesAutoParseContent' => $autoParseContent,
+		$this->overrideConfigValues( [
+			MainConfigNames::TextModelsToParse => $textModelsToParse,
+			'TemplateStylesAutoParseContent' => $autoParseContent,
 		] );
 
 		global $wgTextModelsToParse;
@@ -90,15 +91,15 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideOnContentHandlerDefaultModelFor
 	 */
 	public function testOnContentHandlerDefaultModelFor( $ns, $title, $expect ) {
-		$this->setMwGlobals( [
-			'wgTemplateStylesNamespaces' => [
+		$this->overrideConfigValues( [
+			'TemplateStylesNamespaces' => [
 				10 => true,
 				2 => false,
 				3000 => true,
 				3002 => true,
 				3006 => false,
 			],
-			'wgNamespacesWithSubpages' => [
+			MainConfigNames::NamespacesWithSubpages => [
 				10 => true,
 				2 => true,
 				3000 => true,
@@ -142,10 +143,10 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 	public function testTag(
 		ParserOptions $popt, $getTextOptions, $wikitext, $expect, $globals = []
 	) {
-		$this->setMwGlobals( $globals + [
-			'wgScriptPath' => '',
-			'wgScript' => '/index.php',
-			'wgArticlePath' => '/wiki/$1',
+		$this->overrideConfigValues( $globals + [
+			MainConfigNames::ScriptPath => '',
+			MainConfigNames::Script => '/index.php',
+			MainConfigNames::ArticlePath => '/wiki/$1',
 		] );
 
 		$oldCurrentRevisionRecordCallback = $popt->setCurrentRevisionRecordCallback(
@@ -236,7 +237,7 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 				$popt, [],
 				'<templatestyles src="TemplateStyles test/styles1.css" />',
 				"<div class=\"mw-content-ltr templatestyles-test\" lang=\"en\" dir=\"ltr\"></div>",
-				[ 'wgTemplateStylesDisable' => true ],
+				[ 'TemplateStylesDisable' => true ],
 			],
 			'Replaced content (which includes sanitization errors)' => [
 				$popt, [],

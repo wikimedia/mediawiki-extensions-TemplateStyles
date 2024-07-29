@@ -19,8 +19,8 @@ class TemplateStylesCodeEditorHooksTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideOnCodeEditorGetPageLanguage
 	 */
 	public function testOnCodeEditorGetPageLanguage( $useCodeEditor, $model, $expect ) {
-		$this->setMwGlobals( [
-			'wgTemplateStylesUseCodeEditor' => $useCodeEditor,
+		$this->overrideConfigValues( [
+			'TemplateStylesUseCodeEditor' => $useCodeEditor,
 		] );
 
 		$title = Title::makeTitle( NS_TEMPLATE, 'Test.css' );
