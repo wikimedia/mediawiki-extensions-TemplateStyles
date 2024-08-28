@@ -63,6 +63,6 @@
 	"templatestyles-error-unexpected-eof-in-function": "Стилийн таблицин дагахь йоцу функцехь: $1 могӀа $2 бӀогӀамалг.",
 	"templatestyles-error-unexpected-eof-in-rule": "Стилийн таблицин дагахь йоцу бакъонехь: $1 могӀа $2 бӀогӀамалг.",
 	"templatestyles-error-unexpected-token-in-declaration-list": "Декларацин могӀамехь дагахь доцу токен: $1 могӀа $2 хьаьрк.",
-	"templatestyles-error-unrecognized-property": "Ца йевзина йа ловш йоцу билгало: $1 могӀа $2 хьаьрк.",
+	"templatestyles-error-unrecognized-property": "Ца йевзина йа ловш йоцу башхалла: $1 могӀа $2 хьаьрк.",
 	"templatestyles-error-unrecognized-rule": "Ца йевзина йа ловш йоцу бакъо: $1 могӀа $2 хьаьрк."
 }
