@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Extension\TemplateStyles;
 
-use TextContent;
+use MediaWiki\Content\TextContent;
 
 /**
  * @file

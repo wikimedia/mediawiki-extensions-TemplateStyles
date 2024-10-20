@@ -1,9 +1,12 @@
 <?php
 
+use MediaWiki\Content\ContentHandler;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\TemplateStyles\Hooks as TemplateStylesHooks;
 use MediaWiki\Extension\TemplateStyles\TemplateStylesContent;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Parser\ParserOptions;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;

@@ -7,9 +7,9 @@ namespace MediaWiki\Extension\TemplateStyles;
  * @license GPL-2.0-or-later
  */
 
-use CodeContentHandler;
-use Content;
 use CSSJanus;
+use MediaWiki\Content\CodeContentHandler;
+use MediaWiki\Content\Content;
 use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\ValidationParams;
 use MediaWiki\MediaWikiServices;

@@ -7,21 +7,21 @@ namespace MediaWiki\Extension\TemplateStyles;
  * @license GPL-2.0-or-later
  */
 
-use ContentHandler;
-use ExtensionRegistry;
 use InvalidArgumentException;
 use MapCacheLRU;
 use MediaWiki\Config\Config;
+use MediaWiki\Content\ContentHandler;
 use MediaWiki\Extension\TemplateStyles\Hooks\HookRunner;
 use MediaWiki\Hook\ParserClearStateHook;
 use MediaWiki\Hook\ParserFirstCallInitHook;
 use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Parser;
+use MediaWiki\Parser\PPFrame;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Revision\Hook\ContentHandlerDefaultModelForHook;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
-use PPFrame;
 use Wikimedia\CSS\Grammar\CheckedMatcher;
 use Wikimedia\CSS\Grammar\GrammarMatch;
 use Wikimedia\CSS\Grammar\MatcherFactory;
