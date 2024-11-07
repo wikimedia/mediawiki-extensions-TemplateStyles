@@ -46,7 +46,7 @@ class TemplateStylesMatcherFactory extends \Wikimedia\CSS\Grammar\MatcherFactory
 
 		// Don't allow unescaped \ or /../ in the non-query part of the URL
 		$tmp = preg_replace( '<[#?].*$>', '', $url );
-		if ( strpos( $tmp, '\\' ) !== false || preg_match( '<(?:^|/|%2[fF])\.+(?:/|%2[fF]|$)>', $tmp ) ) {
+		if ( str_contains( $tmp, '\\' ) || preg_match( '<(?:^|/|%2[fF])\.+(?:/|%2[fF]|$)>', $tmp ) ) {
 			return false;
 		}
 
