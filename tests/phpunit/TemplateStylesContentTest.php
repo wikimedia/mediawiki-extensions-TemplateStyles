@@ -16,9 +16,7 @@ class TemplateStylesContentTest extends TextContentTest {
 		parent::setUp();
 
 		$this->overrideConfigValues( [
-			MainConfigNames::TextModelsToParse => [
-				'sanitized-css',
-			],
+			MainConfigNames::TextModelsToParse => [ 'sanitized-css' ],
 			'TemplateStylesMaxStylesheetSize' => 1024000,
 		] );
 	}
