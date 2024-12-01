@@ -180,7 +180,7 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 		$expect = preg_replace_callback( '/\{\{REV:(.*?)\}\}/', static function ( $m ) {
 			return Title::newFromText( 'Template:TemplateStyles test/' . $m[1] )->getLatestRevID();
 		}, $expect );
-		$this->assertEquals( $expect, $out->getText( $getTextOptions ) );
+		$this->assertEquals( $expect, $out->runOutputPipeline( $popt, $getTextOptions )->getContentHolderText() );
 	}
 
 	public static function provideTag() {
