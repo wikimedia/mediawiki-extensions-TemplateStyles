@@ -156,7 +156,7 @@ class TemplateStylesContentHandlerTest extends MediaWikiLangTestCase {
 		$content = new TemplateStylesContent( '.foo {}' );
 		$contentHandler = new TemplateStylesContentHandler( $content->getModel() );
 		$this->assertEquals(
-			Status::newFatal( 'templatestyles-end-tag-injection' ),
+			Status::newFatal( 'templatestyles-tag-injection' ),
 			$contentHandler->sanitize( $content, [ 'class' => 'testCrazyBrokenSanitizer' ] )
 		);
 	}
