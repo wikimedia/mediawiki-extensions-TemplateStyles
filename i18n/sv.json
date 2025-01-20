@@ -2,12 +2,13 @@
 	"@metadata": {
 		"authors": [
 			"JRyan",
+			"Lejonel",
 			"Sabelöga",
 			"WikiPhoenix"
 		]
 	},
 	"templatestyles-desc": "Implementera stilmallar per mall",
-	"templatestyles-missing-src": "TemplateStyles' <code>src</code> attributen får inte vara tom.",
+	"templatestyles-missing-src": "TemplateStyles <code>src</code>-attribut får inte vara tomt.",
 	"templatestyles-invalid-src": "Ogiltig titel för TemplateStyles' <code>src</code> attributer.",
 	"templatestyles-invalid-wrapper": "Ogiltig värde för TemplateStyles' <code>wrapper</code> attributer.",
 	"templatestyles-bad-src-missing": "Sida [[:$1|$2]] har inget innehåll.",
@@ -45,8 +46,8 @@
 	"templatestyles-error-invalid-page-margin-at-rule": "<code>@$3</code> tillåter inget före blocket på rad $1 tecken $2.",
 	"templatestyles-error-invalid-page-rule-content": "Ogiltigt innehåll för <code>@page</code> på rad $1 tecken $2.",
 	"templatestyles-error-invalid-page-selector": "Ogiltig sidväljare på rad $1 tecken $2.",
-	"templatestyles-error-invalid-selector-list": "Ogiltig väljarlista på rad $1 tecken $2.",
-	"templatestyles-error-invalid-supports-condition": "Ogiltigt tillstånd för <code>@supports</code> på rad $1 tecken $2.",
+	"templatestyles-error-invalid-selector-list": "Ogiltig selektorlista på rad $1 tecken $2.",
+	"templatestyles-error-invalid-supports-condition": "Ogiltigt villkor för <code>@supports</code> på rad $1 tecken $2.",
 	"templatestyles-error-misordered-rule": "Felaktig regel på rad $1 tecken $2.",
 	"templatestyles-error-missing-font-feature-values-font-list": "Lista över typsnitt saknas för <code>@font-feature-values</code> på rad $1 tecken $2.",
 	"templatestyles-error-missing-import-source": "Källa saknas för <code>@import</code> på rad $1 tecken $2.",
