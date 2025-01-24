@@ -105,7 +105,7 @@ class TemplateStylesContentHandler extends CodeContentHandler {
 		}
 		foreach ( $errors as $error ) {
 			$error[0] = 'templatestyles-error-' . $error[0];
-			call_user_func_array( [ $status, $severity ], $error );
+			$status->$severity( ...$error );
 		}
 	}
 
