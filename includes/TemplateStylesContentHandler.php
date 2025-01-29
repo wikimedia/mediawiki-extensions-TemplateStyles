@@ -167,10 +167,13 @@ class TemplateStylesContentHandler extends CodeContentHandler {
 		// Stringify it while minifying
 		$value = CSSUtil::stringify( $stylesheet, [ 'minify' => $options['minify'] ] );
 
-		// Sanity check, don't allow "</style" if one somehow sneaks through the sanitizer
-		if ( preg_match( '!</style!i', $value ) ) {
+		// Sanity check, don't allow "</style" if one somehow sneaks through the sanitizer.
+		// Also, don't allow "<ABC" if one somehow sneaks through the sanitizer
+		// This matters if the style tag is in a foreign namespace (e.g. <svg>) which
+		// has different rules from normal HTML.
+		if ( preg_match( '!</?[a-z\!]!i', $value ) ) {
 			$value = '';
-			$status->fatal( 'templatestyles-end-tag-injection' );
+			$status->fatal( 'templatestyles-tag-injection' );
 		}
 
 		if ( !$options['novalue'] ) {

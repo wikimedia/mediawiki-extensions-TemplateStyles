@@ -17,7 +17,7 @@
 	"templatestyles-bad-src": "Error message displayed when the title specified is not a usable stylesheet. Parameters:\n* $1 - The title specified.\n* $2 - The title with wikitext escaped.\n* $3 - Current content model of the page in question.",
 	"templatestyles-errorcomment": "Formatting for the comment used to display TemplateStyles errors encountered during the parse. Parameters:\n* $1 - Source stylesheet.\n* $2 - Revision of the stylesheet.\n* $3 - Errors.",
 	"templatestyles-size-exceeded": "Error returned when the stylesheet is more than $wgTemplateStylesMaxStylesheetSize bytes. Parameters:\n* $1 - Maximum size in bytes\n* $2 - Maximum size in \"human units\" (i.e. KB, MB, GB, etc).",
-	"templatestyles-end-tag-injection": "Error returned when the stylesheet contains <code>&lt;/style</code>, which is likely an attempt at HTML injection.",
+	"templatestyles-tag-injection": "Error returned when the stylesheet contains html, which might be malicious",
 	"content-model-sanitized-css": "Name for TemplateStyles sanitized-css content model.",
 	"templatestyles-stylesheet-error-category": "{{tracking category name}}\nTracking category for TemplateStyles stylesheets with errors.",
 	"templatestyles-stylesheet-error-category-desc": "Description on [[Special:TrackingCategories]] for the {{msg-mw|templatestyles-stylesheet-error-category}} tracking category.",
