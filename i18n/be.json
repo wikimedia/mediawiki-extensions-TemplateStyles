@@ -14,7 +14,6 @@
 	"templatestyles-bad-src": "Старонка [[:$1|$2]] павінна мець мадэль зместу «{{int:content-model-sanitized-css}}» для TemplateStyles (цяперашняя мадэль — «$3»).",
 	"templatestyles-errorcomment": "Памылка апрацоўкі табліцы стыляў [[:$1]] (версія $2):\n$3",
 	"templatestyles-size-exceeded": "Табліца стыляў большая за максімальны памер у $2.",
-	"templatestyles-end-tag-injection": "Пададзеная табліца стыляў змяшчае забаронены код <code>&lt;/style</code>.",
 	"content-model-sanitized-css": "Ачышчаны CSS",
 	"templatestyles-stylesheet-error-category": "Стылі шаблонаў з памылкамі CSS",
 	"templatestyles-stylesheet-error-category-desc": "Табліца стыляў TemplateStyles мае памылку.",

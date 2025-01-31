@@ -18,7 +18,6 @@
 	"templatestyles-bad-src": "[[:$1|$2]]ページにはTemplateStylesに対応するコンテンツモデルとして「{{int:content-model-sanitized-css}}」が必須です（現状のモデルは「$3」）。",
 	"templatestyles-errorcomment": "スタイルシート[[:$1]] (rev $2) の処理でエラーが発生しました：$3",
 	"templatestyles-size-exceeded": "スタイルシートが上限値$2を超過しています。",
-	"templatestyles-end-tag-injection": "提供されたスタイルシートに使用できない<code>&lt;/style</code>が含まれています。",
 	"content-model-sanitized-css": "サニタイズCSS",
 	"templatestyles-stylesheet-error-category": "エラーを含むTemplateStyles スタイルシート",
 	"templatestyles-stylesheet-error-category-desc": "TemplateStyles スタイルシートにエラーがあります。",

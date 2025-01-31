@@ -13,7 +13,6 @@
 	"templatestyles-bad-src": "Stran [[:$1|$2]] mora imeti za TemplateStyles vsebinski model »{{int:content-model-sanitized-css}}« (trenutni model je »$3«).",
 	"templatestyles-errorcomment": "Napake pri obdelavi slogovnega lista [[:$1]] (red. $2):\n$3",
 	"templatestyles-size-exceeded": "Slogovni list presega največjo dovoljeno velikost $2.",
-	"templatestyles-end-tag-injection": "Predloženi slogovni list vsebuje <code>&lt;/style</code>, kar ni dovoljeno.",
 	"content-model-sanitized-css": "očiščeni CSS",
 	"templatestyles-stylesheet-error-category": "Slogovni listi TemplateStyles z napakami",
 	"templatestyles-stylesheet-error-category-desc": "Slogovni list TemplateStyles vsebuje napako.",

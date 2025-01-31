@@ -12,7 +12,6 @@
 	"templatestyles-bad-src": "Le pagina [[:$1|$2]] debe haber un modello de contento \"{{int:content-model-sanitized-css}}\" pro TemplateStyles (le modello actual es \"$3\").",
 	"templatestyles-errorcomment": "Errores processante le folio de stilo [[:$1]] (version $2):\n$3",
 	"templatestyles-size-exceeded": "Le filio de stilo es plus grande que le dimension maximal de $2.",
-	"templatestyles-end-tag-injection": "Le folio de stilo fornite contine <code>&lt;/style</code>, lo que non es permittite.",
 	"content-model-sanitized-css": "CSS sanificate",
 	"templatestyles-stylesheet-error-category": "Folios de stilo TemplateStyles con errores",
 	"templatestyles-stylesheet-error-category-desc": "Le folio de stilo TemplateStyles ha un error.",

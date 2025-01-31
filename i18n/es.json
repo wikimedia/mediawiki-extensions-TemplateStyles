@@ -14,7 +14,6 @@
 	"templatestyles-bad-src": "La página [[:$1|$2]] debe tener el modelo de contenido \"{{int:content-model-sanitized-css}}\" para TemplateStyles (el modelo de contenido que tiene actualmente es \"$3\").",
 	"templatestyles-errorcomment": "Se encontraron los siguientes errores al procesar la hoja de estilos [[:$1]] (rev. $2):\n$3",
 	"templatestyles-size-exceeded": "La hoja de estilos es más grande que el máximo permitido de $2.",
-	"templatestyles-end-tag-injection": "La hoja de estilos proporcionada contiene el código no permitido <code>&lt;/style</code>.",
 	"content-model-sanitized-css": "CSS expurgado",
 	"templatestyles-stylesheet-error-category": "Hojas de estilo de TemplateStyles con errores",
 	"templatestyles-stylesheet-error-category-desc": "La hoja de estilo de TemplateStyles tiene un error.",

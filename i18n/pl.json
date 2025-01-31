@@ -14,7 +14,6 @@
 	"templatestyles-bad-src": "Strona [[:$1|$2]] musi mieć model zawartości „{{int:content-model-sanitized-css}}”, aby móc jej użyć z TemplateStyles (obecnym modelem jest „$3”).",
 	"templatestyles-errorcomment": "Błąd podczas przetwarzania arkusza [[:$1]] (wersja $2):\n$3",
 	"templatestyles-size-exceeded": "Arkusz stylów przekracza górny limit rozmiaru wynoszący $2.",
-	"templatestyles-end-tag-injection": "Dostarczony arkusz stylów zawiera <code>&lt;/style</code>, co nie jest dozwolone.",
 	"content-model-sanitized-css": "Oczyszczony CSS",
 	"templatestyles-stylesheet-error-category": "Arkusze z błędami rozszerzenia TemplateStyles",
 	"templatestyles-stylesheet-error-category-desc": "Arkusz stylów TemplateStyles zawiera błąd.",

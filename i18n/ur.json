@@ -12,7 +12,6 @@
 	"templatestyles-bad-src": "انداز سانچہ کے لیے صفحہ [[:$1|$2]] کا ماڈل \"{{int:content-model-sanitized-css}}\" ہونا چاہیے (موجودہ ماڈل \"$3\" ہے)۔",
 	"templatestyles-errorcomment": "اسٹائل شیٹ [[:$1]] (نسخہ $2) کو نافذ کرنے کے دوران میں نقص واقع ہوا: \n$3",
 	"templatestyles-size-exceeded": "اسٹائل شیٹ $2 کے مقررہ حجم سے بڑی ہے۔",
-	"templatestyles-end-tag-injection": "درج کردہ اسٹائل شیٹ میں <code>&lt;/style</code> موجود ہے جس کی اجازت نہیں۔",
 	"content-model-sanitized-css": "صاف سی ایس ایس",
 	"templatestyles-stylesheet-error-category": "انداز سانچہ کے زیر استعمال نقائص کی حامل اسٹائل شیٹ",
 	"templatestyles-stylesheet-error-category-desc": "انداز سانچہ کی اسٹائل شیٹ میں کوئی نقص ہے۔",

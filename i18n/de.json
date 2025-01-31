@@ -14,7 +14,7 @@
 	"templatestyles-bad-src": "Die Seite [[:$1|$2]] muss das Inhaltsmodell „{{int:content-model-sanitized-css}}“ für TemplateStyles haben. Das aktuelle Modell ist „$3“.",
 	"templatestyles-errorcomment": "Fehler bei der Verarbeitung des Stylesheets [[:$1]] (Version $2):\n$3",
 	"templatestyles-size-exceeded": "Das Stylesheet ist größer als die maximal erlaubte Größe $2.",
-	"templatestyles-end-tag-injection": "Das angegebene Stylesheet enthält <code>&lt;/style</code>, was nicht erlaubt ist.",
+	"templatestyles-tag-injection": "Das bereitgestellte Stylesheet enthält etwas, das wie ein HTML-Tag aussieht, was nicht zulässig ist.",
 	"content-model-sanitized-css": "Bereinigtes CSS",
 	"templatestyles-stylesheet-error-category": "TemplateStyles-Stylesheets mit Fehlern",
 	"templatestyles-stylesheet-error-category-desc": "Das TemplateStyles-Stylesheet hat einen Fehler.",

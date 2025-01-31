@@ -13,7 +13,6 @@
 	"templatestyles-bad-src-missing": "صفحه [[:$1|$2]] محتوایی ندارد.",
 	"templatestyles-errorcomment": "خطا در هنگام پردازش شیوه‌نامه [[:$1]] (نسخه $2):\n$3",
 	"templatestyles-size-exceeded": "شیوه‌نامه از حد مجاز $2 بزرگتر است.",
-	"templatestyles-end-tag-injection": "شیوه‌نامه نوشته شده <code>&lt;/style</code> دارد که مجاز نیست.",
 	"content-model-sanitized-css": "شیوه‌نامه آبشاری تمیز",
 	"templatestyles-stylesheet-error-category": "شیوه‌نامه‌های الگوسبک دارای خطا",
 	"templatestyles-stylesheet-error-category-desc": "شیوه‌نامهٔ الگوسبک دارای خطا است.",

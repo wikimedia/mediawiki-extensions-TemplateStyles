@@ -13,7 +13,6 @@
 	"templatestyles-bad-src": "[[:$1|$2]] sayfası, TemplateStyles için \"{{int:content-model-sanitized-css}}\" içerik modeline sahip olmalıdır (mevcut model \"$3\").",
 	"templatestyles-errorcomment": "Stil sayfası işlenirken hatalar [[:$1]] (rev $2):\n$3",
 	"templatestyles-size-exceeded": "Stil sayfası maksimum $2 boyutundan daha büyük.",
-	"templatestyles-end-tag-injection": "Sağlanan stil sayfası, izin verilmeyen <code>&lt;/style</code> içeriyor.",
 	"content-model-sanitized-css": "Temizlenmiş CSS",
 	"templatestyles-stylesheet-error-category": "Hatalı TemplateStyles stil sayfaları",
 	"templatestyles-stylesheet-error-category-desc": "TemplateStyles stil sayfasında bir hata var.",

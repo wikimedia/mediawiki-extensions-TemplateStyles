@@ -13,7 +13,6 @@
 	"templatestyles-bad-src": "Stránka [[:$1|$2]] musí mít pro TemplateStyles model obsahu „{{int:content-model-sanitized-css}}“ (současný model je „$3“).",
 	"templatestyles-errorcomment": "Chyby při zpracování stylopisu [[:$1]] (verze $2):\n$3",
 	"templatestyles-size-exceeded": "Stylopis je větší než maximální velikost $2.",
-	"templatestyles-end-tag-injection": "Uvedený stylopis obsahuje <code>&lt;/style</code>, což není dovoleno.",
 	"content-model-sanitized-css": "Vyčištěné CSS",
 	"templatestyles-stylesheet-error-category": "Stylopisy TemplateStyles s chybami",
 	"templatestyles-stylesheet-error-category-desc": "Stylopis TemplateStyles obsahuje chybu.",

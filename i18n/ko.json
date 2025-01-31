@@ -14,7 +14,7 @@
 	"templatestyles-bad-src": "[[:$1|$2]] 문서는 틀스타일에 대해 \"{{int:content-model-sanitized-css}}\" 콘텐츠 모델이 있어야 합니다. (현재 모델은 \"$3\"입니다)",
 	"templatestyles-errorcomment": "스타일시트 [[:$1]] ($2 판) 처리 오류:\n$3",
 	"templatestyles-size-exceeded": "스타일시트가 $2 단위의 최대 크기 보다 더 큽니다.",
-	"templatestyles-end-tag-injection": "지정된 스타일시트에 허용되지 않는 <code>&lt;/style</code>이 포함되어 있습니다.",
+	"templatestyles-tag-injection": "제공된 스타일시트에는 허용되지 않는 HTML 태그처럼 보이는 내용이 포함되어 있습니다.",
 	"content-model-sanitized-css": "세니타이즈드 CSS",
 	"templatestyles-stylesheet-error-category": "오류가 있는 TemplateStyles 스타일시트",
 	"templatestyles-stylesheet-error-category-desc": "TemplateStyles 스타일시트에 오류가 있습니다.",

@@ -15,7 +15,6 @@
 	"templatestyles-bad-src": "A páxina [[:$1|$2]] debe ter o modelo de contido \"{{int:content-model-sanitized-css}}\" para TemplateStyles (o modelo atual é \"$3\").",
 	"templatestyles-errorcomment": "Erros ao procesar a folla de estilo [[:$1]] (rev $2): $3",
 	"templatestyles-size-exceeded": "A folla de estilo excede o tamaño máximo de $2.",
-	"templatestyles-end-tag-injection": "A folla de estilo indicada contén <code>&lt;/style</code>, que non está permitido.",
 	"content-model-sanitized-css": "CSS hixienizado",
 	"templatestyles-stylesheet-error-category": "Follas de estilo de TemplateStyles con erros",
 	"templatestyles-stylesheet-error-category-desc": "A folla de estilo TemplateStyles ten un erro.",

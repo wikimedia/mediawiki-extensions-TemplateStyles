@@ -18,7 +18,6 @@
 	"templatestyles-bad-src": "Для использования в TemplateStyles у страницы [[:$1|$2]] должна быть модель содержания \"{{int:content-model-sanitized-css}}\"  (текущая модель: \"$3\").",
 	"templatestyles-errorcomment": "Ошибки обработки таблицы стилей [[:$1]] (версия $2):\n$3",
 	"templatestyles-size-exceeded": "Эта таблица стилей больше чем максимальный размер в $2.",
-	"templatestyles-end-tag-injection": "Поставляемая таблица стилей содержит <code>&lt;/style</code>, который не разрешён.",
 	"content-model-sanitized-css": "Sanitized CSS",
 	"templatestyles-stylesheet-error-category": "Стили шаблонов с ошибками CSS",
 	"templatestyles-stylesheet-error-category-desc": "Файл «Стилей шаблонов» с ошибкой.",

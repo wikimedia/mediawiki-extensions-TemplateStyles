@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Hubaishan",
+			"Meno25",
 			"ديفيد"
 		]
 	},
@@ -14,7 +15,7 @@
 	"templatestyles-bad-src": "يجب أن يكون بالصفحة [[:$1|$2]] نموذج المحتوى \"{{int:content-model-sanitized-css}}\" لأنماط القالب (النموذج الحالي هو \"$3\").",
 	"templatestyles-errorcomment": "ورقة أنماط معالجة الأخطاء [[:$1]] (مرا $2):\n$3",
 	"templatestyles-size-exceeded": "ورقة الأنماط أكبر من الحد الأقصى للحجم $2.",
-	"templatestyles-end-tag-injection": "تحتوي ورقة الأنماط المتوفرة على <code>&lt;/style</code>، وهو أمر غير مسموح به.",
+	"templatestyles-tag-injection": "تحتوي ورقة الأنماط المقدمة على شيء يبدو وكأنه علامة HTML، وهو أمر غير مسموح به.",
 	"content-model-sanitized-css": "CSS معقم",
 	"templatestyles-stylesheet-error-category": "أنماط صفحات أنماط القالب بأخطاء",
 	"templatestyles-stylesheet-error-category-desc": "تحتوي ورقة أنماط أنماط القالب على خطأ.",

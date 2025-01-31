@@ -11,7 +11,6 @@
 	"templatestyles-bad-src": "TemplateStyles nõuab, et lehekülje [[:$1|$2]] sisumudel oleks \"{{int:content-model-sanitized-css}}\". Praegune sisumudel on \"$3\".",
 	"templatestyles-errorcomment": "Tõrked laadilehe [[:$1]] töötlemisel (redaktsioon $2):\n$3",
 	"templatestyles-size-exceeded": "Laadileht on suurem kui maksimaalne lubatud suurus $2.",
-	"templatestyles-end-tag-injection": "Ette antud laadileht sisaldab süntaksit <code>&lt;/style</code>, mis pole lubatud.",
 	"content-model-sanitized-css": "saneeritud CSS",
 	"templatestyles-stylesheet-error-category": "Tõrgetega TemplateStylesi laadilehed",
 	"templatestyles-stylesheet-error-category-desc": "TemplateStylesi laadilehel on tõrge.",

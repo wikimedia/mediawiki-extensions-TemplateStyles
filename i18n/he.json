@@ -14,7 +14,7 @@
 	"templatestyles-bad-src": "הדף [[:$1|$2]] צריך להיות במודל התוכן \"{{int:content-model-sanitized-css}}\" בשביל סגנונות תבנית (המודל הנוכחי הוא \"$3\").",
 	"templatestyles-errorcomment": "שגיאות בעיבוד גיליון הסגנון [[:$1]] (גרסה $2):\n$3",
 	"templatestyles-size-exceeded": "גיליון הסגנון גדול מ־$2, שהוא הגודל המרבי.",
-	"templatestyles-end-tag-injection": "גיליון הסגנון שסופק מכיל <code dir=\"ltr\">&lt;/style</code> וזה אסור.",
+	"templatestyles-tag-injection": "גיליון הסגנונות שסופק מכיל משהו שנראה כמו תג html, וזה אסור.",
 	"content-model-sanitized-css": "CSS מחוטא",
 	"templatestyles-stylesheet-error-category": "גיליונות סגנון של תבניות המכילים שגיאות",
 	"templatestyles-stylesheet-error-category-desc": "יש שגיאה בגיליון הסגנונות של התבנית.",

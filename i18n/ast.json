@@ -13,7 +13,6 @@
 	"templatestyles-bad-src": "La páxina [[:$1|$2]] tien de tener el modelu de conteníu «{{int:content-model-sanitized-css}}» pa TemplateStyles (el modelu actual ye «$3»).",
 	"templatestyles-errorcomment": "Errores al procesar la fueya d'estilu [[:$1]] (rev $2):\n$3",
 	"templatestyles-size-exceeded": "La fueya d'estilu pasa del tamañu máximu de $2.",
-	"templatestyles-end-tag-injection": "La fueya d'estilu proporcionada contien <code>&lt;/style</code>, que nun ta permitíu.",
 	"content-model-sanitized-css": "Sanitized CSS",
 	"templatestyles-stylesheet-error-category": "Fueyes d'estilu de TemplateStyles con errores",
 	"templatestyles-stylesheet-error-category-desc": "La fueya d'estilu de TemplateStyles tien un error.",

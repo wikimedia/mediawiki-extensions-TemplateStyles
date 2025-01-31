@@ -11,7 +11,6 @@
 	"templatestyles-bad-src": "A(z) [[:$1|$2]] lapnak „{{int:content-model-sanitized-css}}” tartalommodellűnek kell lennie a TemplateStyleshoz (jelenlegi tartalommodellje: „$3”).",
 	"templatestyles-errorcomment": "Hibák a(z) [[:$1]] stíluslap ($2 változat) feldolgozásakor:\n$3",
 	"templatestyles-size-exceeded": "A stíluslap nagyobb a maximális $2-nál.",
-	"templatestyles-end-tag-injection": "A megadott stíluslap <code>&lt;/style</code> kódot tartalmaz, ami nem engedélyezett.",
 	"templatestyles-stylesheet-error-category": "Hibás TemplateStyles-stíluslapok",
 	"templatestyles-stylesheet-error-category-desc": "A TemplateStyles-stíluslap hibát tartalmaz.",
 	"templatestyles-page-error-category": "Lapok TemplateStyles-hibákkal",

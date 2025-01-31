@@ -15,7 +15,6 @@
 	"templatestyles-bad-src": "Sida [[:$1|$2]] måste ha en innehållsmodell \"{{int:content-model-sanitized-css}}\" för TemplateStyles (nuvarande modell är \"$3\").",
 	"templatestyles-errorcomment": "Fel under prosessering av formatmall [[:$1]] (rev $2):\n$3",
 	"templatestyles-size-exceeded": "Formatmallen är större än den maximala storleken på $2",
-	"templatestyles-end-tag-injection": "Den medföljande formatmallen innehåller <code>&lt;/style</code>, som inte är tillåtet.",
 	"content-model-sanitized-css": "Sanerad CSS",
 	"templatestyles-stylesheet-error-category": "TemplateStyles-stilmallar med fel",
 	"templatestyles-stylesheet-error-category-desc": "TemplateStyles-stilmallen har ett fel.",
