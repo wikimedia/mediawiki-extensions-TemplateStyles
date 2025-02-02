@@ -165,7 +165,7 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 					$revRecord->setParentId( $title->getLatestRevID() );
 					return $revRecord;
 				}
-				return call_user_func( $oldCurrentRevisionRecordCallback, $title, $parser );
+				return $oldCurrentRevisionRecordCallback( $title, $parser );
 			}
 		);
 
