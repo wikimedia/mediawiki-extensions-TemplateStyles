@@ -18,6 +18,7 @@
 	"templatestyles-bad-src": "La page [[:$1|$2]] doit avoir un modèle de contenu « {{int:content-model-sanitized-css}} » pour TemplateStyles (le modèle actuel est « $3 »).",
 	"templatestyles-errorcomment": "Erreurs en appliquant la feuille de style [[:$1]] (rév. $2) :\n$3",
 	"templatestyles-size-exceeded": "La feuille de style est plus large que la taille maximale de $2.",
+	"templatestyles-tag-injection": "La feuille de style fournie contient quelque chose qui s'apparente à une balise HTML, ce qui n'est pas autorisé.",
 	"content-model-sanitized-css": "CSS nettoyé",
 	"templatestyles-stylesheet-error-category": "Pages de style TemplateStyles avec des erreurs",
 	"templatestyles-stylesheet-error-category-desc": "La feuille de style TemplateStyles a une erreur.",

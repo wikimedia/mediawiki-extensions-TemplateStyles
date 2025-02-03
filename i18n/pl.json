@@ -6,6 +6,7 @@
 			"Railfail536"
 		]
 	},
+	"templatestyles": "Style szablonów",
 	"templatestyles-desc": "Implementuje arkusze stylów dla konkretnych szablonów",
 	"templatestyles-missing-src": "Atrybut <code>src</code> nie może być pusty.",
 	"templatestyles-invalid-src": "Nieprawidłowy tytuł dla atrybutu <code>src</code>.",
@@ -14,6 +15,7 @@
 	"templatestyles-bad-src": "Strona [[:$1|$2]] musi mieć model zawartości „{{int:content-model-sanitized-css}}”, aby móc jej użyć z TemplateStyles (obecnym modelem jest „$3”).",
 	"templatestyles-errorcomment": "Błąd podczas przetwarzania arkusza [[:$1]] (wersja $2):\n$3",
 	"templatestyles-size-exceeded": "Arkusz stylów przekracza górny limit rozmiaru wynoszący $2.",
+	"templatestyles-tag-injection": "Wprowadzony arkusz stylów zawiera coś, co przypomina znacznik HTML. Nie jest to dozwolone.",
 	"content-model-sanitized-css": "Oczyszczony CSS",
 	"templatestyles-stylesheet-error-category": "Arkusze z błędami rozszerzenia TemplateStyles",
 	"templatestyles-stylesheet-error-category-desc": "Arkusz stylów TemplateStyles zawiera błąd.",

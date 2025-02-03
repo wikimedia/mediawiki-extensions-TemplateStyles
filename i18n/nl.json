@@ -16,6 +16,7 @@
 	"templatestyles-bad-src": "Pagina [[:$1|$2]] moet het inhoudsmodel \"{{int:content-model-sanitized-css}}\" hebben voor TemplateStyles (inhoudmodel is \"$3\").",
 	"templatestyles-errorcomment": "Fouten tijdens het verwerken van stijlblad [[:$1]] (versie $2): $3",
 	"templatestyles-size-exceeded": "Het stijlblad is groter dan de maximum grootte $2",
+	"templatestyles-tag-injection": "Het meegeleverde stijlblad bevat iets dat lijkt op een HTML-tag, wat niet is toegestaan.",
 	"content-model-sanitized-css": "Opgeschoonde CSS",
 	"templatestyles-stylesheet-error-category": "TemplateStyles-stijlbladen met fouten",
 	"templatestyles-stylesheet-error-category-desc": "Het TemplateStyles-stijlblad bevat een fout.",

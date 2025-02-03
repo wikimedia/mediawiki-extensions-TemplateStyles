@@ -13,6 +13,7 @@
 	"templatestyles-bad-src": "Страницата [[:$1|$2]] мора да го има содржинскиот модел „{{int:content-model-sanitized-css}}“ за Предложни стилови (тековниот модел е „$3“).",
 	"templatestyles-errorcomment": "Грешки при обработката на стилската табела [[:$1]] (прер. $2):\n$3",
 	"templatestyles-size-exceeded": "Стилската табела е поголема од дозволеното — $2.",
+	"templatestyles-tag-injection": "Укажаните стилски страници содржат нешто што изгледа на HTML-ознака, што не е дозволено.",
 	"content-model-sanitized-css": "Прочистена CSS",
 	"templatestyles-stylesheet-error-category": "Стилски табели на Предложни табели со грешки",
 	"templatestyles-stylesheet-error-category-desc": "Стилската табела на Предложни стилови има грешка.",
