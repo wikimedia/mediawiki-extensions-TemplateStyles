@@ -6,6 +6,7 @@
 			"Railfail536"
 		]
 	},
+	"templatestyles": "Style szablonów",
 	"templatestyles-desc": "Implementuje arkusze stylów dla konkretnych szablonów",
 	"templatestyles-missing-src": "Atrybut <code>src</code> nie może być pusty.",
 	"templatestyles-invalid-src": "Nieprawidłowy tytuł dla atrybutu <code>src</code>.",
