@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"A2093064",
+			"GuoPC",
 			"Lakejason0",
 			"LittlePaw365",
 			"Liuxinyu970226",
@@ -21,6 +22,7 @@
 	"templatestyles-bad-src": "页面[[:$1|$2]]必须具有内容模型“{{int:content-model-sanitized-css}}”用于模板样式（目前的内容模型是“$3”）。",
 	"templatestyles-errorcomment": "解析样式表[[:$1]]（修订版本$2）时出错：$3",
 	"templatestyles-size-exceeded": "样式表超过最高大小$2。",
+	"templatestyles-tag-injection": "所提供的样式表包含一些看起来像是HTML标签的内容，它们是不被允许的。",
 	"content-model-sanitized-css": "已过滤的CSS",
 	"templatestyles-stylesheet-error-category": "有错误的模板样式表",
 	"templatestyles-stylesheet-error-category-desc": "模板样式表存在错误。",
