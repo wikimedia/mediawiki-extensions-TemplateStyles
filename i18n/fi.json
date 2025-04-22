@@ -10,6 +10,7 @@
 	"templatestyles-invalid-src": "Virheellinen nimi TemplateStylesin <code>src</code>-attribuutissa.",
 	"templatestyles-invalid-wrapper": "Virheellinen arvo TemplateStylesin <code>wrapper</code>-attribuutissa.",
 	"templatestyles-bad-src-missing": "Sivulla [[:$1|$2]] ei ole sisältöä.",
+	"content-model-sanitized-css": "Puhdistettu CSS",
 	"templatestyles-stylesheet-error-category": "TemplateStyles-tyylisivut, joissa on virheitä",
 	"templatestyles-stylesheet-error-category-desc": "TemplateStyles-tyylisivussa on virhe.",
 	"templatestyles-page-error-category": "Sivut, joissa on TemplateStyles-virheitä",
