@@ -142,7 +142,7 @@ class TemplateStylesContentTest extends TextContentTest {
 		// phpcs:enable
 	}
 
-	public static function dataEquals() {
+	public static function provideDataEquals() {
 		return [
 			[ new TemplateStylesContent( 'hallo' ), null, false ],
 			[ new TemplateStylesContent( 'hallo' ), new TemplateStylesContent( 'hallo' ), true ],
@@ -153,7 +153,7 @@ class TemplateStylesContentTest extends TextContentTest {
 	}
 
 	/**
-	 * @dataProvider dataEquals
+	 * @dataProvider provideDataEquals
 	 */
 	public function testEquals( Content $a, ?Content $b = null, $equal = false ) {
 		$this->assertEquals( $equal, $a->equals( $b ) );
