@@ -12,6 +12,7 @@
 	"templatestyles-bad-src": "TemplateStyles чохь лелайан [[:$1|$2]] агӀонан хила йеза чулацаман модель \"{{int:content-model-sanitized-css}}\"  (карара модель: \"$3\").",
 	"templatestyles-errorcomment": "[[:$1]] стилийн таблица кечйеш гӀалат ($2 верси):\n$3",
 	"templatestyles-size-exceeded": "ХӀара стилийн таблица йоккха йу $2 максимум барамел.",
+	"templatestyles-tag-injection": "ДӀайеллачу стилийн таблицехь html тегах тера хӀума йу, иза лело мегар дац.",
 	"content-model-sanitized-css": "Sanitized CSS",
 	"templatestyles-stylesheet-error-category": "ХетӀийн файлаш кепийн хетӀийн гӀалаташ долуш",
 	"templatestyles-stylesheet-error-category-desc": "«Стилийн кеп» файл гӀалат долуш йу.",
