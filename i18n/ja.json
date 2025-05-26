@@ -7,7 +7,8 @@
 			"Omotecho",
 			"Otokoume",
 			"Shirayuki",
-			"Waki285"
+			"Waki285",
+			"Shulmj"
 		]
 	},
 	"templatestyles-desc": "テンプレートごとにスタイルシートを適用します",
@@ -36,5 +37,12 @@
 	"templatestyles-error-expected-eof": "$1行目の$2文字目にスタイルシートが必要です。",
 	"templatestyles-error-expected-ident": "$1行目の$2文字目に識別子が必要です。",
 	"templatestyles-error-expected-qualified-rule": "$1行目$2文字目にスタイル規則が必要です。",
-	"templatestyles-error-expected-stylesheet": "$1行目$2文字目にスタイルシートが必要です。"
+	"templatestyles-error-expected-stylesheet": "$1行目$2文字目にスタイルシートが必要です。",
+	"templatestyles-error-invalid-font-face-at-rule": "$1行目の$2文字目の<code>@font-face</code>ブロックの前には何も記述することはできません。",
+	"templatestyles-error-invalid-font-feature-value": "$1行目の$2文字目の<code>@$3</code>ブロックの前には何も記述することはできません。",
+	"templatestyles-error-newline-in-string": "$1行目の$2文字目の文字列に無効な改行があります。",
+	"templatestyles-error-recursion-depth-exceeded": "$1行目の$2文字目のブロックまたは関数のネストが多すぎます。",
+	"templatestyles-error-unclosed-comment": "$1行目の$2文字目のコメントが閉じられていません。",
+	"templatestyles-error-unclosed-string": "$1行目の$2文字目の文字列が閉じられていません。",
+	"templatestyles-error-unclosed-url": "$1行目の$2文字目のURLが閉じられていません。"
 }
