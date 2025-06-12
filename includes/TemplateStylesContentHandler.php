@@ -79,9 +79,9 @@ class TemplateStylesContentHandler extends CodeContentHandler {
 		$output->setRawText( $html );
 
 		$status = $this->sanitize( $content, [ 'novalue' => true, 'class' => $parserOptions->getWrapOutputClass() ] );
-		if ( $status->getErrors() ) {
-			foreach ( $status->getErrors() as $error ) {
-				$output->addWarningMsg( $error['message'], $error['params'] );
+		if ( $status->getMessages() ) {
+			foreach ( $status->getMessages() as $msg ) {
+				$output->addWarningMsgVal( $msg );
 			}
 			$services->getTrackingCategories()->addTrackingCategory(
 				$output,
