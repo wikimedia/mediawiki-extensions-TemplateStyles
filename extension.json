@@ -50,7 +50,8 @@
 		"ParserFirstCallInit": "main",
 		"ParserClearState": "main",
 		"ContentHandlerDefaultModelFor": "main",
-		"CodeEditorGetPageLanguage": "codeeditor"
+		"CodeEditorGetPageLanguage": "codeeditor",
+		"CodeMirrorGetMode": "codemirror"
 	},
 	"HookHandlers": {
 		"main": {
@@ -58,6 +59,9 @@
 		},
 		"codeeditor": {
 			"class": "MediaWiki\\Extension\\TemplateStyles\\CodeEditorHooks"
+		},
+		"codemirror": {
+			"class": "MediaWiki\\Extension\\TemplateStyles\\CodeMirrorHooks"
 		}
 	},
 	"config": {
@@ -102,6 +106,10 @@
 		"TemplateStylesUseCodeEditor": {
 			"description": "Use CodeEditor when editing TemplateStyles CSS pages.",
 			"value": true
+		},
+		"TemplateStylesUseCodeMirror": {
+			"description": "Use CodeMirror when editing TemplateStyles CSS pages.",
+			"value": false
 		},
 		"TemplateStylesAutoParseContent": {
 			"description": "Set this false if you want to manage an entry for 'sanitized-css' in $wgTextModelsToParse manually. If true, an entry will be added to $wgTextModelsToParse automatically if CONTENT_MODEL_CSS is in the array.",
