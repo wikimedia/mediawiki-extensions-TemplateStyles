@@ -125,6 +125,6 @@
 		}
 	},
 	"ConfigRegistry": {
-		"templatestyles": "GlobalVarConfig::newInstance"
+		"templatestyles": "MediaWiki\\Config\\GlobalVarConfig::newInstance"
 	}
 }
