@@ -15,7 +15,7 @@
 	"templatestyles-bad-src": "頁面[[:$1|$2]]必須有模樣式嘅內容模型\"{{int:content-model-sanitized-css}}\"（而家嘅模型係\"$3\"）。",
 	"templatestyles-errorcomment": "錯誤處理樣式表[[:$1]] (版本 $2) ：\n$3",
 	"templatestyles-size-exceeded": "個樣式表大過 $2 嘅最大嘥士。",
-	"templatestyles-tag-injection": "提供嘅樣式表包含一啲睇落似 html 標籤嘅嘢，呢個係唔允許嘅。",
+	"templatestyles-tag-injection": "畀出嚟嘅樣式表包含一啲睇落似 html 標籤嘅嘢，呢個係唔俾嘅。",
 	"content-model-sanitized-css": "過濾咗嘅CSS",
 	"templatestyles-stylesheet-error-category": "有錯嘅TemplateStyles樣式表",
 	"templatestyles-stylesheet-error-category-desc": "「範本樣式」樣式表有錯誤。",
