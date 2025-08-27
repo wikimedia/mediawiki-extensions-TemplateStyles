@@ -4,7 +4,8 @@
 			"Winston Sung",
 			"JeffreyKim",
 			"Ktchankt",
-			"Yueman"
+			"Yueman",
+			"H78c67c"
 		]
 	},
 	"templatestyles-desc": "實現每個範本嘅樣式表",
@@ -22,5 +23,5 @@
 	"templatestyles-page-error-category": "有模樣式錯誤嘅頁面",
 	"templatestyles-page-error-category-desc": "處理嗰陣有錯誤嘅<code><nowiki><templatestyles/></nowiki></code>喺頁面上面嘅標籤。",
 	"templatestyles-error-at-rule-block-not-allowed": "唔可以封鎖<code>@$3</code>喺行 $1 字元 $2。",
-	"templatestyles-error-at-rule-block-required": "喺行 $1 字元 $2 嘅<code>@$3</code>需要塊。"
+	"templatestyles-error-at-rule-block-required": "喺第 $1 行第 $2 個字元嘅 <code>@$3</code> 需要代碼塊。"
 }
