@@ -24,7 +24,13 @@
 		"MediaWiki\\Extension\\TemplateStyles\\": "includes/"
 	},
 	"ContentHandlers": {
-		"sanitized-css": "MediaWiki\\Extension\\TemplateStyles\\TemplateStylesContentHandler"
+		"sanitized-css": {
+			"class": "MediaWiki\\Extension\\TemplateStyles\\TemplateStylesContentHandler",
+			"services": [
+				"TrackingCategories",
+				"ConfigFactory"
+			]
+		}
 	},
 	"TrackingCategories": [
 		"templatestyles-stylesheet-error-category",
