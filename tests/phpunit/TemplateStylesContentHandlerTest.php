@@ -4,7 +4,6 @@ use MediaWiki\Content\ValidationParams;
 use MediaWiki\Extension\TemplateStyles\TemplateStylesContent;
 use MediaWiki\Extension\TemplateStyles\TemplateStylesContentHandler;
 use MediaWiki\Message\Message;
-use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
@@ -40,7 +39,7 @@ class TemplateStylesContentHandlerTest extends MediaWikiLangTestCase {
 	public function testValidateSave() {
 		$content = new TemplateStylesContent( '.foo { bogus: bogus; }' );
 		$handler = $this->newHandler();
-		$page = new PageIdentityValue( 0, 1, 'Foo', PageIdentity::LOCAL );
+		$page = PageIdentityValue::localIdentity( 0, 1, 'Foo' );
 		$validationParams = new ValidationParams( $page, 0, 123 );
 
 		$this->assertEquals(
