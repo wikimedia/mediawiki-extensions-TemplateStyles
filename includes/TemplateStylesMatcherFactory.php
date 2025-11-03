@@ -17,7 +17,7 @@ use Wikimedia\CSS\Objects\Token;
 class TemplateStylesMatcherFactory extends \Wikimedia\CSS\Grammar\MatcherFactory {
 
 	/**
-	 * @param array $allowedDomains See $wgTemplateStylesAllowedUrls
+	 * @param array<string,string[]> $allowedDomains See $wgTemplateStylesAllowedUrls
 	 */
 	public function __construct(
 		private readonly array $allowedDomains,

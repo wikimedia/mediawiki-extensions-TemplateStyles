@@ -53,9 +53,7 @@ class TemplateStylesContentHandler extends CodeContentHandler {
 		return $this->sanitize( $content, [ 'novalue' => true, 'severity' => 'fatal' ] );
 	}
 
-	/**
-	 * @return string
-	 */
+	/** @inheritDoc */
 	protected function getContentClass() {
 		return TemplateStylesContent::class;
 	}
@@ -129,7 +127,7 @@ class TemplateStylesContentHandler extends CodeContentHandler {
 	 *  - novalue: (bool) Don't bother returning the actual stylesheet, just
 	 *    fill the Status with warnings.
 	 *  - severity: (string) Whether to consider errors as 'warning' or 'fatal'
-	 * @return Status
+	 * @return Status<string>
 	 */
 	public function sanitize( TemplateStylesContent $content, array $options = [] ) {
 		$options += [

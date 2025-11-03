@@ -43,34 +43,29 @@ class Hooks implements
 	ContentHandlerDefaultModelForHook
 {
 
-	/** @var MatcherFactory|null */
-	private static $matcherFactory = null;
+	private static ?MatcherFactory $matcherFactory = null;
 
-	/** @var Sanitizer[] */
-	private static $sanitizers = [];
+	/** @var array<string,Sanitizer> */
+	private static array $sanitizers = [];
 
-	/** @var (false|Token[])[] */
-	private static $wrappers = [];
+	/** @var array<string,false|Token[]> */
+	private static array $wrappers = [];
 
 	/**
-	 * @return Config
 	 * @codeCoverageIgnore
 	 */
-	public static function getConfig() {
+	public static function getConfig(): Config {
 		return MediaWikiServices::getInstance()->getConfigFactory()
 			->makeConfig( 'templatestyles' );
 	}
 
 	/**
-	 * @return MatcherFactory
 	 * @codeCoverageIgnore
 	 */
-	private static function getMatcherFactory() {
-		if ( !self::$matcherFactory ) {
-			self::$matcherFactory = new TemplateStylesMatcherFactory(
-				self::getConfig()->get( 'TemplateStylesAllowedUrls' )
-			);
-		}
+	private static function getMatcherFactory(): MatcherFactory {
+		self::$matcherFactory ??= new TemplateStylesMatcherFactory(
+			self::getConfig()->get( 'TemplateStylesAllowedUrls' )
+		);
 		return self::$matcherFactory;
 	}
 
