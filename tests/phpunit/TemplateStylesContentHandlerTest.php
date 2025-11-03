@@ -119,11 +119,8 @@ class TemplateStylesContentHandlerTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideSanitize
-	 * @param string $text Input text
-	 * @param array $options
-	 * @param Status $expect
 	 */
-	public function testSanitize( $text, $options, $expect ) {
+	public function testSanitize( string $text, array $options, Status $expect ) {
 		$content = new TemplateStylesContent( $text );
 		$contentHandler = $this->newHandler( $content->getModel() );
 		$this->assertEquals( $expect, $contentHandler->sanitize( $content, $options ) );
