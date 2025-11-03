@@ -221,7 +221,7 @@ class Hooks implements
 			);
 
 		if ( !empty( $enabledNamespaces[$title->getNamespace()] ) &&
-			$title->isSubpage() && substr( $title->getText(), -4 ) === '.css'
+			$title->isSubpage() && str_ends_with( $title->getText(), '.css' )
 		) {
 			$model = 'sanitized-css';
 			return false;

@@ -35,11 +35,7 @@ class TemplateStylesMatcherFactory extends \Wikimedia\CSS\Grammar\MatcherFactory
 		$url = preg_replace_callback( '/%[2-7][0-9A-Fa-f]/', static function ( $m ) {
 			$char = urldecode( $m[0] );
 			/** @phan-suppress-next-line PhanParamSuspiciousOrder */
-			if ( strpos( '"#%<>[\]^`{|}/?&=+;', $char ) === false ) {
-				# Unescape it
-				return $char;
-			}
-			return $m[0];
+			return str_contains( '"#%<>[\]^`{|}/?&=+;', $char ) ? $m[0] : $char;
 		}, $url );
 
 		// Don't allow unescaped \ or /../ in the non-query part of the URL
