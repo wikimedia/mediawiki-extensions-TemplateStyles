@@ -23,6 +23,7 @@ class TemplateStylesContentHandlerTest extends MediaWikiLangTestCase {
 			$modelId,
 			$serviceContainer->getTrackingCategories(),
 			$serviceContainer->getConfigFactory(),
+			$serviceContainer->getCodeHighlighter()
 		);
 	}
 

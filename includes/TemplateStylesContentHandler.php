@@ -12,6 +12,8 @@ use MediaWiki\Category\TrackingCategories;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\ConfigFactory;
 use MediaWiki\Content\CodeContentHandler;
+use MediaWiki\Content\CodeHighlighter;
+use MediaWiki\Content\CodeHighlighterOptions;
 use MediaWiki\Content\Content;
 use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\ValidationParams;
@@ -35,6 +37,7 @@ class TemplateStylesContentHandler extends CodeContentHandler {
 		string $modelId,
 		private readonly TrackingCategories $trackingCategories,
 		private readonly ConfigFactory $configFactory,
+		private readonly CodeHighlighter $codeHighlighter,
 	) {
 		parent::__construct( $modelId, [ CONTENT_FORMAT_CSS ] );
 	}
@@ -76,10 +79,14 @@ class TemplateStylesContentHandler extends CodeContentHandler {
 		parent::fillParserOutput( $content, $cpoParams, $output );
 
 		if ( $cpoParams->getGenerateHtml() ) {
-			$html = "";
-			$html .= "<pre class=\"mw-code mw-css\" dir=\"ltr\">\n";
-			$html .= htmlspecialchars( $content->getText(), ENT_NOQUOTES );
-			$html .= "\n</pre>\n";
+			$highlightOutput = $this->codeHighlighter->highlight( $content->getText(), new CodeHighlighterOptions(
+				language: 'css',
+				classes: [ 'mw-css' ],
+				includeLineNumbers: true,
+				includeLineLinks: true,
+			) );
+			$html = $highlightOutput->getHtml();
+			$highlightOutput->getMetadata()->addToParserOutput( $output );
 		} else {
 			$html = '';
 		}
