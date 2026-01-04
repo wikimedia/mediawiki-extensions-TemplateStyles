@@ -18,6 +18,7 @@ use MediaWiki\Content\ValidationParams;
 use MediaWiki\Message\Message;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Status\Status;
+use MediaWiki\Title\Title;
 use StatusValue;
 use Wikimedia\CSS\Objects\Stylesheet as CSSStylesheet;
 use Wikimedia\CSS\Parser\Parser as CSSParser;
@@ -86,7 +87,11 @@ class TemplateStylesContentHandler extends CodeContentHandler {
 		$output->clearWrapperDivClass();
 		$output->setContentHolderText( $html );
 
-		$status = $this->sanitize( $content, [ 'novalue' => true, 'class' => $parserOptions->getWrapOutputClass() ] );
+		$status = $this->sanitize( $content, [
+			'novalue' => true,
+			'class' => $parserOptions->getWrapOutputClass(),
+			'parserOutput' => $output
+		] );
 		if ( $status->getMessages() ) {
 			foreach ( $status->getMessages() as $msg ) {
 				$output->addWarningMsgVal( $msg );
@@ -128,6 +133,7 @@ class TemplateStylesContentHandler extends CodeContentHandler {
 	 *  - novalue: (bool) Don't bother returning the actual stylesheet, just
 	 *    fill the Status with warnings.
 	 *  - severity: (string) Whether to consider errors as 'warning' or 'fatal'
+	 *  - parserOutput: (ParserOutput) Register image links to this parserOutput
 	 * @return Status<string>
 	 */
 	public function sanitize( TemplateStylesContent $content, array $options = [] ) {
@@ -138,6 +144,7 @@ class TemplateStylesContentHandler extends CodeContentHandler {
 			'minify' => true,
 			'novalue' => false,
 			'severity' => 'warning',
+			'parserOutput' => null
 		];
 
 		$status = Status::newGood();
@@ -156,6 +163,9 @@ class TemplateStylesContentHandler extends CodeContentHandler {
 		if ( $options['flip'] ) {
 			$style = CSSJanus::transform( $style, true, false );
 		}
+
+		$matcherFactory = Hooks::getMatcherFactory();
+		$matcherFactory->clearFileNames();
 
 		// Parse it, and collect any errors
 		$cssParser = CSSParser::newFromString( $style );
@@ -191,6 +201,16 @@ class TemplateStylesContentHandler extends CodeContentHandler {
 
 			// Sanity check, don't allow raw U+007F if one somehow sneaks through the sanitizer
 			$status->value = strtr( $status->value, [ "\x7f" => '�' ] );
+		}
+
+		if ( $options['parserOutput'] ) {
+			$fileNames = array_unique( $matcherFactory->getFileNames() );
+			foreach ( $fileNames as $file ) {
+				$fileTitle = Title::makeTitleSafe( NS_FILE, $file );
+				if ( $fileTitle ) {
+					$options['parserOutput']->addImage( $fileTitle );
+				}
+			}
 		}
 
 		return $status;

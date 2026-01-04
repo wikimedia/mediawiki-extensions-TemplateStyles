@@ -62,7 +62,7 @@ class Hooks implements
 	/**
 	 * @codeCoverageIgnore
 	 */
-	private static function getMatcherFactory(): MatcherFactory {
+	public static function getMatcherFactory(): TemplateStylesMatcherFactory {
 		self::$matcherFactory ??= new TemplateStylesMatcherFactory(
 			self::getConfig()->get( 'TemplateStylesAllowedUrls' )
 		);
