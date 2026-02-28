@@ -272,7 +272,7 @@ class Hooks implements
 		$parser->getOutput()->addTemplate(
 			$title,
 			$title->getArticleId(),
-			$revRecord ? $revRecord->getId() : null
+			$revRecord ? $revRecord->getId() : 0
 		);
 
 		if ( !$revRecord ) {
