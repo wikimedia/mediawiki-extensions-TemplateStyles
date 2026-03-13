@@ -19,6 +19,7 @@ use MediaWiki\Message\Message;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Status\Status;
 use StatusValue;
+use Wikimedia\CSS\Objects\Stylesheet as CSSStylesheet;
 use Wikimedia\CSS\Parser\Parser as CSSParser;
 use Wikimedia\CSS\Util as CSSUtil;
 
@@ -168,11 +169,13 @@ class TemplateStylesContentHandler extends CodeContentHandler {
 		// Just in case
 		$sanitizer->clearSanitizationErrors();
 		$stylesheet = $sanitizer->sanitize( $stylesheet );
+		'@phan-var ?CSSStylesheet $stylesheet';
 		self::processErrors( $status, $sanitizer->getSanitizationErrors(), $options['severity'] );
 		$sanitizer->clearSanitizationErrors();
 
 		// Stringify it while minifying
-		$value = CSSUtil::stringify( $stylesheet, [ 'minify' => $options['minify'] ] );
+		$value = $stylesheet === null ? '' :
+			CSSUtil::stringify( $stylesheet, [ 'minify' => $options['minify'] ] );
 
 		// Sanity check, don't allow "</style" if one somehow sneaks through the sanitizer.
 		// Also, don't allow "<ABC" if one somehow sneaks through the sanitizer
