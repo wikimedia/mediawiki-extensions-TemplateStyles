@@ -77,7 +77,7 @@ class TemplateStylesContentHandler extends CodeContentHandler {
 		if ( $cpoParams->getGenerateHtml() ) {
 			$html = "";
 			$html .= "<pre class=\"mw-code mw-css\" dir=\"ltr\">\n";
-			$html .= htmlspecialchars( $content->getNativeData(), ENT_NOQUOTES );
+			$html .= htmlspecialchars( $content->getText(), ENT_NOQUOTES );
 			$html .= "\n</pre>\n";
 		} else {
 			$html = '';
