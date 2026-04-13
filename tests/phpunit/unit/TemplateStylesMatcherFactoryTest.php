@@ -75,6 +75,7 @@ class TemplateStylesMatcherFactoryTest extends MediaWikiUnitTestCase {
 			[ 'filename', 'http://example.com/test3/foo.svg', true, 'foo.svg' ],
 			[ 'filename', 'http://example.com/test3/', true ],
 			[ 'filename', 'http://example.com/test55/foo.svg', false ],
+			[ 'filename', 'http://example.com/test3/unicode_%F0%9F%90%B6.png', true, 'unicode_🐶.png' ],
 		];
 	}
 

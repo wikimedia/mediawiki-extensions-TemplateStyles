@@ -52,7 +52,7 @@ class TemplateStylesMatcherFactory extends \Wikimedia\CSS\Grammar\MatcherFactory
 			$m = [];
 			if ( preg_match( $regex, $url, $m ) ) {
 				if ( isset( $m['filename'] ) && $m['filename'] !== '' ) {
-					$this->fileNames[] = $m['filename'];
+					$this->fileNames[] = rawurldecode( $m['filename'] );
 				}
 				return true;
 			}
