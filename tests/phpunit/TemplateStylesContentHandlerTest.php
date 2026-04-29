@@ -131,10 +131,8 @@ class TemplateStylesContentHandlerTest extends MediaWikiLangTestCase {
 	public function testSanitizeParserOutput() {
 		// Change the allowed urls for testing and reset cached MatcherFactory
 		$mf = new ReflectionProperty( Hooks::class, 'matcherFactory' );
-		$mf->setAccessible( true );
 		$mf->setValue( null, null );
 		$sanitizers = new ReflectionProperty( Hooks::class, 'sanitizers' );
-		$sanitizers->setAccessible( true );
 		$sanitizers->setValue( null, [] );
 		MediaWiki\MediaWikiServices::getInstance()->resetServiceForTesting( 'ConfigFactory' );
 		$this->setMwGlobals( 'wgTemplateStylesAllowedUrls', [
