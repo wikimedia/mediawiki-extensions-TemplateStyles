@@ -8,7 +8,6 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Revision\MutableRevisionRecord;
-use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use Wikimedia\CSS\Parser\Parser as CSSParser;
 
@@ -157,14 +156,16 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 			static function ( Title $title, $parser = null ) use ( &$oldCurrentRevisionRecordCallback ) {
 				if ( $title->getPrefixedText() === 'Template:Test replacement' ) {
 					$user = RequestContext::getMain()->getUser();
-					$revRecord = new MutableRevisionRecord( $title );
-					$revRecord->setUser( $user );
-					$revRecord->setContent(
-						SlotRecord::MAIN,
-						new TemplateStylesContent( '.baz { color:orange; bogus:bogus; }' )
+					return MutableRevisionRecord::newFromContent(
+						$title,
+						new TemplateStylesContent(
+							'.baz { color:orange; bogus:bogus; }'
+						)
+					)->setUser(
+						$user
+					)->setParentId(
+						$title->getLatestRevID()
 					);
-					$revRecord->setParentId( $title->getLatestRevID() );
-					return $revRecord;
 				}
 				return $oldCurrentRevisionRecordCallback( $title, $parser );
 			}
