@@ -1,0 +1,37 @@
+!! Version 2
+
+!! hooks
+templatestyles
+!! endhooks
+
+!! functionhooks
+invoke
+!! endfunctionhooks
+
+!! article
+Template:TemplateStyles test/styles.css
+!! text
+.foo {
+	color: red;
+}
+!! endarticle
+
+!! article
+Module:TemplateStyles test
+!! text
+local p = {}
+
+function p.main()
+	return mw.ext.TemplateStyles.link( 'Template:TemplateStyles test/styles.css' )
+end
+
+return p
+!! endarticle
+
+!! test
+TemplateStyles Scribunto library loads styles
+!! wikitext
+{{#invoke:TemplateStyles test|main}}
+!! html
+<style data-mw-deduplicate="TemplateStyles:r11">.mw-parser-output .foo{color:red}</style>
+!! end

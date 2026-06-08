@@ -55,7 +55,8 @@
 		"ParserFirstCallInit": "main",
 		"ContentHandlerDefaultModelFor": "main",
 		"CodeEditorGetPageLanguage": "codeeditor",
-		"CodeMirrorGetMode": "codemirror"
+		"CodeMirrorGetMode": "codemirror",
+		"ScribuntoExternalLibraries": "scribunto"
 	},
 	"HookHandlers": {
 		"main": {
@@ -66,6 +67,9 @@
 		},
 		"codemirror": {
 			"class": "MediaWiki\\Extension\\TemplateStyles\\CodeMirrorHooks"
+		},
+		"scribunto": {
+			"class": "MediaWiki\\Extension\\TemplateStyles\\ScribuntoHooks"
 		}
 	},
 	"config": {
