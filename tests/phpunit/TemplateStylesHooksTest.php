@@ -19,7 +19,7 @@ use Wikimedia\CSS\Parser\Parser as CSSParser;
 class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 
 	protected function addPage( $page, $text, $model ) {
-		$title = Title::newFromText( 'Template:TemplateStyles test/' . $page );
+		$title = Title::makeTitle( NS_TEMPLATE, 'TemplateStyles test/' . $page );
 		$content = ContentHandler::makeContent( $text, $title, $model );
 
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
@@ -177,10 +177,10 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 		if ( !in_array( 'templatestyles', $parser->getTags(), true ) ) {
 			throw new Exception( 'templatestyles tag hook is not in the parser' );
 		}
-		$out = $parser->parse( $wikitext, Title::newFromText( 'Test' ), $popt );
+		$out = $parser->parse( $wikitext, Title::makeTitle( NS_MAIN, 'Test' ), $popt );
 
 		$expect = preg_replace_callback( '/\{\{REV:(.*?)\}\}/', static function ( $m ) {
-			return Title::newFromText( 'Template:TemplateStyles test/' . $m[1] )->getLatestRevID();
+			return Title::makeTitle( NS_TEMPLATE, 'TemplateStyles test/' . $m[1] )->getLatestRevID();
 		}, $expect );
 		$this->assertEquals( $expect, $out->runOutputPipeline( $popt, $getTextOptions )->getContentHolderText() );
 	}

@@ -36,7 +36,7 @@ class TemplateStylesContentHandlerTest extends MediaWikiLangTestCase {
 
 		$this->assertFalse( $handler->supportsRedirects() );
 
-		$title = Title::newFromText( 'Template:Example/styles.css' );
+		$title = Title::makeTitle( NS_TEMPLATE, 'Example/styles.css' );
 		$this->assertNull( $handler->makeRedirectContent( $title ) );
 	}
 
