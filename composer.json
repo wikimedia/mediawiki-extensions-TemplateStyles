@@ -1,4 +1,13 @@
 {
+	"name": "mediawiki/template-styles",
+	"type": "mediawiki-extension",
+	"description": "Implement per-template style sheets",
+	"keywords": [
+		"wiki",
+		"MediaWiki",
+		"extension"
+	],
+	"homepage": "https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:TemplateStyles",
 	"license": "GPL-2.0-or-later",
 	"require": {
 		"wikimedia/css-sanitizer": "^6.0.0"
