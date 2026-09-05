@@ -135,7 +135,7 @@ class TemplateStylesContentHandlerTest extends MediaWikiLangTestCase {
 		$mf->setValue( null, null );
 		$sanitizers = new ReflectionProperty( Hooks::class, 'sanitizers' );
 		$sanitizers->setValue( null, [] );
-		MediaWiki\MediaWikiServices::getInstance()->resetServiceForTesting( 'ConfigFactory' );
+		$this->getServiceContainer()->resetServiceForTesting( 'ConfigFactory' );
 		$this->setMwGlobals( 'wgTemplateStylesAllowedUrls', [
 			'image' => [ '<https://example.com/(?:foo/(?\'filename\'[^/?#]*))?>' ]
 		] );
@@ -154,7 +154,7 @@ class TemplateStylesContentHandlerTest extends MediaWikiLangTestCase {
 
 		$mf->setValue( null, null );
 		$sanitizers->setValue( null, [] );
-		MediaWiki\MediaWikiServices::getInstance()->resetServiceForTesting( 'ConfigFactory' );
+		$this->getServiceContainer()->resetServiceForTesting( 'ConfigFactory' );
 
 		$images = $pout->getLinkList( ParserOutputLinkTypes::MEDIA );
 		$imageList = array_map( static function ( $x ) {
