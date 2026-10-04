@@ -2,7 +2,8 @@ local TemplateStyles = {}
 local php
 
 function TemplateStyles.link( title )
-	return '<templatestyles src="' .. mw.text.encode( title ) .. '"/>'
+	-- TODO: just return <templatestyles src={title}/> when legacy parser is phased out
+	return php.makeTag( title )
 end
 
 function TemplateStyles.setupInterface( options )
