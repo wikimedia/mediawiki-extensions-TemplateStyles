@@ -113,11 +113,11 @@
 		},
 		"TemplateStylesUseCodeEditor": {
 			"description": "Use CodeEditor when editing TemplateStyles CSS pages.",
-			"value": true
+			"value": false
 		},
 		"TemplateStylesUseCodeMirror": {
 			"description": "Use CodeMirror when editing TemplateStyles CSS pages.",
-			"value": false
+			"value": true
 		},
 		"TemplateStylesAutoParseContent": {
 			"description": "Set this false if you want to manage an entry for 'sanitized-css' in $wgTextModelsToParse manually. If true, an entry will be added to $wgTextModelsToParse automatically if CONTENT_MODEL_CSS is in the array.",
