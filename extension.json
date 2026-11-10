@@ -10,8 +10,6 @@
 	"descriptionmsg": "templatestyles-desc",
 	"license-name": "GPL-2.0-or-later",
 	"type": "parserhook",
-	"manifest_version": 2,
-	"load_composer_autoloader": true,
 	"requires": {
 		"MediaWiki": ">= 1.47.0"
 	},
@@ -20,6 +18,7 @@
 			"i18n"
 		]
 	},
+	"load_composer_autoloader": true,
 	"AutoloadNamespaces": {
 		"MediaWiki\\Extension\\TemplateStyles\\": "includes/"
 	},
@@ -28,7 +27,7 @@
 			"class": "MediaWiki\\Extension\\TemplateStyles\\TemplateStylesContentHandler",
 			"services": [
 				"TrackingCategories",
-				"ConfigFactory",
+				"MainConfig",
 				"CodeHighlighter"
 			]
 		}
@@ -60,13 +59,22 @@
 	},
 	"HookHandlers": {
 		"main": {
-			"class": "MediaWiki\\Extension\\TemplateStyles\\Hooks"
+			"class": "MediaWiki\\Extension\\TemplateStyles\\Hooks",
+			"services": [
+				"MainConfig"
+			]
 		},
 		"codeeditor": {
-			"class": "MediaWiki\\Extension\\TemplateStyles\\CodeEditorHooks"
+			"class": "MediaWiki\\Extension\\TemplateStyles\\CodeEditorHooks",
+			"services": [
+				"MainConfig"
+			]
 		},
 		"codemirror": {
-			"class": "MediaWiki\\Extension\\TemplateStyles\\CodeMirrorHooks"
+			"class": "MediaWiki\\Extension\\TemplateStyles\\CodeMirrorHooks",
+			"services": [
+				"MainConfig"
+			]
 		},
 		"scribunto": {
 			"class": "MediaWiki\\Extension\\TemplateStyles\\ScribuntoHooks"
@@ -134,5 +142,6 @@
 	},
 	"ConfigRegistry": {
 		"templatestyles": "MediaWiki\\Config\\GlobalVarConfig::newInstance"
-	}
+	},
+	"manifest_version": 2
 }

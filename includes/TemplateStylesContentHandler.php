@@ -10,7 +10,6 @@ namespace MediaWiki\Extension\TemplateStyles;
 use CSSJanus;
 use MediaWiki\Category\TrackingCategories;
 use MediaWiki\Config\Config;
-use MediaWiki\Config\ConfigFactory;
 use MediaWiki\Content\CodeContentHandler;
 use MediaWiki\Content\CodeHighlighter;
 use MediaWiki\Content\CodeHighlighterOptions;
@@ -31,20 +30,13 @@ use Wikimedia\CSS\Util as CSSUtil;
  */
 class TemplateStylesContentHandler extends CodeContentHandler {
 
-	private Config $config;
-
 	public function __construct(
 		string $modelId,
 		private readonly TrackingCategories $trackingCategories,
-		private readonly ConfigFactory $configFactory,
+		private readonly Config $config,
 		private readonly CodeHighlighter $codeHighlighter,
 	) {
 		parent::__construct( $modelId, [ CONTENT_FORMAT_CSS ] );
-	}
-
-	private function getConfig(): Config {
-		$this->config ??= $this->configFactory->makeConfig( 'templatestyles' );
-		return $this->config;
 	}
 
 	/**
@@ -157,7 +149,7 @@ class TemplateStylesContentHandler extends CodeContentHandler {
 		$status = Status::newGood();
 
 		$style = $content->getText();
-		$maxSize = $this->getConfig()->get( 'TemplateStylesMaxStylesheetSize' );
+		$maxSize = $this->config->get( 'TemplateStylesMaxStylesheetSize' );
 		if ( $maxSize !== null && strlen( $style ) > $maxSize ) {
 			$status->fatal(
 				// Status::getWikiText() chokes on the Message::sizeParam if we
@@ -171,7 +163,8 @@ class TemplateStylesContentHandler extends CodeContentHandler {
 			$style = CSSJanus::transform( $style, true, false );
 		}
 
-		$matcherFactory = Hooks::getMatcherFactory();
+		$hooks = new Hooks( $this->config );
+		$matcherFactory = $hooks->getMatcherFactory();
 		$matcherFactory->clearFileNames();
 
 		// Parse it, and collect any errors
@@ -180,7 +173,7 @@ class TemplateStylesContentHandler extends CodeContentHandler {
 		self::processErrors( $status, $cssParser->getParseErrors(), $options['severity'] );
 
 		// Sanitize it, and collect any errors
-		$sanitizer = Hooks::getSanitizer(
+		$sanitizer = $hooks->getSanitizer(
 			$options['class'] ?: 'mw-parser-output', $options['extraWrapper']
 		);
 		// Just in case

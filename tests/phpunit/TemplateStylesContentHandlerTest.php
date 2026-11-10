@@ -22,7 +22,7 @@ class TemplateStylesContentHandlerTest extends MediaWikiLangTestCase {
 		return new TemplateStylesContentHandler(
 			$modelId,
 			$serviceContainer->getTrackingCategories(),
-			$serviceContainer->getConfigFactory(),
+			$serviceContainer->getMainConfig(),
 			$serviceContainer->getCodeHighlighter()
 		);
 	}
@@ -135,8 +135,7 @@ class TemplateStylesContentHandlerTest extends MediaWikiLangTestCase {
 		$mf->setValue( null, null );
 		$sanitizers = new ReflectionProperty( Hooks::class, 'sanitizers' );
 		$sanitizers->setValue( null, [] );
-		$this->getServiceContainer()->resetServiceForTesting( 'ConfigFactory' );
-		$this->setMwGlobals( 'wgTemplateStylesAllowedUrls', [
+		$this->overrideConfigValue( 'TemplateStylesAllowedUrls', [
 			'image' => [ '<https://example.com/(?:foo/(?\'filename\'[^/?#]*))?>' ]
 		] );
 		$text = '#a { background-image: url( https://example.com/foo/Test1.svg ) } '
@@ -154,7 +153,6 @@ class TemplateStylesContentHandlerTest extends MediaWikiLangTestCase {
 
 		$mf->setValue( null, null );
 		$sanitizers->setValue( null, [] );
-		$this->getServiceContainer()->resetServiceForTesting( 'ConfigFactory' );
 
 		$images = $pout->getLinkList( ParserOutputLinkTypes::MEDIA );
 		$imageList = array_map( static function ( $x ) {

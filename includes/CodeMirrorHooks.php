@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\TemplateStyles;
 
+use MediaWiki\Config\Config;
 use MediaWiki\Extension\CodeMirror\Hooks\CodeMirrorGetModeHook;
 use MediaWiki\Title\Title;
 
@@ -10,6 +11,12 @@ use MediaWiki\Title\Title;
  * All hooks from the CodeMirror extension which is optional to use with this extension.
  */
 class CodeMirrorHooks implements CodeMirrorGetModeHook {
+
+	public function __construct(
+		private readonly Config $config,
+	) {
+	}
+
 	/**
 	 * Edit our CSS content model like core's CSS
 	 * @param Title $title Title being edited
@@ -18,7 +25,7 @@ class CodeMirrorHooks implements CodeMirrorGetModeHook {
 	 * @return bool
 	 */
 	public function onCodeMirrorGetMode( Title $title, ?string &$mode, string $model ): bool {
-		if ( $model === 'sanitized-css' && Hooks::getConfig()->get( 'TemplateStylesUseCodeMirror' ) ) {
+		if ( $model === 'sanitized-css' && $this->config->get( 'TemplateStylesUseCodeMirror' ) ) {
 			$mode = 'css';
 			return false;
 		}

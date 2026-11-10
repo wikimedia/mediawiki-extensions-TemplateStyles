@@ -2,7 +2,7 @@
 
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Context\RequestContext;
-use MediaWiki\Extension\TemplateStyles\Hooks as TemplateStylesHooks;
+use MediaWiki\Extension\TemplateStyles\Hooks;
 use MediaWiki\Extension\TemplateStyles\TemplateStylesContent;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\ParserOptions;
@@ -41,13 +41,20 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 	}
 
 	public function testGetSanitizerInvalidWrapper() {
+		$config = new HashConfig( [
+			'TemplateStylesDisallowedProperties' => [],
+		] );
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( 'Invalid value for $extraWrapper: .foo>.bar' );
-		TemplateStylesHooks::getSanitizer( 'foo', '.foo>.bar' );
+		( new Hooks( $config ) )->getSanitizer( 'foo', '.foo>.bar' );
 	}
 
 	public function testGetSanitizerNonLinearWrapper() {
-		$sanitizer = TemplateStylesHooks::getSanitizer( 'foo', 'div[data]' );
+		$config = new HashConfig( [
+			'TemplateStylesDisallowedAtRules' => [],
+			'TemplateStylesDisallowedProperties' => [],
+		] );
+		$sanitizer = ( new Hooks( $config ) )->getSanitizer( 'foo', 'div[data]' );
 		$sanitizer->sanitize( CSSParser::newFromString( '.not-empty { }' )->parseStylesheet() );
 		$this->assertSame( [], $sanitizer->getSanitizationErrors() );
 	}
@@ -66,7 +73,7 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 		] );
 
 		global $wgTextModelsToParse;
-		TemplateStylesHooks::onRegistration();
+		Hooks::onRegistration();
 		$this->assertSame( $expect, $wgTextModelsToParse );
 	}
 
@@ -94,7 +101,7 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideOnContentHandlerDefaultModelFor
 	 */
 	public function testOnContentHandlerDefaultModelFor( $ns, $title, $expect ) {
-		$this->overrideConfigValues( [
+		$config = new HashConfig( [
 			'TemplateStylesNamespaces' => [
 				10 => true,
 				2 => false,
@@ -102,6 +109,8 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 				3002 => true,
 				3006 => false,
 			],
+		] );
+		$this->overrideConfigValues( [
 			MainConfigNames::NamespacesWithSubpages => [
 				10 => true,
 				2 => true,
@@ -117,7 +126,7 @@ class TemplateStylesHooksTest extends MediaWikiLangTestCase {
 		);
 
 		$model = 'unchanged';
-		$ret = ( new TemplateStylesHooks )->onContentHandlerDefaultModelFor(
+		$ret = ( new Hooks( $config ) )->onContentHandlerDefaultModelFor(
 			Title::makeTitle( $ns, $title ), $model
 		);
 		$this->assertSame( !$expect, $ret );

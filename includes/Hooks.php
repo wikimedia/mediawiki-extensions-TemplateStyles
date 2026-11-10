@@ -51,20 +51,17 @@ class Hooks implements
 	/** @var array<string,false|Token[]> */
 	private static array $wrappers = [];
 
-	/**
-	 * @codeCoverageIgnore
-	 */
-	public static function getConfig(): Config {
-		return MediaWikiServices::getInstance()->getConfigFactory()
-			->makeConfig( 'templatestyles' );
+	public function __construct(
+		private readonly Config $config,
+	) {
 	}
 
 	/**
 	 * @codeCoverageIgnore
 	 */
-	public static function getMatcherFactory(): TemplateStylesMatcherFactory {
+	public function getMatcherFactory(): TemplateStylesMatcherFactory {
 		self::$matcherFactory ??= new TemplateStylesMatcherFactory(
-			self::getConfig()->get( 'TemplateStylesAllowedUrls' )
+			$this->config->get( 'TemplateStylesAllowedUrls' )
 		);
 		return self::$matcherFactory;
 	}
@@ -74,14 +71,14 @@ class Hooks implements
 	 * @param string $wrapper
 	 * @return ComponentValue[]|false Representation of the selector, or false on failure
 	 */
-	private static function validateExtraWrapper( $wrapper ) {
+	private function validateExtraWrapper( $wrapper ) {
 		if ( !isset( self::$wrappers[$wrapper] ) ) {
 			$cssParser = CSSParser::newFromString( $wrapper );
 			$components = $cssParser->parseComponentValueList();
 			if ( $cssParser->getParseErrors() ) {
 				$match = false;
 			} else {
-				$match = self::getMatcherFactory()->cssSimpleSelectorSeq()
+				$match = $this->getMatcherFactory()->cssSimpleSelectorSeq()
 					->matchAgainst( $components, [ 'mark-significance' => true ] );
 			}
 			self::$wrappers[$wrapper] = $match ? $components->toComponentValueArray() : false;
@@ -94,16 +91,15 @@ class Hooks implements
 	 * @param string|null $extraWrapper Extra selector to limit selectors to
 	 * @return Sanitizer
 	 */
-	public static function getSanitizer( $class, $extraWrapper = null ) {
+	public function getSanitizer( $class, $extraWrapper = null ) {
 		$key = $extraWrapper !== null ? "$class $extraWrapper" : $class;
 		if ( !isset( self::$sanitizers[$key] ) ) {
-			$config = self::getConfig();
-			$matcherFactory = self::getMatcherFactory();
+			$matcherFactory = $this->getMatcherFactory();
 
 			$propertySanitizer = new StylePropertySanitizer( $matcherFactory );
 			$propertySanitizer->setKnownProperties( array_diff_key(
 				$propertySanitizer->getKnownProperties(),
-				array_flip( $config->get( 'TemplateStylesDisallowedProperties' ) )
+				array_flip( $this->config->get( 'TemplateStylesDisallowedProperties' ) )
 			) );
 			$hookRunner = new HookRunner( MediaWikiServices::getInstance()->getHookContainer() );
 			$hookRunner->onTemplateStylesPropertySanitizer( $propertySanitizer, $matcherFactory );
@@ -127,7 +123,7 @@ class Hooks implements
 				new Token( Token::T_IDENT, $class ),
 			];
 			if ( $extraWrapper !== null ) {
-				$extraComponentValues = self::validateExtraWrapper( $extraWrapper );
+				$extraComponentValues = $this->validateExtraWrapper( $extraWrapper );
 				if ( !$extraComponentValues ) {
 					throw new InvalidArgumentException( "Invalid value for \$extraWrapper: $extraWrapper" );
 				}
@@ -138,7 +134,7 @@ class Hooks implements
 				);
 			}
 
-			$disallowedAtRules = $config->get( 'TemplateStylesDisallowedAtRules' );
+			$disallowedAtRules = $this->config->get( 'TemplateStylesDisallowedAtRules' );
 
 			$ruleSanitizers = [
 				'styles' => new StyleRuleSanitizer(
@@ -201,7 +197,7 @@ class Hooks implements
 	 * @param Parser $parser Parser object being cleared
 	 */
 	public function onParserFirstCallInit( $parser ) {
-		$parser->setHook( 'templatestyles', [ __CLASS__, 'handleTag' ] );
+		$parser->setHook( 'templatestyles', $this->handleTag( ... ) );
 	}
 
 	/**
@@ -214,7 +210,7 @@ class Hooks implements
 		// Allow overwriting attributes with config settings.
 		// Attributes can not use namespaces as keys, as processing them does not preserve
 		// integer keys.
-		$enabledNamespaces = self::getConfig()->get( 'TemplateStylesNamespaces' ) +
+		$enabledNamespaces = $this->config->get( 'TemplateStylesNamespaces' ) +
 			array_fill_keys(
 				ExtensionRegistry::getInstance()->getAttribute( 'TemplateStylesNamespaces' ),
 				true
@@ -238,21 +234,20 @@ class Hooks implements
 	 * @return string HTML
 	 * @suppress SecurityCheck-XSS
 	 */
-	public static function handleTag( $text, $params, $parser, $frame ) {
-		$config = self::getConfig();
-		if ( $config->get( 'TemplateStylesDisable' ) ) {
+	public function handleTag( $text, $params, $parser, $frame ) {
+		if ( $this->config->get( 'TemplateStylesDisable' ) ) {
 			return '';
 		}
 
 		if ( !isset( $params['src'] ) || trim( $params['src'] ) === '' ) {
-			return self::formatTagError( $parser, [ 'templatestyles-missing-src' ] );
+			return $this->formatTagError( $parser, [ 'templatestyles-missing-src' ] );
 		}
 
 		$extraWrapper = null;
 		if ( isset( $params['wrapper'] ) && trim( $params['wrapper'] ) !== '' ) {
 			$extraWrapper = trim( $params['wrapper'] );
-			if ( !self::validateExtraWrapper( $extraWrapper ) ) {
-				return self::formatTagError( $parser, [ 'templatestyles-invalid-wrapper' ] );
+			if ( !$this->validateExtraWrapper( $extraWrapper ) ) {
+				return $this->formatTagError( $parser, [ 'templatestyles-invalid-wrapper' ] );
 			}
 		}
 
@@ -260,9 +255,9 @@ class Hooks implements
 		// situation. We can't allow for subpage syntax like src="/styles.css"
 		// or the like, though, because stuff like substing and Parsoid would
 		// wind up wanting to make that relative to the wrong page.
-		$title = Title::newFromText( $params['src'], $config->get( 'TemplateStylesDefaultNamespace' ) );
+		$title = Title::newFromText( $params['src'], $this->config->get( 'TemplateStylesDefaultNamespace' ) );
 		if ( !$title || $title->isExternal() ) {
-			return self::formatTagError( $parser, [ 'templatestyles-invalid-src' ] );
+			return $this->formatTagError( $parser, [ 'templatestyles-invalid-src' ] );
 		}
 
 		$revRecord = $parser->fetchCurrentRevisionRecordOfTitle( $title );
@@ -277,7 +272,7 @@ class Hooks implements
 
 		if ( !$revRecord ) {
 			$titleText = $title->getPrefixedText();
-			return self::formatTagError( $parser, [
+			return $this->formatTagError( $parser, [
 				'templatestyles-bad-src-missing',
 				$titleText,
 				wfEscapeWikiText( $titleText )
@@ -288,7 +283,7 @@ class Hooks implements
 
 		$status = $contentProvider->getStyle( $revRecord, $parser, $extraWrapper );
 		if ( !$status->isGood() ) {
-			return self::formatTagError( $parser, [ $status->getMessage() ] );
+			return $this->formatTagError( $parser, [ $status->getMessage() ] );
 		}
 		[ $cacheKey, $style ] = $status->getValue();
 
@@ -312,7 +307,7 @@ class Hooks implements
 	 * @phan-param non-empty-array $msg
 	 * @return string HTML
 	 */
-	private static function formatTagError( Parser $parser, array $msg ) {
+	private function formatTagError( Parser $parser, array $msg ) {
 		$parser->addTrackingCategory( 'templatestyles-page-error-category' );
 		return '<strong class="error">' .
 			wfMessage( ...$msg )->inContentLanguage()->parse() .
