@@ -140,8 +140,5 @@
 			"value": 10
 		}
 	},
-	"ConfigRegistry": {
-		"templatestyles": "MediaWiki\\Config\\GlobalVarConfig::newInstance"
-	},
 	"manifest_version": 2
 }
